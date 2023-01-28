@@ -8,7 +8,7 @@ export const Layout = () => {
     <div>
       <Suspense fallback={<div>Loading page...</div>}>
         <Header />
-        <AsideBar />
+        {/* <AsideBar /> */}
         <Outlet />
       </Suspense>
     </div>
