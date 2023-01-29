@@ -12,7 +12,7 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <BrowserRouter basename="/movie-viewer">
+      <BrowserRouter basename="/">
         <App />
       </BrowserRouter>
     </ThemeProvider>
