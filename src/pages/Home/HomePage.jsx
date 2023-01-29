@@ -24,9 +24,6 @@ const HomePage = () => {
     setIsLoading(true);
   }, []);
 
-  console.log(movies);
-  console.log(isLoading);
-
   return (
     <div>
       <p>HOME PAGE</p>
