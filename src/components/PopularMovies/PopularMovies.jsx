@@ -1,9 +1,21 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { List, ImgWrapper, Poster } from './PopularMovies.styled';
+import ReactPaginate from 'react-paginate';
 
 const PopularMovies = ({ movies, location }) => {
   console.log(movies);
-  console.log(location);
+  // console.log(location);
+  const moviesPerPage = 20;
+  const [movieOffset, setMovieOffset] = useState(0);
+  const endOffset = movieOffset + moviesPerPage;
+  const currentMovies = movies.slice(movieOffset, endOffset);
+  const pageCount = Math.ceil(movies.length / moviesPerPage);
+
+  const handlePageClick = event => {
+    const newOffset = (event.selected * moviesPerPage) % movies.length;
+    setMovieOffset(newOffset);
+  };
 
   return (
     <>
@@ -19,6 +31,15 @@ const PopularMovies = ({ movies, location }) => {
           </li>
         ))}
       </List>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
     </>
   );
 };
