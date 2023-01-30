@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import Loader from '../../components/Loader';
-import { getMostPopularMovies } from '../../services/fetchMovies';
+import MoviePagination from '../../components/ui/MoviePagination/Pagination';
+// import { getMostPopularMovies } from '../../services/fetchMovies';
 import PopularMovies from '../../components/PopularMovies/PopularMovies';
 
 import mostPopularMovies from '../../temporarilyData/mostPopularMovies.json';
@@ -46,6 +47,7 @@ const HomePage = () => {
 
   return (
     <div>
+      <MoviePagination movies={movies} />
       <h2 style={{ display: 'flex', justifyContent: 'center' }}>
         MOST POPULAR MOVIES
       </h2>
