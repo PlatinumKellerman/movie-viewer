@@ -4,18 +4,20 @@ const Loader = () => {
   return (
     <>
       <ThreeCircles
-        height="100"
-        width="100"
+        height="50"
+        width="50"
         color="#D55448"
-        wrapperStyle={{}}
+        wrapperStyle={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
         wrapperClass=""
         visible={true}
         ariaLabel="three-circles-rotating"
         outerCircleColor=""
-        innerCircleColor=""
+        innerCircleColor="tomato"
         middleCircleColor=""
       />
-      ;
     </>
   );
 };

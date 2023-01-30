@@ -2,10 +2,9 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { List, ImgWrapper, Poster } from './PopularMovies.styled';
 import ReactPaginate from 'react-paginate';
+import ReactDOM from 'react-dom';
 
 const PopularMovies = ({ movies, location }) => {
-  console.log(movies);
-  // console.log(location);
   const moviesPerPage = 20;
   const [movieOffset, setMovieOffset] = useState(0);
   const endOffset = movieOffset + moviesPerPage;
@@ -43,5 +42,4 @@ const PopularMovies = ({ movies, location }) => {
     </>
   );
 };
-
 export default PopularMovies;
