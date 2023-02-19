@@ -7,11 +7,13 @@ const MoviePagination = ({ movies }) => {
 
   const moviesPerPage = 20;
   const pageCount = movies.length / moviesPerPage;
+  const offset = page * moviesPerPage;
 
   const handleChange = (event, page) => {
-    console.log(event, page);
     setPage(page);
   };
+
+  const dataToShow = movies.slice(offset, offset + moviesPerPage);
 
   return (
     <Box
@@ -20,7 +22,12 @@ const MoviePagination = ({ movies }) => {
       justifyContent={'center'}
       alignItems={'center'}
     >
+      {dataToShow.map(({ id, fullTitle, title, image }) => (
+        <div key={id}>{title}</div>
+      ))}
+
       <h1>Current page is {page}</h1>
+
       <Pagination
         count={movies.length}
         color="primary"
