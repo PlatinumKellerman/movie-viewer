@@ -1,12 +1,15 @@
+import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import { Box } from '@mui/system';
 import { useState } from 'react';
+import { List, ImgWrapper, Poster } from './MoviePagination.styled';
 
-const MoviePagination = ({ movies }) => {
+const MoviePagination = ({ movies, location }) => {
+  console.log(movies);
   const [page, setPage] = useState(1);
 
   const moviesPerPage = 20;
-  const pageCount = movies.length / moviesPerPage;
+  const pageCount = movies.length / moviesPerPage - 1;
   const offset = page * moviesPerPage;
 
   const handleChange = (event, page) => {
@@ -22,14 +25,22 @@ const MoviePagination = ({ movies }) => {
       justifyContent={'center'}
       alignItems={'center'}
     >
-      {dataToShow.map(({ id, fullTitle, title, image }) => (
-        <div key={id}>{title}</div>
-      ))}
-
-      <h1>Current page is {page}</h1>
+      <List>
+        {dataToShow.map(({ id, fullTitle, title, image }) => (
+          <li key={id}>
+            <Link to={`/movies/${id}`} state={{ from: location }}>
+              <ImgWrapper>
+                <Poster src={image} alt={title}></Poster>
+                <p>{fullTitle}</p>
+              </ImgWrapper>
+            </Link>
+          </li>
+        ))}
+      </List>
 
       <Pagination
-        count={movies.length}
+        style={{ margin: '30px' }}
+        count={pageCount}
         color="primary"
         onChange={handleChange}
       />

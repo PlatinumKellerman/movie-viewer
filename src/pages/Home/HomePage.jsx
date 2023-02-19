@@ -1,69 +1,40 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Loader from '../../components/Loader';
-// import { getMostPopularMovies } from '../../services/fetchMovies';
+import { getMostPopularMovies } from '../../services/fetchMovies';
 import PopularMovies from '../../components/PopularMovies/PopularMovies';
 
-import mostPopularMovies from '../../temporarilyData/mostPopularMovies.json';
-
 const HomePage = () => {
-  // WORKING CODE (FETCH MOST POPULAR MOVIES) ///////////////////////////
-  // const [movies, setMovies] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const location = useLocation();
-
-  // useEffect(() => {
-  //   const getPopularMovies = async () => {
-  //     try {
-  //       const response = await getMostPopularMovies();
-  //       setMovies(response);
-  //       setIsLoading(false);
-  //     } catch (error) {
-  //       toast.error('Oops! Something went wrong!');
-  //     }
-  //   };
-  //   getPopularMovies();
-  //   setIsLoading(true);
-  // }, []);
-  ///////////////////////////////////////////////////////////////////////
-
-  // TESTING JSON DATA CODE ///////////////////////////////////////////////
   const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const fetchPopularMovies = () => {
-      const response = mostPopularMovies.items;
-      setMovies(response);
+    const getPopularMovies = async () => {
+      try {
+        const response = await getMostPopularMovies();
+        setMovies(response);
+        setIsLoading(false);
+      } catch (error) {
+        toast.error('Oops! Something went wrong!');
+      }
     };
-    fetchPopularMovies();
-    setTimeout(() => setIsLoading(false), 1000);
+    getPopularMovies();
+    setIsLoading(true);
   }, []);
-
-  ////////////////////////////////////////////////////////////////
 
   return (
     <div>
       <h2 style={{ display: 'flex', justifyContent: 'center' }}>
         MOST POPULAR MOVIES
       </h2>
-      {/* WORKING CODE (FETCH MOST POPULAR MOVIES) */}
-      {/* {isLoading ? (
-        <div>
-          <Loader />
-        </div>
-      ) : (
-        movies && <PopularMovies movies={movies} location={location} />
-      )} */}
-      {/* ////////////////// TESTING JSON DATA CODE /////////////////////////////// */}
       {isLoading ? (
         <div>
           <Loader />
         </div>
       ) : (
-        <PopularMovies movies={movies} location={location} />
+        movies && <PopularMovies movies={movies} location={location} />
       )}
     </div>
   );
