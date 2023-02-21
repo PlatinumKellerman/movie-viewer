@@ -2,7 +2,7 @@
   "name": "movie-viewer",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://platinumkellerman.github.io/movie-viewer/",
+  "homepage": "https://PlatinumKellerman.github.io/movie-viewer/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
