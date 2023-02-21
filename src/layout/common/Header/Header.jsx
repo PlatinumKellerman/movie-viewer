@@ -1,5 +1,13 @@
+import { HeaderBar, HeaderLogo } from './Header.styled';
+
 const Header = () => {
-  return <div style={{ backgroundColor: '#D55448' }}>Header</div>;
+  return (
+    <HeaderBar>
+      <HeaderLogo fontSize="large" />
+      <p>Movie Finder</p>
+      <div>User</div>
+    </HeaderBar>
+  );
 };
 
 export default Header;

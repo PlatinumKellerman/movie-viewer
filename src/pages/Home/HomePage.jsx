@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Container from '../../layout/common/Container/Container';
 import Loader from '../../components/Loader';
 import { getMostPopularMovies } from '../../services/fetchMovies';
 import PopularMovies from '../../components/PopularMovies/PopularMovies';
@@ -25,7 +26,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
+    <Container>
       <h2 style={{ display: 'flex', justifyContent: 'center' }}>
         MOST POPULAR MOVIES
       </h2>
@@ -36,7 +37,7 @@ const HomePage = () => {
       ) : (
         movies && <PopularMovies movies={movies} location={location} />
       )}
-    </div>
+    </Container>
   );
 };
 

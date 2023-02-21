@@ -1,15 +1,11 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
+  width: 100%;
   display: grid;
   max-width: calc(100vw - 90px);
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: 16px;
-  margin-top: 0;
-  margin-bottom: 0;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   list-style: none;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 export const ImgWrapper = styled.div`

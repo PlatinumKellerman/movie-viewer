@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { List, ImgWrapper, Poster } from './MoviePagination.styled';
 
 const MoviePagination = ({ movies, location }) => {
-  console.log(movies);
   const [page, setPage] = useState(1);
 
   const moviesPerPage = 20;

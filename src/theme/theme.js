@@ -1,4 +1,11 @@
 export const theme = {
+  breakpoints: {
+    values: {
+      sm: 320,
+      md: 768,
+      lg: 1280,
+    },
+  },
   colors: {
     black: '#000',
     white: '#fff',
@@ -8,6 +15,7 @@ export const theme = {
     secondary: '#05a',
     accent: '#609',
     muted: '#f6f6f6',
+    gradient: '#0c190c',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fonts: {
