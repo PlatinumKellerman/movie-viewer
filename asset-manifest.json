@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/movie-viewer/static/css/main.95efcecc.css",
+    "main.js": "/movie-viewer/static/js/main.9319bdec.js",
+    "index.html": "/movie-viewer/index.html",
+    "main.95efcecc.css.map": "/movie-viewer/static/css/main.95efcecc.css.map",
+    "main.9319bdec.js.map": "/movie-viewer/static/js/main.9319bdec.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.95efcecc.css",
+    "static/js/main.9319bdec.js"
+  ]
+}
