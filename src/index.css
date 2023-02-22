@@ -9,6 +9,16 @@ html {
 }
 
 body {
+  background-image: linear-gradient(
+      to right,
+      rgba(47, 48, 58, 0.7),
+      rgba(47, 48, 58, 0.7)
+    ),
+    url('/public/img/bodyBackground2.jpg');
+  background-repeat: repeat;
+  background-position: fill;
+  background-size: 250px;
+  background-attachment: fixed;
   margin: 0;
   padding: 0;
   font-family: 'Circe', sans-serif;
@@ -30,7 +40,6 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-family: 'Poppins';
 }
 
 ul {

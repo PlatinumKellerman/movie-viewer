@@ -1,20 +1,28 @@
 import styled from 'styled-components';
-import LiveTvIcon from '@mui/icons-material/LiveTv';
+import { ReactComponent as Logo } from '../../../assets/HeaderLogo/logo.svg';
 
 export const HeaderBar = styled.header`
   padding: 20px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgb(27, 50, 27);
-  background: linear-gradient(
-    90deg,
-    rgba(27, 50, 27, 1) 0%,
-    rgba(224, 90, 0, 1) 53%,
-    rgba(27, 50, 27, 1) 100%
-  );
+  border-radius: 0 0 10px 10px;
+  background-color: ${p => p.theme.colors.dark};
 `;
 
-export const HeaderLogo = styled(LiveTvIcon)`
-  color: ${p => p.theme.colors.white};
+export const HeaderTitle = styled.h1`
+  font-size: ${p => p.theme.fontSizes.xl};
+  color: ${p => p.theme.colors.primary};
+  font-family: ${p => p.theme.fonts.heading};
+`;
+
+export const UserNavWrapper = styled.div`
+  color: ${p => p.theme.colors.primary};
+  font-family: ${p => p.theme.fonts.body};
+`;
+
+export const HeaderLogo = styled(Logo)`
+  width: 50px;
+  height: 50px;
+  color: ${p => p.theme.colors.primary};
 `;

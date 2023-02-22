@@ -1,11 +1,16 @@
-import { HeaderBar, HeaderLogo } from './Header.styled';
+import {
+  HeaderBar,
+  HeaderLogo,
+  HeaderTitle,
+  UserNavWrapper,
+} from './Header.styled';
 
 const Header = () => {
   return (
     <HeaderBar>
-      <HeaderLogo fontSize="large" />
-      <p>Movie Finder</p>
-      <div>User</div>
+      <HeaderLogo />
+      <HeaderTitle>Movie Finder</HeaderTitle>
+      <UserNavWrapper>User</UserNavWrapper>
     </HeaderBar>
   );
 };
