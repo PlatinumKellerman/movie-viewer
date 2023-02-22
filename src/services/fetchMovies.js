@@ -3,12 +3,13 @@ import { API_KEY, BASE_URL } from '../constants/apiConstants';
 
 const instance = axios.create({
   baseURL: BASE_URL,
+  language: 'en-US',
   params: {
-    apiKey: API_KEY,
+    api_key: API_KEY,
   },
 });
 
 export async function getMostPopularMovies() {
-  const response = await instance.get(`/MostPopularMovies/`);
-  return response.data.items;
+  const response = await instance.get(`/trending/movie/week`);
+  return response.data.results;
 }
