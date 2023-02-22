@@ -1,4 +1,3 @@
-import Container from 'layout/common/Container/Container';
 import DangerousOutlinedIcon from '@mui/icons-material/DangerousOutlined';
 import NotFoundImg from '../../assets/404.jpg';
 import HomeLink from '../../components/ui/HomeLink';
