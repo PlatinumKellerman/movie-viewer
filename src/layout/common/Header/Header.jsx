@@ -3,13 +3,16 @@ import {
   HeaderLogo,
   HeaderTitle,
   UserNavWrapper,
+  TitleWrapper,
 } from './Header.styled';
 
 const Header = () => {
   return (
     <HeaderBar>
       <HeaderLogo />
-      <HeaderTitle>Movie Finder</HeaderTitle>
+      <TitleWrapper>
+        <HeaderTitle>Movie Finder</HeaderTitle>
+      </TitleWrapper>
       <UserNavWrapper>User</UserNavWrapper>
     </HeaderBar>
   );

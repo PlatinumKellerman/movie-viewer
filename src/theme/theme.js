@@ -2,8 +2,10 @@ export const theme = {
   breakpoints: {
     values: {
       sm: 320,
-      md: 768,
-      lg: 1600,
+      md: 480,
+      lg: 768,
+      xl: 1200,
+      xxl: 1600,
     },
   },
   colors: {
@@ -29,7 +31,8 @@ export const theme = {
   fontSizes: {
     xs: '12px',
     s: '14px',
-    m: '16px',
+    xm: '16px',
+    m: '20px',
     l: '32px',
     xl: '48px',
   },

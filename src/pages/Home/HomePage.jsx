@@ -5,6 +5,7 @@ import Container from '../../layout/common/Container/Container';
 import Loader from '../../components/Loader';
 import { getMostPopularMovies } from '../../services/fetchMovies';
 import PopularMovies from '../../components/PopularMovies/PopularMovies';
+import { HomePageTitle } from './HomePage.styled';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -27,9 +28,7 @@ const HomePage = () => {
 
   return (
     <Container>
-      <h2 style={{ display: 'flex', justifyContent: 'center' }}>
-        MOST POPULAR MOVIES
-      </h2>
+      <HomePageTitle>MOST POPULAR MOVIES</HomePageTitle>
       {isLoading ? (
         <div>
           <Loader />

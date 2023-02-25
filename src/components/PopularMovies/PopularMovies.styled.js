@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const List = styled.ul`
   width: 100%;
+  margin-right: auto;
+  margin-left: auto;
   display: grid;
   max-width: calc(100vw - 90px);
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
