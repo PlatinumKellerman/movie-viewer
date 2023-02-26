@@ -17,12 +17,32 @@ export const ImgWrapper = styled.div`
 `;
 
 export const Poster = styled.img`
-  max-width: 300px;
-  height: 450px;
+  max-width: 250px;
+  height: 400px;
   object-fit: fill;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   :hover {
     transform: scale(1.03);
   }
   border-radius: 20px;
+  margin-bottom: 10px;
+  @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
+    max-width: 300px;
+    height: 450px;
+    font-size: ${p => p.theme.fontSizes.xl};
+  }
+`;
+
+export const MovieTitle = styled.p`
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSizes.m};
+  color: ${p => p.theme.colors.light};
+  text-shadow: ${p => p.theme.colors.dark} 1px 0px 0px,
+    ${p => p.theme.colors.dark} 0px 1px 0px,
+    ${p => p.theme.colors.dark} 0px -1px 0px,
+    ${p => p.theme.colors.dark} -1px 0px 0px;
+`;
+
+export const ListItem = styled.li`
+  margin-bottom: 30px;
 `;

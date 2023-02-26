@@ -1,23 +1,29 @@
 import { Link } from 'react-router-dom';
 import Container from 'layout/common/Container/Container';
-import { List, ImgWrapper, Poster } from './PopularMovies.styled';
+import {
+  List,
+  ImgWrapper,
+  Poster,
+  MovieTitle,
+  ListItem,
+} from './PopularMovies.styled';
 
 const PopularMovies = ({ movies, location }) => {
   return (
     <Container>
       <List>
         {movies.map(({ id, title, poster_path }) => (
-          <li key={id}>
+          <ListItem key={id}>
             <Link to={`/movies/${id}`} state={{ from: location }}>
               <ImgWrapper>
                 <Poster
                   src={`https://image.tmdb.org/t/p/w500${poster_path}`}
                   alt={title}
                 ></Poster>
-                <p>{title}</p>
+                <MovieTitle>{title}</MovieTitle>
               </ImgWrapper>
             </Link>
-          </li>
+          </ListItem>
         ))}
       </List>
     </Container>
