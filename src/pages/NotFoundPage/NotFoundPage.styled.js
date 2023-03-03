@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
 export const NotFoundWrapper = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
   text-align: center;
+  margin-right: auto;
+  margin-left: auto;
   background-color: ${p => p.theme.colors.darkGrey};
   padding: 50px;
   margin-top: 50px;
   border-radius: 10px;
+  @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
+  }
 `;
 
 export const NotFoundNavWrapper = styled.div`

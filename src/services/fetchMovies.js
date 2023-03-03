@@ -13,3 +13,8 @@ export async function getMostPopularMovies() {
   const response = await instance.get(`/trending/movie/week`);
   return response.data.results;
 }
+
+export async function getMovieDetailsById() {
+  const response = await instance.get(`/movie/{movie_id}`);
+  return response.data.results;
+}
