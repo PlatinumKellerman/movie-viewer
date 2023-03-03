@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const HomePageTitle = styled.h2`
-  display: flex;
-  justify-content: center;
-  margin: 30px 0;
+  margin: 10px auto;
+  padding: 0 10px;
+  text-align: center;
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSizes.l};
   color: ${p => p.theme.colors.dark};
@@ -14,5 +14,6 @@ export const HomePageTitle = styled.h2`
 
   @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
     font-size: ${p => p.theme.fontSizes.xl};
+    margin: 30px auto;
   }
 `;

@@ -28,7 +28,7 @@ const HomePage = () => {
 
   return (
     <Container>
-      <HomePageTitle>MOST POPULAR MOVIES</HomePageTitle>
+      <HomePageTitle>Trending movies for the WEEK</HomePageTitle>
       {isLoading ? (
         <div>
           <Loader />

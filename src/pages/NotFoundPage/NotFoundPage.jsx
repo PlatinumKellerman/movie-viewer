@@ -10,20 +10,9 @@ import {
 const NotFoundPage = () => {
   return (
     <NotFoundWrapper>
-      <img
-        src={NotFoundImg}
-        alt="NotFound"
-        style={{
-          width: '600px',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          borderRadius: '10px',
-        }}
-      ></img>
+      <img src={NotFoundImg} alt="NotFound"></img>
       <NotFoundNavWrapper>
-        <DangerousOutlinedIcon
-          sx={{ fontSize: 70, marginRight: '20px', color: 'red' }}
-        />
+        <DangerousOutlinedIcon sx={{ fontSize: 70, color: '#86C232' }} />
         <NotFoundMessage>Sorry, page not found!</NotFoundMessage>
       </NotFoundNavWrapper>
       <HomeLink />

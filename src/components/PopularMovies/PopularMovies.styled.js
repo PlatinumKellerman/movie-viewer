@@ -5,9 +5,13 @@ export const List = styled.ul`
   margin-right: auto;
   margin-left: auto;
   display: grid;
-  max-width: calc(100vw - 90px);
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  list-style: none;
+  gap: 30px;
+  max-width: calc(100vw - 20px);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
+    max-width: calc(100vw - 90px);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
 `;
 
 export const ImgWrapper = styled.div`
@@ -29,7 +33,6 @@ export const Poster = styled.img`
   @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
     max-width: 300px;
     height: 450px;
-    font-size: ${p => p.theme.fontSizes.xl};
   }
 `;
 
@@ -45,4 +48,7 @@ export const MovieTitle = styled.p`
 
 export const ListItem = styled.li`
   margin-bottom: 30px;
+  &:last-child {
+    margin-bottom: 0px;
+  }
 `;
