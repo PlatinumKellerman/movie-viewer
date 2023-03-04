@@ -18,8 +18,9 @@ export const MovieDetails = ({ movie }) => {
           : 'There are no genres!'}
       </p>
       <p>
-        Homepage: <link href={movie.homepage}></link>
+        Movie hompage: <a href={movie.homepage}>{movie.homepage}</a>
       </p>
+      <p>Overview: {movie.overview}</p>
     </Container>
   );
 };
