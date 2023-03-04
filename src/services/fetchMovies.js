@@ -14,7 +14,7 @@ export async function getMostPopularMovies() {
   return response.data.results;
 }
 
-export async function getMovieDetailsById() {
-  const response = await instance.get(`/movie/{movie_id}`);
-  return response.data.results;
+export async function getMovieDetailsById(id) {
+  const response = await instance.get(`/movie/${id}`);
+  return response.data;
 }
