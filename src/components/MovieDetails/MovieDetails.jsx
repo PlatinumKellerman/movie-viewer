@@ -10,6 +10,16 @@ export const MovieDetails = ({ movie }) => {
         alt={movie.title}
       ></Poster>
       <p>{movie.title}</p>
+      <p>Budget:{movie.budget}</p>
+      <p>
+        Genres:
+        {movie.genres
+          ? movie.genres.map(genre => genre.name).join(', ')
+          : 'There are no genres!'}
+      </p>
+      <p>
+        Homepage: <link href={movie.homepage}></link>
+      </p>
     </Container>
   );
 };
