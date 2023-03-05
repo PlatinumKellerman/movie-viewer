@@ -1,40 +1,44 @@
 import styled from 'styled-components';
 
 export const MainWrapper = styled.div`
-  padding: 40px 30px;
+  padding: 15px 10px;
 `;
 
 export const Poster = styled.img`
-  width: auto;
+  max-width: 250px;
   margin-top: 40px;
   margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const MovieTitle = styled.h3`
   margin-bottom: 20px;
-  font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSizes.l};
+  text-align: center;
+  font-family: ${p => p.theme.fonts.monospace};
+  font-size: ${p => p.theme.fontSizes.m};
   color: ${p => p.theme.colors.light};
 `;
 
 export const InfoWrapper = styled.div`
+  width: 100%;
   display: flex;
-  padding: 15px;
+  padding: 10px;
   background-color: ${p => p.theme.colors.dark};
   border-radius: 10px;
 `;
 
 export const ParamsList = styled.ul`
-  width: 30%;
+  white-space: nowrap;
   font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSizes.m};
+  font-size: ${p => p.theme.fontSizes.xs};
   color: ${p => p.theme.colors.primary};
-  font-weight: 700;
 `;
 
 export const PropertiesList = styled.ul`
+  margin-left: 20px;
   font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSizes.m};
+  font-size: ${p => p.theme.fontSizes.xs};
   color: ${p => p.theme.colors.light};
 `;
 

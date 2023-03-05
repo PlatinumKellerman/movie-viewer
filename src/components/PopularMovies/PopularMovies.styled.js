@@ -22,7 +22,6 @@ export const ImgWrapper = styled.div`
 
 export const Poster = styled.img`
   max-width: 250px;
-  height: 400px;
   object-fit: fill;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   :hover {
