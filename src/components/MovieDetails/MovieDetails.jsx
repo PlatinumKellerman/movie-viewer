@@ -1,16 +1,22 @@
 import {
+  MainWrapper,
   Poster,
-  InfoParams,
   MovieTitle,
   InfoValue,
+  InfoWrapper,
+  ParamsList,
+  PropertiesList,
+  InfoParams,
+  Accent,
+  HomepageLink,
 } from './MovieDetails.styled';
 
 export const MovieDetails = ({ movie }) => {
-  const releaseDate = new Date(movie.release_date).getUTCFullYear();
+  const releaseYear = new Date(movie.release_date).getUTCFullYear();
   console.log();
   console.log(movie);
   return (
-    <div>
+    <MainWrapper>
       <div>
         <Poster
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -18,44 +24,46 @@ export const MovieDetails = ({ movie }) => {
         ></Poster>
       </div>
 
-      <div>
-        <MovieTitle>
+      <MovieTitle>
+        {movie.title} ({releaseYear})
+      </MovieTitle>
+
+      <InfoWrapper>
+        <ParamsList>
+          <InfoParams>User Score:</InfoParams>
+          <InfoParams>Rating:</InfoParams>
+          <InfoParams>Genres:</InfoParams>
+          <InfoParams>Budget:</InfoParams>
+          <InfoParams>Movie hompage:</InfoParams>
+          <InfoParams>Overview:</InfoParams>
+        </ParamsList>
+
+        <PropertiesList>
           <InfoValue>
-            {movie.title} ({releaseDate})
+            <Accent>{`${Number(movie.vote_average).toFixed(1) * 10}%`}</Accent>
           </InfoValue>
-        </MovieTitle>
-        <InfoParams>
-          <InfoValue>Release Year: {releaseDate}</InfoValue>
-        </InfoParams>
-        <InfoParams>
-          User Score: {`${Number(movie.vote_average).toFixed(1) * 10}%`}
-        </InfoParams>
-        <InfoParams>
           <InfoValue>
-            Rating: {movie.vote_average} ({movie.vote_count} votes)
+            <Accent>{movie.vote_average}</Accent> ({movie.vote_count} votes)
           </InfoValue>
-        </InfoParams>
-        <InfoParams>
           <InfoValue>
-            {' '}
-            Genres:{' '}
             {movie.genres
-              ? movie.genres.map(genre => genre.name).join(', ')
+              ? movie.genres.map(genre => genre.name).join(' | ')
               : 'There are no genres!'}
           </InfoValue>
-        </InfoParams>
-        <InfoParams>
-          <InfoValue>Budget: ${movie.budget}</InfoValue>
-        </InfoParams>
-        <InfoParams>
+          <InfoValue>${movie.budget}</InfoValue>
           <InfoValue>
-            Movie hompage: <a href={movie.homepage}>{movie.homepage}</a>
+            <HomepageLink
+              href={movie.homepage}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Movie Homepage"
+            >
+              {movie.homepage}
+            </HomepageLink>
           </InfoValue>
-        </InfoParams>
-        <InfoParams>
-          <InfoValue>Overview: {movie.overview}</InfoValue>
-        </InfoParams>
-      </div>
-    </div>
+          <InfoValue>{movie.overview}</InfoValue>
+        </PropertiesList>
+      </InfoWrapper>
+    </MainWrapper>
   );
 };
