@@ -1,3 +1,5 @@
+import HomeLink from 'components/ui/HomeLink';
+import { useLocation } from 'react-router-dom';
 import {
   MainWrapper,
   Poster,
@@ -13,10 +15,13 @@ import {
 
 export const MovieDetails = ({ movie }) => {
   const releaseYear = new Date(movie.release_date).getUTCFullYear();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movie-viewer';
   console.log();
   console.log(movie);
   return (
     <MainWrapper>
+      <HomeLink to={backLinkHref}></HomeLink>
       <div>
         <Poster
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

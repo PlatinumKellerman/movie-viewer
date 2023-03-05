@@ -6,7 +6,7 @@ const Loader = () => {
       <ThreeCircles
         height="50"
         width="50"
-        color="#D55448"
+        color="#86C232"
         wrapperStyle={{
           display: 'flex',
           justifyContent: 'center',
@@ -15,7 +15,7 @@ const Loader = () => {
         visible={true}
         ariaLabel="three-circles-rotating"
         outerCircleColor=""
-        innerCircleColor="tomato"
+        innerCircleColor="#86C232"
         middleCircleColor=""
       />
     </>

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const MainWrapper = styled.div`
-  padding: 30px;
+  padding: 40px 30px;
 `;
 
 export const Poster = styled.img`
   width: auto;
+  margin-top: 40px;
   margin-bottom: 20px;
 `;
 
@@ -20,6 +21,7 @@ export const InfoWrapper = styled.div`
   display: flex;
   padding: 15px;
   background-color: ${p => p.theme.colors.dark};
+  border-radius: 10px;
 `;
 
 export const ParamsList = styled.ul`
@@ -61,6 +63,6 @@ export const HomepageLink = styled.a`
   &:hover,
   &:focus,
   &:active {
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.primary};
   }
 `;

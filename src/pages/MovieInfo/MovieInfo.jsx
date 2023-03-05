@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useParams, useLocation, Outlet } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import { getMovieDetailsById } from '../../services/fetchMovies';
-import HomeLink from '../../components/ui/HomeLink';
 import { useNavigate } from 'react-router-dom';
 import MovieDetails from '../../components/MovieDetails';
+import Loader from 'components/Loader';
 
 export const MovieInfo = () => {
-  const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movie-viewer';
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,6 +16,7 @@ export const MovieInfo = () => {
       try {
         const response = await getMovieDetailsById(movieId);
         setMovie(response);
+        setIsLoading(false);
       } catch (error) {
         if (error) {
           if (error) {
@@ -26,13 +26,22 @@ export const MovieInfo = () => {
       }
     };
     movieInfo();
+    setIsLoading(true);
   }, [movieId, navigate]);
 
   return (
     <>
-      <HomeLink to={backLinkHref}>{'<'} Go back</HomeLink>
-      <MovieDetails movie={movie} />
-      <Outlet />
+      {isLoading ? (
+        <div>
+          <Loader />
+        </div>
+      ) : (
+        <>
+          {' '}
+          <MovieDetails movie={movie} />
+          <Outlet />
+        </>
+      )}
     </>
   );
 };
