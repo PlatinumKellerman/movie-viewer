@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 export const MainWrapper = styled.div`
-  margin-top: 20px;
   padding: 15px 10px;
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     padding: 20px 40px;
+    margin-top: 20px;
   }
 `;
 
 export const Wrapper = styled.div`
+  margin-top: 20px;
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     display: flex;
     justify-content: center;
@@ -33,9 +34,7 @@ export const Poster = styled.img`
   }
 `;
 export const SecondaryWrapper = styled.div`
-  @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
-    display: flex;
-  }
+  display: flex;
 `;
 
 export const MovieTitle = styled.h3`
