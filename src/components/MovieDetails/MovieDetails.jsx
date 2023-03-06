@@ -10,7 +10,6 @@ import {
   PropertiesList,
   InfoParams,
   Accent,
-  HomepageLink,
 } from './MovieDetails.styled';
 
 export const MovieDetails = ({ movie }) => {
@@ -28,18 +27,22 @@ export const MovieDetails = ({ movie }) => {
           alt={movie.title}
         ></Poster>
       </div>
-
-      <MovieTitle>
-        {movie.title} ({releaseYear})
-      </MovieTitle>
-
+      <a
+        href={movie.homepage}
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Movie Homepage"
+      >
+        <MovieTitle>
+          {movie.title} ({releaseYear})
+        </MovieTitle>
+      </a>
       <InfoWrapper>
         <ParamsList>
           <InfoParams>User Score:</InfoParams>
           <InfoParams>Rating:</InfoParams>
           <InfoParams>Genres:</InfoParams>
           <InfoParams>Budget:</InfoParams>
-          <InfoParams>Movie hompage:</InfoParams>
           <InfoParams>Overview:</InfoParams>
         </ParamsList>
 
@@ -56,16 +59,6 @@ export const MovieDetails = ({ movie }) => {
               : 'There are no genres!'}
           </InfoValue>
           <InfoValue>${movie.budget}</InfoValue>
-          <InfoValue>
-            <HomepageLink
-              href={movie.homepage}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Movie Homepage"
-            >
-              {movie.homepage}
-            </HomepageLink>
-          </InfoValue>
           <InfoValue>{movie.overview}</InfoValue>
         </PropertiesList>
       </InfoWrapper>
