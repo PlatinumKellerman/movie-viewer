@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../assets/HeaderLogo/logo.svg';
 import { ReactComponent as SearchLogo } from '../../../assets/HeaderLogo/searchLogo.svg';
 
@@ -56,7 +57,7 @@ export const HeaderLogo = styled(Logo)`
 `;
 
 export const SearchMovieLogo = styled(SearchLogo)`
-  margin-left: 15px;
+  margin-right: 15px;
   width: 50px;
   height: 50px;
   color: ${p => p.theme.colors.primary};
@@ -69,4 +70,8 @@ export const SearchMovieLogo = styled(SearchLogo)`
     transition-timing-function: $timing-function;
     color: ${p => p.theme.colors.accent};
   }
+`;
+
+export const SearchMovieLink = styled(Link)`
+  margin-right: 15px;
 `;

@@ -6,6 +6,7 @@ import {
   HeaderTitle,
   UserNavWrapper,
   TitleWrapper,
+  SearchMovieLink,
 } from './Header.styled';
 
 const Header = () => {
@@ -14,12 +15,12 @@ const Header = () => {
       <Link to={'/movie-viewer'} title="Back to Homepage">
         <HeaderLogo />
       </Link>
-      <Link to={`/movie-viewer/search`} title="Search movie by name">
-        <SearchMovieLogo />
-      </Link>
       <TitleWrapper>
         <HeaderTitle>Movie Finder</HeaderTitle>
       </TitleWrapper>
+      <SearchMovieLink to={`/movie-viewer/search`} title="Search movie by name">
+        <SearchMovieLogo />
+      </SearchMovieLink>
       <UserNavWrapper>User</UserNavWrapper>
     </HeaderBar>
   );

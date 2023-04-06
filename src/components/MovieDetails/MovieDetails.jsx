@@ -49,40 +49,40 @@ export const MovieDetails = ({ movie }) => {
             </ParamsList>
 
             <PropertiesList>
+              {movie.vote_average ? (
+                <InfoValue>{`${
+                  Number(movie.vote_average).toFixed(1) * 10
+                }%`}</InfoValue>
+              ) : (
+                <p style={{ color: '#E85A4F' }}>Sorry, no info</p>
+              )}
               <InfoValue>
-                {movie.vote_average ? (
-                  <Accent>{`${
-                    Number(movie.vote_average).toFixed(1) * 10
-                  }%`}</Accent>
-                ) : (
-                  'Sorry, no info'
-                )}
-              </InfoValue>
-              <InfoValue>
-                {movie.vote_average ? (
-                  <Accent>{movie.vote_average}</Accent>
-                ) : (
-                  'Sorry, no info'
-                )}
+                <Accent>{movie.vote_average}</Accent>
                 {' / '}
-                {movie.vote_count ? (
-                  <Accent>{movie.vote_count} votes</Accent>
+                {movie.vote_count} votes
+              </InfoValue>
+              <InfoValue>
+                {movie.genres.length ? (
+                  movie.genres.map(genre => genre.name).join(' | ')
                 ) : (
-                  'Sorry, no info'
+                  <p style={{ color: '#E85A4F' }}>Sorry, there are no genres</p>
                 )}
               </InfoValue>
               <InfoValue>
-                {movie.genres.length
-                  ? movie.genres.map(genre => genre.name).join(' | ')
-                  : 'Sorry, there are no genres'}
+                {movie.budget > 0 ? (
+                  `$${movie.budget}`
+                ) : (
+                  <p style={{ color: '#E85A4F' }}>Sorry, no info</p>
+                )}
               </InfoValue>
               <InfoValue>
-                {movie.budget > 0 ? `${movie.budget}` : 'Sorry, no info'}
-              </InfoValue>
-              <InfoValue>
-                {movie.overview
-                  ? movie.overview
-                  : 'Sorry, there is no description for this movie'}
+                {movie.overview ? (
+                  movie.overview
+                ) : (
+                  <p style={{ color: '#E85A4F' }}>
+                    Sorry, there is no description for this movie
+                  </p>
+                )}
               </InfoValue>
             </PropertiesList>
           </SecondaryWrapper>
