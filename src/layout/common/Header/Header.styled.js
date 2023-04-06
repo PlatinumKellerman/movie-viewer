@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as Logo } from '../../../assets/HeaderLogo/logo.svg';
+import { ReactComponent as SearchLogo } from '../../../assets/HeaderLogo/searchLogo.svg';
 
 export const HeaderBar = styled.header`
   padding: 10px 20px;
@@ -46,9 +47,26 @@ export const HeaderLogo = styled(Logo)`
   :hover,
   :focus,
   :active {
-    transform: scale(1.3);
+    transform: scale(1.1);
     cursor: pointer;
-    border-radius: 10px;
-    border: 3px solid ${p => p.theme.colors.accent};
+    transition-duration: 500ms;
+    transition-timing-function: $timing-function;
+    color: ${p => p.theme.colors.accent};
+  }
+`;
+
+export const SearchMovieLogo = styled(SearchLogo)`
+  margin-left: 15px;
+  width: 50px;
+  height: 50px;
+  color: ${p => p.theme.colors.primary};
+  :hover,
+  :focus,
+  :active {
+    transform: scale(1.1);
+    cursor: pointer;
+    transition-duration: 500ms;
+    transition-timing-function: $timing-function;
+    color: ${p => p.theme.colors.accent};
   }
 `;

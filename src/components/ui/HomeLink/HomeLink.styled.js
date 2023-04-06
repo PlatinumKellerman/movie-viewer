@@ -18,7 +18,10 @@ export const GoBackLink = styled(Link)`
   &:hover,
   :focus,
   :active {
-    background-color: ${p => p.theme.colors.primary};
+    background-color: ${p => p.theme.colors.accent};
+    border: 1px solid ${p => p.theme.colors.accent};
     color: ${p => p.theme.colors.light};
+    transition-duration: 500ms;
+    transition-timing-function: $timing-function;
   }
 `;
