@@ -17,6 +17,7 @@ export const Wrapper = styled.div`
 `;
 
 export const PosterWrapper = styled.div`
+  position: relative;
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     margin-right: 30px;
   }
@@ -103,4 +104,8 @@ export const Accent = styled.span`
   padding: 2px 5px;
   background-color: ${p => p.theme.colors.accent};
   border-radius: 5px;
+`;
+
+export const NotFindValue = styled.p`
+  margin-bottom: 20px;
 `;

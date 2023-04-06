@@ -25,6 +25,7 @@ export const TitleWrapper = styled.div`
 `;
 
 export const HeaderTitle = styled.h1`
+  letter-spacing: 10px;
   margin-left: auto;
   margin-right: auto;
   font-size: ${p => p.theme.fontSizes.l};
