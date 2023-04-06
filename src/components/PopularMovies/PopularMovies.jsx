@@ -14,7 +14,7 @@ const PopularMovies = ({ movies, location }) => {
       <List>
         {movies.map(({ id, title, poster_path }) => (
           <ListItem key={id}>
-            <Link to={`/movies/${id}`} state={{ from: location }}>
+            <Link to={`/movie-viewer/movies/${id}`} state={{ from: location }}>
               <ImgWrapper>
                 <Poster
                   src={`https://image.tmdb.org/t/p/w500${poster_path}`}

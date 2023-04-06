@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
   HeaderBar,
   HeaderLogo,
@@ -9,7 +10,10 @@ import {
 const Header = () => {
   return (
     <HeaderBar>
-      <HeaderLogo />
+      <Link to={'/movie-viewer'} title="Back to Homepage">
+        <HeaderLogo />
+      </Link>
+      <Link to={`/movie-viewer/search`}>SEARCH</Link>
       <TitleWrapper>
         <HeaderTitle>Movie Finder</HeaderTitle>
       </TitleWrapper>

@@ -18,3 +18,12 @@ export async function getMovieDetailsById(id) {
   const response = await instance.get(`/movie/${id}`);
   return response.data;
 }
+
+export async function getMoviesByName(query) {
+  const response = await instance.get(`/search/movie`, {
+    params: {
+      query,
+    },
+  });
+  return response.data.results;
+}

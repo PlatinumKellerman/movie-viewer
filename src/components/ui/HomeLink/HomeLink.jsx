@@ -1,9 +1,12 @@
 import { GoBackLink } from './HomeLink.styled';
+import { useLocation } from 'react-router-dom';
 
 export const HomeLink = () => {
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movie-viewer';
   return (
-    <div>
-      <GoBackLink to={'/movie-viewer'}>Home Page</GoBackLink>
-    </div>
+    <>
+      <GoBackLink to={backLinkHref}>Home Page</GoBackLink>
+    </>
   );
 };

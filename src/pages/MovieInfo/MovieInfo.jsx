@@ -7,7 +7,7 @@ import Loader from 'components/Loader';
 
 export const MovieInfo = () => {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -28,7 +28,6 @@ export const MovieInfo = () => {
     movieInfo();
     setIsLoading(true);
   }, [movieId, navigate]);
-
   return (
     <>
       {isLoading ? (
@@ -37,8 +36,7 @@ export const MovieInfo = () => {
         </div>
       ) : (
         <>
-          {' '}
-          <MovieDetails movie={movie} />
+          {movie && <MovieDetails movie={movie} />}
           <Outlet />
         </>
       )}

@@ -43,4 +43,12 @@ export const HeaderLogo = styled(Logo)`
   width: 50px;
   height: 50px;
   color: ${p => p.theme.colors.primary};
+  :hover,
+  :focus,
+  :active {
+    transform: scale(1.3);
+    cursor: pointer;
+    border-radius: 10px;
+    border: 3px solid ${p => p.theme.colors.accent};
+  }
 `;
