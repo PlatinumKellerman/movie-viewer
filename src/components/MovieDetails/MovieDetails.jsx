@@ -7,13 +7,11 @@ import {
   MovieTitle,
   InfoValue,
   InfoWrapper,
-  ParamsList,
-  PropertiesList,
+  DetailsWrapper,
   InfoParams,
   Accent,
   PosterWrapper,
   Wrapper,
-  SecondaryWrapper,
   NotFindValue,
 } from './MovieDetails.styled';
 
@@ -48,27 +46,6 @@ export const MovieDetails = ({ movie }) => {
               alt={movie.title}
             ></Poster>
           )}
-          {movie.vote_average ? (
-            <div
-              style={{
-                width: '60px',
-                margin: 'auto',
-                position: 'absolute',
-                top: '0px',
-                right: '0%',
-              }}
-            >
-              <CircularProgressbar
-                value={userScore}
-                text={`${userScore}%`}
-                styles={progressBarStyles}
-              />
-            </div>
-          ) : (
-            <NotFindValue style={{ color: '#E85A4F' }}>
-              Sorry, no info
-            </NotFindValue>
-          )}
         </PosterWrapper>
         <InfoWrapper>
           <a
@@ -81,49 +58,72 @@ export const MovieDetails = ({ movie }) => {
               {movie.title} ({releaseYear})
             </MovieTitle>
           </a>
-          <SecondaryWrapper>
-            <ParamsList>
-              <InfoParams>Rating:</InfoParams>
-              <InfoParams>Genres:</InfoParams>
-              <InfoParams>Budget:</InfoParams>
-              <InfoParams>Overview:</InfoParams>
-            </ParamsList>
-
-            <PropertiesList>
-              <InfoValue>
-                <Accent>{movie.vote_average}</Accent>
-                {' / '}
-                {movie.vote_count} votes
-              </InfoValue>
-              <InfoValue>
-                {movie.genres.length ? (
-                  movie.genres.map(genre => genre.name).join(' | ')
-                ) : (
-                  <NotFindValue style={{ color: '#E85A4F' }}>
-                    Sorry, there are no genres
-                  </NotFindValue>
-                )}
-              </InfoValue>
-              <InfoValue>
-                {movie.budget > 0 ? (
-                  `$${movie.budget}`
-                ) : (
-                  <NotFindValue style={{ color: '#E85A4F' }}>
-                    Sorry, no info
-                  </NotFindValue>
-                )}
-              </InfoValue>
-              <InfoValue>
-                {movie.overview ? (
-                  movie.overview
-                ) : (
-                  <NotFindValue style={{ color: '#E85A4F' }}>
-                    Sorry, there is no description for this movie
-                  </NotFindValue>
-                )}
-              </InfoValue>
-            </PropertiesList>
-          </SecondaryWrapper>
+          <DetailsWrapper>
+            <InfoParams>Rating:</InfoParams>
+            <InfoValue>
+              <Accent>{movie.vote_average}</Accent>
+              {' / '}
+              {movie.vote_count} votes
+            </InfoValue>
+            {movie.vote_average ? (
+              <div
+                style={{
+                  width: '60px',
+                  paddingBottom: '15px',
+                }}
+              >
+                <CircularProgressbar
+                  value={userScore}
+                  text={`${userScore}%`}
+                  styles={progressBarStyles}
+                />
+              </div>
+            ) : (
+              <NotFindValue style={{ color: '#E85A4F' }}>
+                Sorry, no info
+              </NotFindValue>
+            )}
+            <InfoParams>Genres:</InfoParams>
+            <InfoValue>
+              {movie.genres.length ? (
+                movie.genres.map(genre => genre.name).join('  /  ')
+              ) : (
+                <NotFindValue style={{ color: '#E85A4F' }}>
+                  Sorry, there are no genres
+                </NotFindValue>
+              )}
+            </InfoValue>
+            <InfoParams>Countries:</InfoParams>
+            <InfoValue>
+              {movie.production_countries.length ? (
+                movie.production_countries.map(c => c.name).join('  /  ')
+              ) : (
+                <NotFindValue style={{ color: '#E85A4F' }}>
+                  Sorry, there are no genres
+                </NotFindValue>
+              )}
+            </InfoValue>
+            <InfoParams>Budget:</InfoParams>
+            <InfoValue>
+              {movie.budget > 0 ? (
+                `$${movie.budget}`
+              ) : (
+                <NotFindValue style={{ color: '#E85A4F' }}>
+                  Sorry, no info
+                </NotFindValue>
+              )}
+            </InfoValue>
+            <InfoParams>Overview:</InfoParams>
+            <InfoValue>
+              {movie.overview ? (
+                movie.overview
+              ) : (
+                <NotFindValue style={{ color: '#E85A4F' }}>
+                  Sorry, there is no description for this movie
+                </NotFindValue>
+              )}
+            </InfoValue>
+          </DetailsWrapper>
         </InfoWrapper>
       </Wrapper>
     </MainWrapper>

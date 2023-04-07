@@ -28,6 +28,7 @@ export const MovieInfo = () => {
     movieInfo();
     setIsLoading(true);
   }, [movieId, navigate]);
+  console.log(movie);
   return (
     <>
       {isLoading ? (

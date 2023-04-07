@@ -12,12 +12,11 @@ export const Wrapper = styled.div`
   margin-top: 20px;
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
   }
 `;
 
 export const PosterWrapper = styled.div`
-  position: relative;
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     margin-right: 30px;
   }
@@ -33,9 +32,6 @@ export const Poster = styled.img`
     min-width: 300px;
     max-width: 500px;
   }
-`;
-export const SecondaryWrapper = styled.div`
-  display: flex;
 `;
 
 export const MovieTitle = styled.h3`
@@ -60,41 +56,39 @@ export const InfoWrapper = styled.div`
   border-radius: 20px;
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     padding: 25px;
-    width: 50%;
+    width: 75%;
     height: 75%;
   }
 `;
 
-export const ParamsList = styled.ul`
-  white-space: nowrap;
+export const DetailsWrapper = styled.div`
+  width: 100%;
+  white-space: wrap;
+`;
+
+export const InfoParams = styled.p`
+  margin-bottom: 10px;
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSizes.xs};
   color: ${p => p.theme.colors.primary};
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     font-size: ${p => p.theme.fontSizes.l};
   }
-`;
-
-export const PropertiesList = styled.ul`
-  white-space: wrap;
-  margin-left: 20px;
-  font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSizes.xs};
-  color: ${p => p.theme.colors.light};
-  @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
-    font-size: ${p => p.theme.fontSizes.l};
-  }
-`;
-
-export const InfoParams = styled.li`
-  margin-bottom: 20px;
   &:last-child {
     margin-bottom: 0px;
   }
 `;
 
-export const InfoValue = styled.li`
+export const InfoValue = styled.p`
+  letter-spacing: 2px;
   margin-bottom: 20px;
+  padding-bottom: 5px;
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSizes.xs};
+  color: ${p => p.theme.colors.light};
+  @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
+    font-size: ${p => p.theme.fontSizes.m};
+  }
   &:last-child {
     margin-bottom: 0px;
   }
@@ -106,6 +100,6 @@ export const Accent = styled.span`
   border-radius: 5px;
 `;
 
-export const NotFindValue = styled.p`
+export const NotFindValue = styled.span`
   margin-bottom: 20px;
 `;
