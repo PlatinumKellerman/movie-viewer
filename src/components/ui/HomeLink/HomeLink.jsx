@@ -6,7 +6,9 @@ export const HomeLink = () => {
   const backLinkHref = location.state?.from ?? '/movie-viewer';
   return (
     <>
-      <GoBackLink to={backLinkHref}>Home Page</GoBackLink>
+      <GoBackLink to={backLinkHref}>
+        {'<-'} {''} Go Back
+      </GoBackLink>
     </>
   );
 };

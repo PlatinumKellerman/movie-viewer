@@ -36,8 +36,18 @@ export const Poster = styled.img`
 `;
 
 export const MovieTitle = styled.p`
+  margin-bottom: 5px;
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSizes.m};
+  color: ${p => p.theme.colors.light};
+  text-shadow: ${p => p.theme.colors.dark} 1px 0px 0px,
+    ${p => p.theme.colors.dark} 0px 1px 0px,
+    ${p => p.theme.colors.dark} 0px -1px 0px,
+    ${p => p.theme.colors.dark} -1px 0px 0px;
+`;
+
+export const MovieYear = styled.p`
+  font-family: ${p => p.theme.fonts.body};
   color: ${p => p.theme.colors.light};
   text-shadow: ${p => p.theme.colors.dark} 1px 0px 0px,
     ${p => p.theme.colors.dark} 0px 1px 0px,

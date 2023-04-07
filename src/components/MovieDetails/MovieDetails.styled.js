@@ -35,7 +35,7 @@ export const Poster = styled.img`
 `;
 
 export const MovieTitle = styled.h3`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: center;
   font-family: ${p => p.theme.fonts.monospace};
   font-size: ${p => p.theme.fontSizes.m};
@@ -47,6 +47,17 @@ export const MovieTitle = styled.h3`
   }
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     font-size: ${p => p.theme.fontSizes.l};
+  }
+`;
+
+export const Tagline = styled.h4`
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: ${p => p.theme.fonts.monospace};
+  font-size: ${p => p.theme.fontSizes.s};
+  color: ${p => p.theme.colors.grey};
+  @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
+    font-size: ${p => p.theme.fontSizes.m};
   }
 `;
 
@@ -69,7 +80,7 @@ export const DetailsWrapper = styled.div`
 export const InfoParams = styled.p`
   margin-bottom: 10px;
   font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSizes.xs};
+  font-size: ${p => p.theme.fontSizes.xm};
   color: ${p => p.theme.colors.primary};
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     font-size: ${p => p.theme.fontSizes.l};

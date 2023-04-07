@@ -9,7 +9,7 @@ import {
 
 const SearchForm = ({ onSubmit }) => {
   const schema = yup.object().shape({
-    query: yup.string().required('This field cannot be empty'),
+    query: yup.string().required('Search field cannot be empty'),
   });
 
   const handleSubmit = (values, { resetForm }) => {

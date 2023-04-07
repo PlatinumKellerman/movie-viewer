@@ -6,13 +6,14 @@ import {
   Poster,
   MovieTitle,
   ListItem,
+  MovieYear,
 } from './PopularMovies.styled';
 
 const PopularMovies = ({ movies, location }) => {
   return (
     <Container>
       <List>
-        {movies.map(({ id, title, poster_path }) => (
+        {movies.map(({ id, title, poster_path, release_date }) => (
           <ListItem key={id}>
             <Link to={`/movie-viewer/movies/${id}`} state={{ from: location }}>
               <ImgWrapper>
@@ -21,6 +22,9 @@ const PopularMovies = ({ movies, location }) => {
                   alt={title}
                 ></Poster>
                 <MovieTitle>{title}</MovieTitle>
+                <MovieYear>
+                  ({new Date(release_date).getUTCFullYear()})
+                </MovieYear>
               </ImgWrapper>
             </Link>
           </ListItem>

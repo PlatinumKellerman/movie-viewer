@@ -5,12 +5,13 @@ import {
   Poster,
   MovieTitle,
   ListItem,
+  MovieYear,
 } from './FoundMovies.styled';
 
 const FoundMovies = ({ movies, location }) => {
   return (
     <List>
-      {movies.map(({ id, title, poster_path }) => (
+      {movies.map(({ id, title, poster_path, release_date }) => (
         <ListItem key={id}>
           <Link to={`/movie-viewer/movies/${id}`} state={{ from: location }}>
             <ImgWrapper>
@@ -21,6 +22,7 @@ const FoundMovies = ({ movies, location }) => {
                 ></Poster>
               )}
               <MovieTitle>{title}</MovieTitle>
+              <MovieYear>({new Date(release_date).getUTCFullYear()})</MovieYear>
             </ImgWrapper>
           </Link>
         </ListItem>

@@ -13,6 +13,7 @@ import {
   PosterWrapper,
   Wrapper,
   NotFindValue,
+  Tagline,
 } from './MovieDetails.styled';
 
 export const MovieDetails = ({ movie }) => {
@@ -58,6 +59,7 @@ export const MovieDetails = ({ movie }) => {
               {movie.title} ({releaseYear})
             </MovieTitle>
           </a>
+          <Tagline>{movie.tagline}</Tagline>
           <DetailsWrapper>
             <InfoParams>Rating:</InfoParams>
             <InfoValue>

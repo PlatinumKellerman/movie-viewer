@@ -7,6 +7,7 @@ export const LinkWrapper = styled.div`
 `;
 
 export const GoBackLink = styled(Link)`
+  width: auto;
   margin-top: 60px;
   margin-left: 20px;
   padding: 5px 20px;

@@ -1,4 +1,3 @@
-import HomeLink from 'components/ui/HomeLink';
 import SearchForm from '../../components/SearchForm';
 import Loader from '../../components/Loader';
 import FoundMovies from '../../components/FoundMovies';
@@ -6,6 +5,7 @@ import { getMoviesByName } from '../../services/fetchMovies';
 import { toast } from 'react-toastify';
 import { useState, useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import { SearchFormWrapper, BackLink } from './SearchPage.styled';
 
 const SearchPage = () => {
   const [movies, setMovies] = useState([]);
@@ -13,6 +13,7 @@ const SearchPage = () => {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const name = searchParams.get('query') ?? '';
+  const backLinkHref = location.state?.from ?? '/movie-viewer';
 
   useEffect(() => {
     if (name === '' || name === null) return;
@@ -41,12 +42,14 @@ const SearchPage = () => {
   };
 
   return (
-    <div>
-      <HomeLink></HomeLink>
+    <SearchFormWrapper>
+      <BackLink to={backLinkHref}>
+        {'<-'} {''} Go Back
+      </BackLink>
       <SearchForm onSubmit={handleMovieNameSubmit} />
       {isLoading && <Loader />}
       {movies && <FoundMovies movies={movies} location={location} />}
-    </div>
+    </SearchFormWrapper>
   );
 };
 
