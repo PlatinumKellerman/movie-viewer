@@ -7,6 +7,7 @@ import { Layout } from './layout/Layout';
 import NotFoundPage from './pages/NotFoundPage';
 import HomePage from './pages/Home';
 import MovieInfo from './pages/MovieInfo';
+import TvShowsInfo from 'pages/TvShowsInfo';
 import SearchPage from './pages/SearchPage';
 
 function App() {
@@ -18,6 +19,10 @@ function App() {
           <Route
             path="/movie-viewer/movies/:movieId"
             element={<MovieInfo />}
+          ></Route>
+          <Route
+            path="/movie-viewer/tv-shows/:showId"
+            element={<TvShowsInfo />}
           ></Route>
           <Route path="/movie-viewer/search" element={<SearchPage />}></Route>
           <Route path="/*" element={<NotFoundPage />} />

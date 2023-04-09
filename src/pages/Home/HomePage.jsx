@@ -3,12 +3,17 @@ import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Container from '../../layout/common/Container/Container';
 import Loader from '../../components/Loader';
-import { getMostPopularMovies } from '../../services/fetchMovies';
-import PopularMovies from '../../components/PopularMovies/PopularMovies';
+import {
+  getMostPopularMovies,
+  getMostPopularTvShows,
+} from '../../services/fetchMovies';
+import PopularMovies from '../../components/PopularMovies';
+import PopularTvShows from '../../components/PopularTvShows';
 import { HomePageTitle } from './HomePage.styled';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
+  const [shows, setShows] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
 
@@ -26,15 +31,35 @@ const HomePage = () => {
     setIsLoading(true);
   }, []);
 
+  useEffect(() => {
+    const getPopularShows = async () => {
+      try {
+        const response = await getMostPopularTvShows();
+        setShows(response);
+        setIsLoading(false);
+      } catch (error) {
+        toast.error('Oops! Something went wrong!');
+      }
+    };
+    getPopularShows();
+    setIsLoading(true);
+  }, []);
+
+  console.log(shows);
+
   return (
     <Container>
-      <HomePageTitle>Trending movies for the WEEK</HomePageTitle>
       {isLoading ? (
         <div>
           <Loader />
         </div>
       ) : (
-        movies && <PopularMovies movies={movies} location={location} />
+        <>
+          <HomePageTitle>Most popular TV shows</HomePageTitle>
+          {shows && <PopularTvShows shows={shows} location={location} />}
+          <HomePageTitle>Trending movies for the WEEK</HomePageTitle>
+          {movies && <PopularMovies movies={movies} location={location} />}
+        </>
       )}
     </Container>
   );

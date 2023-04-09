@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieDetailsById } from '../../services/fetchMovies';
 import { useNavigate } from 'react-router-dom';
-import MovieDetails from '../../components/MovieDetails';
+import { getTvShowById } from '../../services/fetchMovies';
+import TvShowDetail from '../../components/TvShowDetail';
 import Loader from 'components/Loader';
 
-export const MovieInfo = () => {
-  const { movieId } = useParams();
-  const [movie, setMovie] = useState(null);
+const TvShowsInfo = () => {
+  const { showId } = useParams();
+  const [show, setShow] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const movieInfo = async () => {
       try {
-        const response = await getMovieDetailsById(movieId);
-        setMovie(response);
+        const response = await getTvShowById(showId);
+        setShow(response);
         setIsLoading(false);
       } catch (error) {
         if (error) {
@@ -27,7 +27,7 @@ export const MovieInfo = () => {
     };
     movieInfo();
     setIsLoading(true);
-  }, [movieId, navigate]);
+  }, [showId, navigate]);
 
   return (
     <>
@@ -36,8 +36,10 @@ export const MovieInfo = () => {
           <Loader />
         </div>
       ) : (
-        <>{movie && <MovieDetails movie={movie} />}</>
+        show && <TvShowDetail show={show} />
       )}
     </>
   );
 };
+
+export default TvShowsInfo;
