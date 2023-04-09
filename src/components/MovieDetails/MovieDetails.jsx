@@ -107,7 +107,7 @@ export const MovieDetails = ({ movie }) => {
             </InfoValue>
             <InfoParams>Budget:</InfoParams>
             <InfoValue>
-              {movie.budget > 0 ? (
+              {movie.budget ? (
                 `$${movie.budget}`
               ) : (
                 <NotFindValue style={{ color: '#E85A4F' }}>

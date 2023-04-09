@@ -36,6 +36,8 @@ const TvShowDetail = ({ show }) => {
     },
   };
 
+  console.log(show);
+
   return (
     <MainWrapper>
       <HomeLink />
@@ -105,6 +107,18 @@ const TvShowDetail = ({ show }) => {
                 </NotFindValue>
               )}
             </InfoValue>
+            <InfoParams>Seasons:</InfoParams>
+            <InfoValue>
+              {show.seasons.length > 0 ? (
+                show.seasons.length
+              ) : (
+                <NotFindValue style={{ color: '#E85A4F' }}>
+                  Sorry, no info
+                </NotFindValue>
+              )}
+            </InfoValue>
+            <InfoParams>Status:</InfoParams>
+            <InfoValue>{show.status}</InfoValue>
             <InfoParams>Overview:</InfoParams>
             <InfoValue>
               {show.overview ? (

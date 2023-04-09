@@ -45,8 +45,6 @@ const HomePage = () => {
     setIsLoading(true);
   }, []);
 
-  console.log(shows);
-
   return (
     <Container>
       {isLoading ? (
