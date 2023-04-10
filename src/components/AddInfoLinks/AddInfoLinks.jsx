@@ -1,17 +1,17 @@
-import { Link } from 'react-router-dom';
+import { InfoLink, InfoLinkWrapper } from './AddInfoLinks.styled.js';
 
 const AddInfoLinks = ({ location }) => {
   const backLinkHref = location.state?.from ?? '/movies';
 
   return (
-    <>
-      <Link to={'cast'} state={{ from: backLinkHref }}>
+    <InfoLinkWrapper>
+      <InfoLink to={'cast'} state={{ from: backLinkHref }}>
         Cast
-      </Link>
-      <Link to="reviews" state={{ from: backLinkHref }}>
+      </InfoLink>
+      <InfoLink to="reviews" state={{ from: backLinkHref }}>
         Reviews
-      </Link>
-    </>
+      </InfoLink>
+    </InfoLinkWrapper>
   );
 };
 

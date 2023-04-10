@@ -43,6 +43,7 @@ export const ProdLogoWrapper = styled.div`
   flex-wrap: wrap;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 15px;
 `;
 
 export const ProdLogo = styled.img`

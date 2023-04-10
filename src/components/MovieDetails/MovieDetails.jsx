@@ -21,7 +21,6 @@ import {
 } from './MovieDetails.styled';
 
 export const MovieDetails = ({ movie }) => {
-  console.log(movie);
   const location = useLocation();
   const releaseYear = new Date(movie.release_date).getUTCFullYear();
   const userScore = Number(movie.vote_average).toFixed(1) * 10;
