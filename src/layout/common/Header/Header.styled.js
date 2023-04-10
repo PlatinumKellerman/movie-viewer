@@ -52,7 +52,7 @@ export const HeaderLogo = styled(Logo)`
     transform: scale(1.1);
     cursor: pointer;
     transition-duration: 500ms;
-    transition-timing-function: $timing-function;
+    transition-property: all;
     color: ${p => p.theme.colors.accent};
   }
 `;
@@ -68,7 +68,7 @@ export const SearchMovieLogo = styled(SearchLogo)`
     transform: scale(1.1);
     cursor: pointer;
     transition-duration: 500ms;
-    transition-timing-function: $timing-function;
+    transition-property: all;
     color: ${p => p.theme.colors.accent};
   }
 `;

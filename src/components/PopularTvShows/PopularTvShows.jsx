@@ -12,7 +12,7 @@ import {
 
 const PopularTvShows = ({ shows, location }) => {
   const settings = {
-    dots: false,
+    dots: true,
     arrows: false,
     infinite: true,
     speed: 700,
@@ -24,7 +24,7 @@ const PopularTvShows = ({ shows, location }) => {
     autoplay: true,
     autoplaySpeed: 2500,
     centerMode: true,
-    centerPadding: '20px',
+    centerPadding: '5px',
     cssEase: 'ease-in-out',
     responsive: [
       {
@@ -51,7 +51,7 @@ const PopularTvShows = ({ shows, location }) => {
   return (
     <Container>
       <Slider {...settings}>
-        {shows.map(({ id, name, poster_path }) => (
+        {shows.map(({ id, name, poster_path, first_air_date }) => (
           <Item key={id}>
             <Link
               to={`/movie-viewer/tv-shows/${id}`}
@@ -63,6 +63,9 @@ const PopularTvShows = ({ shows, location }) => {
                   alt={name}
                 ></Poster>
                 <ShowTitle>{name}</ShowTitle>
+                <ShowTitle>
+                  {new Date(first_air_date).getUTCFullYear()}
+                </ShowTitle>
               </PosterWrapper>
             </Link>
           </Item>

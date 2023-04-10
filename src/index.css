@@ -1,3 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css');
+
+/* Змінює колір активної крапки */
+.slick-dots li.slick-active button:before {
+  color: #ff0000;
+}
+
+/* Змінює колір неактивної крапки */
+.slick-dots li button:before {
+  color: #000000;
+}
+
+.slick-dots {
+  display: block;
+  text-align: center;
+  margin: 20px 0;
+  padding: 0;
+}
+
+.slick-dots li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.slick-dots li button:before {
+  font-family: 'slick';
+  font-size: 10px;
+  line-height: 1;
+  opacity: 0.5;
+  color: #000;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: #000;
+}
+
 html {
   box-sizing: border-box;
 }

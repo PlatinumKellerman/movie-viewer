@@ -14,6 +14,7 @@ import {
   Wrapper,
   NotFindValue,
   Tagline,
+  NetworkPoster,
 } from './TvShowDetail.styled';
 
 const TvShowDetail = ({ show }) => {
@@ -49,6 +50,10 @@ const TvShowDetail = ({ show }) => {
               alt={show.name}
             ></Poster>
           )}
+          <NetworkPoster
+            src={`https://image.tmdb.org/t/p/w500${show.networks[0].logo_path}`}
+            alt={show.name}
+          ></NetworkPoster>
         </PosterWrapper>
         <InfoWrapper>
           <a

@@ -34,6 +34,13 @@ export const Poster = styled.img`
   }
 `;
 
+export const NetworkPoster = styled.img`
+  width: 25%;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
 export const MovieTitle = styled.h3`
   margin-bottom: 10px;
   margin-left: auto;

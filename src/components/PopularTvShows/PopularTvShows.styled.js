@@ -2,20 +2,32 @@ import styled from 'styled-components';
 
 export const Item = styled.li``;
 
-export const PosterWrapper = styled.div``;
+export const PosterWrapper = styled.div`
+  color: ${p => p.theme.colors.light};
+  transition-duration: 250ms;
+  transition-property: all;
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${p => p.theme.colors.primary};
+    transform: scale(1.03);
+  }
+`;
 
 export const Poster = styled.img`
-  border-radius: 10px;
-  width: 150px;
-  height: auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 5px;
+  border-radius: 10px;
+  max-width: 150px;
+  height: auto;
 `;
 
 export const ShowTitle = styled.p`
   text-align: center;
+  margin-bottom: 5px;
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSizes.s};
-  color: ${p => p.theme.colors.light};
   text-shadow: ${p => p.theme.colors.dark} 1px 0px 0px,
     ${p => p.theme.colors.dark} 0px 1px 0px,
     ${p => p.theme.colors.dark} 0px -1px 0px,

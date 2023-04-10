@@ -7,7 +7,6 @@ import {
   Poster,
   MovieTitle,
   ListItem,
-  MovieYear,
 } from './PopularMovies.styled';
 
 const PopularMovies = ({ movies, location }) => {
@@ -23,9 +22,9 @@ const PopularMovies = ({ movies, location }) => {
                   alt={title}
                 ></Poster>
                 <MovieTitle>{title}</MovieTitle>
-                <MovieYear>
+                <MovieTitle>
                   ({new Date(release_date).getUTCFullYear()})
-                </MovieYear>
+                </MovieTitle>
               </ImgWrapper>
             </Link>
           </ListItem>
