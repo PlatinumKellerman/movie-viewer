@@ -35,10 +35,21 @@ export const Poster = styled.img`
 `;
 
 export const NetworkPoster = styled.img`
-  width: 25%;
-  margin-bottom: 20px;
-  margin-left: auto;
+  max-width: 80px;
+  height: auto;
   margin-right: auto;
+  margin-left: auto;
+`;
+
+export const ProdLogoWrapper = styled.div`
+  margin-right: auto;
+  margin-left: auto;
+  padding: 5px;
+  background-color: ${p => p.theme.colors.grey};
+  border-radius: 10px;
+  max-width: 500px;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 export const MovieTitle = styled.h3`

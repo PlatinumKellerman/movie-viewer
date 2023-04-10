@@ -34,6 +34,24 @@ export const Poster = styled.img`
   }
 `;
 
+export const ProdLogoWrapper = styled.div`
+  padding: 5px;
+  background-color: ${p => p.theme.colors.grey};
+  border-radius: 10px;
+  max-width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: auto;
+  margin-left: auto;
+`;
+
+export const ProdLogo = styled.img`
+  max-width: 80px;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+`;
+
 export const MovieTitle = styled.h3`
   margin-bottom: 10px;
   margin-left: auto;

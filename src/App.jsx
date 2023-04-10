@@ -9,6 +9,8 @@ import HomePage from './pages/Home';
 import MovieInfo from './pages/MovieInfo';
 import TvShowsInfo from 'pages/TvShowsInfo';
 import SearchPage from './pages/SearchPage';
+import MovieReviews from 'pages/MovieInfo/MovieReviews';
+import MovieCast from 'pages/MovieInfo/MovieCast';
 
 function App() {
   return (
@@ -16,10 +18,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/movie-viewer" element={<HomePage />} />
-          <Route
-            path="/movie-viewer/movies/:movieId"
-            element={<MovieInfo />}
-          ></Route>
+          <Route path="/movie-viewer/movies/:movieId" element={<MovieInfo />}>
+            <Route path="cast" element={<MovieCast />} />
+            <Route path="reviews" element={<MovieReviews />} />
+          </Route>
           <Route
             path="/movie-viewer/tv-shows/:showId"
             element={<TvShowsInfo />}

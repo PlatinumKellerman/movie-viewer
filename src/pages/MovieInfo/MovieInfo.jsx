@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import { getMovieDetailsById } from '../../services/fetchMovies';
 import { useNavigate } from 'react-router-dom';
 import MovieDetails from '../../components/MovieDetails';
@@ -38,6 +38,7 @@ export const MovieInfo = () => {
       ) : (
         <>{movie && <MovieDetails movie={movie} />}</>
       )}
+      <Outlet />
     </>
   );
 };

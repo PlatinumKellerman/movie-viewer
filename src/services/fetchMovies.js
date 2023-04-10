@@ -38,3 +38,8 @@ export async function getTvShowById(id) {
   const response = await instance.get(`/tv/${id}`);
   return response.data;
 }
+
+export async function getMovieReviews(id) {
+  const response = await instance.get(`/movie/${id}/reviews`);
+  return response.data;
+}

@@ -1,6 +1,8 @@
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { useLocation } from 'react-router-dom';
 import HomeLink from 'components/ui/HomeLink';
+import AddInfoLinks from 'components/AddInfoLinks';
 import {
   MainWrapper,
   Poster,
@@ -14,9 +16,13 @@ import {
   Wrapper,
   NotFindValue,
   Tagline,
+  ProdLogo,
+  ProdLogoWrapper,
 } from './MovieDetails.styled';
 
 export const MovieDetails = ({ movie }) => {
+  console.log(movie);
+  const location = useLocation();
   const releaseYear = new Date(movie.release_date).getUTCFullYear();
   const userScore = Number(movie.vote_average).toFixed(1) * 10;
   const progressBarStyles = {
@@ -47,6 +53,15 @@ export const MovieDetails = ({ movie }) => {
               alt={movie.title}
             ></Poster>
           )}
+          <ProdLogoWrapper>
+            {movie.production_companies.map(logo => (
+              <ProdLogo
+                key={logo.id}
+                src={`https://image.tmdb.org/t/p/w500${logo.logo_path}`}
+                alt={logo.name}
+              ></ProdLogo>
+            ))}
+          </ProdLogoWrapper>
         </PosterWrapper>
         <InfoWrapper>
           <a
@@ -125,6 +140,7 @@ export const MovieDetails = ({ movie }) => {
                 </NotFindValue>
               )}
             </InfoValue>
+            <AddInfoLinks location={location} />
           </DetailsWrapper>
         </InfoWrapper>
       </Wrapper>

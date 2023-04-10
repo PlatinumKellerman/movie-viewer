@@ -15,6 +15,7 @@ import {
   NotFindValue,
   Tagline,
   NetworkPoster,
+  ProdLogoWrapper,
 } from './TvShowDetail.styled';
 
 const TvShowDetail = ({ show }) => {
@@ -50,10 +51,15 @@ const TvShowDetail = ({ show }) => {
               alt={show.name}
             ></Poster>
           )}
-          <NetworkPoster
-            src={`https://image.tmdb.org/t/p/w500${show.networks[0].logo_path}`}
-            alt={show.name}
-          ></NetworkPoster>
+          <ProdLogoWrapper>
+            {show.production_companies.map(logo => (
+              <NetworkPoster
+                key={logo.id}
+                src={`https://image.tmdb.org/t/p/w500${logo.logo_path}`}
+                alt={logo.name}
+              ></NetworkPoster>
+            ))}
+          </ProdLogoWrapper>
         </PosterWrapper>
         <InfoWrapper>
           <a
