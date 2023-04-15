@@ -59,3 +59,18 @@ export const ListItem = styled.li`
     margin-bottom: 0px;
   }
 `;
+
+export const PosterPlug = styled.img`
+  max-width: 300px;
+  object-fit: fill;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover {
+    transform: scale(1.03);
+  }
+  border-radius: 20px;
+  margin-bottom: 10px;
+  @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
+    max-width: 300px;
+    height: 450px;
+  }
+`;

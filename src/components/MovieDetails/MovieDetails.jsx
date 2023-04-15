@@ -3,6 +3,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import { useLocation } from 'react-router-dom';
 import HomeLink from 'components/ui/HomeLink';
 import AddInfoLinks from 'components/AddInfoLinks';
+import poster_plug from '../../assets/poster_plug-min.jpg';
 import {
   MainWrapper,
   Poster,
@@ -18,6 +19,8 @@ import {
   Tagline,
   ProdLogo,
   ProdLogoWrapper,
+  ImdbLogo,
+  PosterPlug,
 } from './MovieDetails.styled';
 
 export const MovieDetails = ({ movie }) => {
@@ -46,20 +49,23 @@ export const MovieDetails = ({ movie }) => {
       <HomeLink />
       <Wrapper>
         <PosterWrapper>
-          {movie.poster_path && (
+          {movie.poster_path ? (
             <Poster
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
             ></Poster>
+          ) : (
+            <PosterPlug src={poster_plug} alt={'Poster Plug'} />
           )}
           <ProdLogoWrapper>
-            {movie.production_companies.map(logo => (
-              <ProdLogo
-                key={logo.id}
-                src={`https://image.tmdb.org/t/p/w500${logo.logo_path}`}
-                alt={logo.name}
-              ></ProdLogo>
-            ))}
+            {movie.production_companies &&
+              movie.production_companies.map(logo => (
+                <ProdLogo
+                  key={logo.id}
+                  src={`https://image.tmdb.org/t/p/w500${logo.logo_path}`}
+                  alt={logo.name}
+                ></ProdLogo>
+              ))}
           </ProdLogoWrapper>
         </PosterWrapper>
         <InfoWrapper>
@@ -98,6 +104,16 @@ export const MovieDetails = ({ movie }) => {
               <NotFindValue style={{ color: '#E85A4F' }}>
                 Sorry, no info
               </NotFindValue>
+            )}
+            {movie.imdb_id && (
+              <a
+                href={`https://www.imdb.com/title/${movie.imdb_id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Movie Homepage"
+              >
+                <ImdbLogo />
+              </a>
             )}
             <InfoParams>Genres:</InfoParams>
             <InfoValue>

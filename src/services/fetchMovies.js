@@ -20,8 +20,17 @@ export async function getMovieDetailsById(id) {
   return response.data;
 }
 
-export async function getMoviesByName(query) {
-  const response = await instance.get(`/search/movie`, {
+// export async function getMoviesByName(query) {
+//   const response = await instance.get(`/search/movie`, {
+//     params: {
+//       query,
+//     },
+//   });
+//   return response.data.results;
+// }
+
+export async function searchMoviesAndTVShows(query) {
+  const response = await instance.get(`/search/multi`, {
     params: {
       query,
     },
@@ -41,5 +50,10 @@ export async function getTvShowById(id) {
 
 export async function getMovieReviews(id) {
   const response = await instance.get(`/movie/${id}/reviews`);
+  return response.data;
+}
+
+export async function getMovieCast(id) {
+  const response = await instance.get(`/movie/${id}/credits`);
   return response.data;
 }

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as ImdbLogoMin } from '../../assets/imdb-logo-min.svg';
 
 export const MainWrapper = styled.div`
   padding: 15px 10px;
@@ -65,9 +66,31 @@ export const MovieTitle = styled.h3`
   &:focus,
   &:active {
     color: ${p => p.theme.colors.primary};
+    transform: scale(1.01);
+    cursor: pointer;
+    transition-duration: 500ms;
+    transition-property: all;
   }
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     font-size: ${p => p.theme.fontSizes.l};
+  }
+`;
+
+export const ImdbLogo = styled(ImdbLogoMin)`
+  margin: 10px 0px;
+  width: 100px;
+  padding: 5px;
+  height: auto;
+  color: ${p => p.theme.colors.imdb};
+  border: 1px solid ${p => p.theme.colors.imdb};
+  &:hover,
+  &:focus,
+  &:active {
+    border: 1px solid ${p => p.theme.colors.accent};
+    cursor: pointer;
+    transition-duration: 500ms;
+    transition-property: all;
+    color: ${p => p.theme.colors.accent};
   }
 `;
 
@@ -134,4 +157,16 @@ export const Accent = styled.span`
 
 export const NotFindValue = styled.span`
   margin-bottom: 20px;
+`;
+
+export const PosterPlug = styled.img`
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
+    min-width: 300px;
+    max-width: 500px;
+  }
 `;

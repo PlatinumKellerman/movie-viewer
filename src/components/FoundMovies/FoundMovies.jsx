@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import poster_plug from '../../assets/poster_plug-min.jpg';
 import {
   List,
   ImgWrapper,
@@ -6,6 +7,7 @@ import {
   MovieTitle,
   ListItem,
   MovieYear,
+  PosterPlug,
 } from './FoundMovies.styled';
 
 const FoundMovies = ({ movies, location }) => {
@@ -15,11 +17,13 @@ const FoundMovies = ({ movies, location }) => {
         <ListItem key={id}>
           <Link to={`/movie-viewer/movies/${id}`} state={{ from: location }}>
             <ImgWrapper>
-              {poster_path && (
+              {poster_path ? (
                 <Poster
                   src={`https://image.tmdb.org/t/p/w500${poster_path}`}
                   alt={title}
                 ></Poster>
+              ) : (
+                <PosterPlug src={poster_plug} alt={'Poster Plug'} />
               )}
               <MovieTitle>{title}</MovieTitle>
               <MovieYear>({new Date(release_date).getUTCFullYear()})</MovieYear>

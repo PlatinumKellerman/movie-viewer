@@ -25,16 +25,17 @@ const MovieReviews = () => {
     setIsLoading(true);
   }, [movieId]);
 
-  console.log(reviews);
-
   return (
-    <>
+    <div>
       {isLoading && <Loader />}
-      <MovieReviewsList reviews={reviews}></MovieReviewsList>
-      {reviews.length === 0 && (
-        <ReviewPlug> We don't have any reviews for this movie. </ReviewPlug>
+      {reviews.length > 0 ? (
+        <MovieReviewsList reviews={reviews} />
+      ) : (
+        <ReviewPlug>
+          Sorry. We don't have any reviews for this movie.{' '}
+        </ReviewPlug>
       )}
-    </>
+    </div>
   );
 };
 

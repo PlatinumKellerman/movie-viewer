@@ -20,6 +20,7 @@ export const theme = {
     accent: '#E85A4F',
     accentMuted: '',
     muted: '#CCCCCC',
+    imdb: '#f1c40f',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fonts: {

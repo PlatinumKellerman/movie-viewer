@@ -1,7 +1,7 @@
 import SearchForm from '../../components/SearchForm';
 import Loader from '../../components/Loader';
 import FoundMovies from '../../components/FoundMovies';
-import { getMoviesByName } from '../../services/fetchMovies';
+import { searchMoviesAndTVShows } from '../../services/fetchMovies';
 import { toast } from 'react-toastify';
 import { useState, useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
@@ -19,10 +19,14 @@ const SearchPage = () => {
     if (name === '' || name === null) return;
     async function moviesByName() {
       try {
-        const response = await getMoviesByName(name);
-        setMovies(response);
+        const results = await searchMoviesAndTVShows(name);
+        const moviesAndTVShows = results.filter(
+          item => item.media_type === 'movie' || item.media_type === 'tv'
+        );
+        console.log(moviesAndTVShows);
+        setMovies(moviesAndTVShows);
         setIsLoading(false);
-        if (response.length === 0) {
+        if (moviesAndTVShows.length === 0) {
           toast.error(`Sorry, there are no movies for this request.`);
         }
       } catch (error) {
