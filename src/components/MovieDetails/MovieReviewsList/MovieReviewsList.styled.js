@@ -52,3 +52,12 @@ export const AvatarPlug = styled.img`
   width: 64px;
   height: 64px;
 `;
+
+export const ReviewDate = styled.span`
+  margin-left: 15px;
+  color: ${p => p.theme.colors.grey};
+  font-size: ${p => p.theme.fontSizes.xs};
+  @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
+    font-size: ${p => p.theme.fontSizes.m};
+  }
+`;

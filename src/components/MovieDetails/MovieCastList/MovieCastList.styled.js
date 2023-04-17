@@ -17,6 +17,7 @@ export const CastWrapper = styled.div`
   &:focus,
   &:active {
     color: ${p => p.theme.colors.primary};
+    cursor: default;
   }
 `;
 

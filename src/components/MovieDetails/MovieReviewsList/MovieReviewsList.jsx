@@ -1,3 +1,4 @@
+import moment from 'moment';
 import {
   ReviewWrapper,
   ReviewParams,
@@ -5,6 +6,7 @@ import {
   ReviewItem,
   Avatar,
   AvatarPlug,
+  ReviewDate,
 } from './MovieReviewsList.styled';
 import avatar_plug from '../../../assets/actor-plug-min.jpg';
 
@@ -13,7 +15,7 @@ const MovieReviewsList = ({ reviews }) => {
     <ReviewWrapper>
       <ul>
         {reviews.length > 0 &&
-          reviews.map(({ id, author, content, author_details }) => (
+          reviews.map(({ id, author, content, author_details, updated_at }) => (
             <ReviewItem key={id}>
               {author_details.avatar_path &&
               author_details.avatar_path.startsWith('/') &&
@@ -25,8 +27,12 @@ const MovieReviewsList = ({ reviews }) => {
               ) : (
                 <AvatarPlug src={avatar_plug} alt={'Avatar Plug'} />
               )}
-
-              <ReviewParams>{author}</ReviewParams>
+              <ReviewParams>
+                {author}
+                <ReviewDate>
+                  {`(${moment(updated_at).format('DD MMMM YYYY')})`}
+                </ReviewDate>
+              </ReviewParams>
               <ReviewValue>{content}</ReviewValue>
             </ReviewItem>
           ))}

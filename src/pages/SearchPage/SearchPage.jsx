@@ -1,6 +1,6 @@
 import SearchForm from '../../components/SearchForm';
 import Loader from '../../components/Loader';
-import FoundMovies from '../../components/FoundMovies';
+import FoundMedia from '../../components/FoundMedia';
 import { searchMoviesAndTVShows } from '../../services/fetchMovies';
 import { toast } from 'react-toastify';
 import { useState, useEffect } from 'react';
@@ -8,7 +8,7 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { SearchFormWrapper, BackLink } from './SearchPage.styled';
 
 const SearchPage = () => {
-  const [movies, setMovies] = useState([]);
+  const [media, setMedia] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,7 +24,7 @@ const SearchPage = () => {
           item => item.media_type === 'movie' || item.media_type === 'tv'
         );
         console.log(moviesAndTVShows);
-        setMovies(moviesAndTVShows);
+        setMedia(moviesAndTVShows);
         setIsLoading(false);
         if (moviesAndTVShows.length === 0) {
           toast.error(`Sorry, there are no movies for this request.`);
@@ -52,7 +52,7 @@ const SearchPage = () => {
       </BackLink>
       <SearchForm onSubmit={handleMovieNameSubmit} />
       {isLoading && <Loader />}
-      {movies && <FoundMovies movies={movies} location={location} />}
+      {media && <FoundMedia media={media} location={location} />}
     </SearchFormWrapper>
   );
 };
