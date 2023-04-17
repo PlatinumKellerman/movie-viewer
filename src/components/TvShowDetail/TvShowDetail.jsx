@@ -1,6 +1,8 @@
+import { useLocation } from 'react-router-dom';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import HomeLink from '../ui/HomeLink';
+import AddInfoLinks from 'components/AddInfoLinks';
 import {
   MainWrapper,
   Poster,
@@ -19,6 +21,7 @@ import {
 } from './TvShowDetail.styled';
 
 const TvShowDetail = ({ show }) => {
+  const location = useLocation();
   const releaseYear = new Date(show.first_air_date).getUTCFullYear();
   const userScore = Number(show.vote_average).toFixed(1) * 10;
   const progressBarStyles = {
@@ -37,8 +40,6 @@ const TvShowDetail = ({ show }) => {
       strokeWidth: '8px',
     },
   };
-
-  console.log(show);
 
   return (
     <MainWrapper>
@@ -140,6 +141,7 @@ const TvShowDetail = ({ show }) => {
                 </NotFindValue>
               )}
             </InfoValue>
+            <AddInfoLinks location={location} />
           </DetailsWrapper>
         </InfoWrapper>
       </Wrapper>

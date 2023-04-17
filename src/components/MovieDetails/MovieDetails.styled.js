@@ -39,7 +39,6 @@ export const ProdLogoWrapper = styled.div`
   padding: 5px;
   background-color: ${p => p.theme.colors.grey};
   border-radius: 10px;
-  max-width: 500px;
   display: flex;
   flex-wrap: wrap;
   margin-right: auto;

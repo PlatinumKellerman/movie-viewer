@@ -11,6 +11,8 @@ import TvShowsInfo from 'pages/TvShowsInfo';
 import SearchPage from './pages/SearchPage';
 import MovieReviews from 'pages/MovieInfo/MovieReviews';
 import MovieCast from 'pages/MovieInfo/MovieCast';
+import TvShowReviews from 'pages/TvShowsInfo/TvShowReviews';
+import TvShowCast from 'pages/TvShowsInfo/TvShowCast';
 
 function App() {
   return (
@@ -25,7 +27,10 @@ function App() {
           <Route
             path="/movie-viewer/tv-shows/:showId"
             element={<TvShowsInfo />}
-          ></Route>
+          >
+            <Route path="reviews" element={<TvShowReviews />} />
+            <Route path="cast" element={<TvShowCast />} />
+          </Route>
           <Route path="/movie-viewer/search" element={<SearchPage />}></Route>
           <Route path="/*" element={<NotFoundPage />} />
         </Route>

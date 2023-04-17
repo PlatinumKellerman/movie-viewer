@@ -7,6 +7,7 @@ const instance = axios.create({
   params: {
     api_key: API_KEY,
     language: LANGUAGE,
+    page: 1,
   },
 });
 
@@ -55,5 +56,15 @@ export async function getMovieReviews(id) {
 
 export async function getMovieCast(id) {
   const response = await instance.get(`/movie/${id}/credits`);
+  return response.data;
+}
+
+export async function getTvShowReviews(id) {
+  const response = await instance.get(`/tv/${id}/reviews`);
+  return response.data;
+}
+
+export async function getTvShowCast(id) {
+  const response = await instance.get(`/tv/${id}/credits`);
   return response.data;
 }

@@ -25,13 +25,13 @@ export const TitleWrapper = styled.div`
 `;
 
 export const HeaderTitle = styled.h1`
+  text-align: center;
   letter-spacing: 10px;
   margin-left: auto;
   margin-right: auto;
   font-size: ${p => p.theme.fontSizes.l};
   color: ${p => p.theme.colors.primary};
   font-family: ${p => p.theme.fonts.heading};
-
   @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
     font-size: ${p => p.theme.fontSizes.xl};
   }

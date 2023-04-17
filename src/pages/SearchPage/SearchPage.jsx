@@ -23,7 +23,6 @@ const SearchPage = () => {
         const moviesAndTVShows = results.filter(
           item => item.media_type === 'movie' || item.media_type === 'tv'
         );
-        console.log(moviesAndTVShows);
         setMedia(moviesAndTVShows);
         setIsLoading(false);
         if (moviesAndTVShows.length === 0) {

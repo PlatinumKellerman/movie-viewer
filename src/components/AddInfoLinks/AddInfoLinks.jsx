@@ -1,14 +1,14 @@
 import { InfoLink, InfoLinkWrapper } from './AddInfoLinks.styled.js';
 
 const AddInfoLinks = ({ location }) => {
-  const backLinkHref = location.state?.from ?? '/movies';
+  const backLinkHref = location.state?.from ?? '';
 
   return (
     <InfoLinkWrapper>
       <InfoLink to={'cast'} state={{ from: backLinkHref }}>
         Cast
       </InfoLink>
-      <InfoLink to="reviews" state={{ from: backLinkHref }}>
+      <InfoLink to={'reviews'} state={{ from: backLinkHref }}>
         Reviews
       </InfoLink>
     </InfoLinkWrapper>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { getTvShowById } from '../../services/fetchMovies';
 import TvShowDetail from '../../components/TvShowDetail';
@@ -38,6 +38,7 @@ const TvShowsInfo = () => {
       ) : (
         show && <TvShowDetail show={show} />
       )}
+      <Outlet />
     </>
   );
 };

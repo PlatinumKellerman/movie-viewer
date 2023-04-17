@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { getMovieCast } from '../../../services/fetchMovies';
+import { getTvShowCast } from '../../../services/fetchMovies';
 import Loader from 'components/Loader';
-import MovieCastList from 'components/MovieDetails/MovieCastList';
-import { CastPlug } from './MovieCast.styled';
+import TvShowCastList from 'components/TvShowDetail/TvShowCastList';
+import { CastPlug } from './TvShowCast.styled';
 
-const MovieCast = () => {
-  const { movieId } = useParams();
+const TvShowCast = () => {
+  const { showId } = useParams();
   const [cast, setCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const movieCastResp = async () => {
       try {
-        const response = await getMovieCast(movieId);
+        const response = await getTvShowCast(showId);
         setCast(response.cast);
         setIsLoading(false);
       } catch (error) {
@@ -23,13 +23,13 @@ const MovieCast = () => {
     };
     movieCastResp();
     setIsLoading(true);
-  }, [movieId]);
+  }, [showId]);
 
   return (
     <div>
       {isLoading && <Loader />}
       {cast.length > 0 ? (
-        <MovieCastList cast={cast} />
+        <TvShowCastList cast={cast} />
       ) : (
         <CastPlug>Sorry. We don't have any cast for this movie. </CastPlug>
       )}
@@ -37,4 +37,4 @@ const MovieCast = () => {
   );
 };
 
-export default MovieCast;
+export default TvShowCast;
