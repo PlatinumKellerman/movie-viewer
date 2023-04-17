@@ -44,6 +44,7 @@ export const NetworkPoster = styled.img`
 export const ProdLogoWrapper = styled.div`
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 15px;
   padding: 5px;
   background-color: ${p => p.theme.colors.grey};
   border-radius: 10px;
