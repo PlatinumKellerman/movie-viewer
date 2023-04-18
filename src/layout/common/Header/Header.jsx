@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import {
   HeaderBar,
   HeaderLogo,
@@ -6,21 +5,28 @@ import {
   HeaderTitle,
   // UserNavWrapper,
   TitleWrapper,
-  // SearchMovieLink,
+  SearchMovieLink,
+  MainLogoLink,
+  HeaderLinksWrapper,
 } from './Header.styled';
 
 const Header = () => {
   return (
     <HeaderBar>
-      <Link to={'/movie-viewer'} title="Back to Homepage">
-        <HeaderLogo />
-      </Link>
+      <HeaderLinksWrapper>
+        <MainLogoLink to={'/movie-viewer'} title="Back to Homepage">
+          <HeaderLogo />
+        </MainLogoLink>
+        <SearchMovieLink
+          to={`/movie-viewer/search`}
+          title="Search movie by name"
+        >
+          <SearchMovieLogo />
+        </SearchMovieLink>
+      </HeaderLinksWrapper>
       <TitleWrapper>
         <HeaderTitle>Movie Finder</HeaderTitle>
       </TitleWrapper>
-      <Link to={`/movie-viewer/search`} title="Search movie by name">
-        <SearchMovieLogo />
-      </Link>
       {/* <UserNavWrapper>User</UserNavWrapper> */}
     </HeaderBar>
   );

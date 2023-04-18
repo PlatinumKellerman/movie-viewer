@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../assets/HeaderLogo/logo.svg';
 import { ReactComponent as SearchLogo } from '../../../assets/HeaderLogo/searchLogo.svg';
 
@@ -72,6 +72,10 @@ export const SearchMovieLogo = styled(SearchLogo)`
   }
 `;
 
-// export const SearchMovieLink = styled(Link)`
-//   margin-right: 15px;
-// `;
+export const SearchMovieLink = styled(Link)``;
+
+export const MainLogoLink = styled(Link)`
+  margin-right: 25px;
+`;
+
+export const HeaderLinksWrapper = styled.div``;
