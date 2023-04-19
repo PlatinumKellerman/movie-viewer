@@ -13,6 +13,7 @@ import MovieReviews from 'pages/MovieInfo/MovieReviews';
 import MovieCast from 'pages/MovieInfo/MovieCast';
 import TvShowReviews from 'pages/TvShowsInfo/TvShowReviews';
 import TvShowCast from 'pages/TvShowsInfo/TvShowCast';
+import WeatherPage from 'pages/WeatherPage';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="cast" element={<TvShowCast />} />
           </Route>
           <Route path="/movie-viewer/search" element={<SearchPage />}></Route>
+          <Route path="/movie-viewer/weather" element={<WeatherPage />}></Route>
           <Route path="/*" element={<NotFoundPage />} />
         </Route>
       </Routes>

@@ -7,26 +7,25 @@ import {
   TitleWrapper,
   SearchMovieLink,
   MainLogoLink,
-  HeaderLinksWrapper,
+  WeatherLogo,
+  // HeaderLinksWrapper,
 } from './Header.styled';
 
 const Header = () => {
   return (
     <HeaderBar>
-      <HeaderLinksWrapper>
-        <MainLogoLink to={'/movie-viewer'} title="Back to Homepage">
-          <HeaderLogo />
-        </MainLogoLink>
-        <SearchMovieLink
-          to={`/movie-viewer/search`}
-          title="Search movie by name"
-        >
-          <SearchMovieLogo />
-        </SearchMovieLink>
-      </HeaderLinksWrapper>
+      <MainLogoLink to={'/movie-viewer'} title="Back to Homepage">
+        <HeaderLogo />
+      </MainLogoLink>
+      <SearchMovieLink to={`/movie-viewer/search`} title="Search movie by name">
+        <SearchMovieLogo />
+      </SearchMovieLink>
       <TitleWrapper>
         <HeaderTitle>Movie Finder</HeaderTitle>
       </TitleWrapper>
+      <MainLogoLink to={`/movie-viewer/weather`} title="Weather page">
+        <WeatherLogo />
+      </MainLogoLink>
       {/* <UserNavWrapper>User</UserNavWrapper> */}
     </HeaderBar>
   );

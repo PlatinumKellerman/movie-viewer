@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../assets/HeaderLogo/logo.svg';
 import { ReactComponent as SearchLogo } from '../../../assets/HeaderLogo/searchLogo.svg';
+import { ReactComponent as Weather } from '../../../assets/HeaderLogo/weather_icon.svg';
 
 export const HeaderBar = styled.header`
   padding: 10px 20px;
@@ -58,6 +59,21 @@ export const HeaderLogo = styled(Logo)`
 `;
 
 export const SearchMovieLogo = styled(SearchLogo)`
+  width: 50px;
+  height: 50px;
+  color: ${p => p.theme.colors.primary};
+  :hover,
+  :focus,
+  :active {
+    transform: scale(1.1);
+    cursor: pointer;
+    transition-duration: 500ms;
+    transition-property: all;
+    color: ${p => p.theme.colors.accent};
+  }
+`;
+
+export const WeatherLogo = styled(Weather)`
   width: 50px;
   height: 50px;
   color: ${p => p.theme.colors.primary};
