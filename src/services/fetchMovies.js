@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { API_KEY, BASE_URL, LANGUAGE } from '../constants/apiConstants';
+import { MOVIE_API_KEY, BASE_URL, LANGUAGE } from '../constants/apiConstants';
 
 const instance = axios.create({
   baseURL: BASE_URL,
   language: 'en-US',
   params: {
-    api_key: API_KEY,
+    api_key: MOVIE_API_KEY,
     language: LANGUAGE,
     page: 1,
   },
