@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { WEATHER_API_KEY, WEATHER_BASE_URL } from '../constants/apiConstants';
+import config from '../constants/apiConstants';
 
 const instance = axios.create({
-  baseURL: WEATHER_BASE_URL,
+  baseURL: config.WEATHER_BASE_URL,
   params: {
-    appid: WEATHER_API_KEY,
+    appid: config.WEATHER_API_KEY,
     units: 'metric',
   },
 });
