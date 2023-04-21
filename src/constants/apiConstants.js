@@ -7,3 +7,5 @@ const config = {
 };
 
 export default config;
+
+console.log(config.MOVIE_API_KEY, config.WEATHER_API_KEY);
