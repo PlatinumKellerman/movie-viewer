@@ -5,7 +5,5 @@ const config = {
   MOVIE_API_KEY: process.env.REACT_APP_MOVIE_API_KEY,
   WEATHER_API_KEY: process.env.REACT_APP_WEATHER_API_KEY,
 };
-
-export default config;
-
 console.log(config.MOVIE_API_KEY, config.WEATHER_API_KEY);
+export default config;
