@@ -1,12 +1,12 @@
 import axios from 'axios';
-import config from '../constants/apiConstants';
+import constants from '../constants/apiConstants';
 
 const instance = axios.create({
-  baseURL: config.BASE_URL,
+  baseURL: constants.BASE_URL,
   language: 'en-US',
   params: {
-    api_key: config.MOVIE_API_KEY,
-    language: config.LANGUAGE,
+    api_key: constants.MOVIE_API_KEY,
+    language: constants.LANGUAGE,
     page: 1,
   },
 });
