@@ -21,5 +21,5 @@ jobs:
           branch: gh-pages
           folder: build
         env:
-          MOVIE_API_KEY: ${{ secrets.MOVIE_API_KEY }}
-          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+          REACT_APP_MOVIE_API_KEY: ${{ secrets.REACT_APP_MOVIE_API_KEY }}
+          REACT_APP_WEATHER_API_KEY: ${{ secrets.REACT_APP_WEATHER_API_KEY }}
