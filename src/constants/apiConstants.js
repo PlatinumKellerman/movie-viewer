@@ -5,4 +5,5 @@ const constants = {
   movieApiKey: process.env.REACT_APP_MOVIE_API_KEY,
   weatherApiKey: process.env.REACT_APP_WEATHER_API_KEY,
 };
+console.log(constants.movieApiKey, constants.weatherApiKey);
 export default constants;
