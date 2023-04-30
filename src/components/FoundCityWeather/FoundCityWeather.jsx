@@ -1,6 +1,10 @@
 const FoundCityWeather = ({ weather }) => {
   console.log(weather);
-  return;
+  return (
+    <div>
+      <h1>City name: {weather.name}</h1>
+    </div>
+  );
 };
 
 export default FoundCityWeather;

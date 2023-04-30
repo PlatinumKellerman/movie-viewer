@@ -1,5 +1,11 @@
-import { Formik, ErrorMessage, Form, Field } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import {
+  SearchInput,
+  SearchButton,
+  StyledForm,
+  ErrorText,
+} from './SearchCityWeatherForm.styled';
 
 const SearchCityWeatherForm = ({ onSubmit }) => {
   const schema = yup.object().shape({
@@ -18,17 +24,20 @@ const SearchCityWeatherForm = ({ onSubmit }) => {
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <Field
+        <StyledForm>
+          <SearchInput
             name="query"
             type="text"
             autoComplete="off"
             autoFocus
-            placeholder="Search City"
+            placeholder="Enter city name"
           />
-          <button type="submit">Search</button>
-          <ErrorMessage render={message => <p>{message}</p>} name="query" />
-        </Form>
+          <SearchButton type="submit">Search</SearchButton>
+          <ErrorMessage
+            render={message => <ErrorText>{message}</ErrorText>}
+            name="query"
+          />
+        </StyledForm>
       </Formik>
     </>
   );

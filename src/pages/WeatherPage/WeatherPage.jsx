@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Container from '../../layout/common/Container/Container';
 import Loader from '../../components/Loader';
 import { getWeatherByCityName } from '../../services/fetchWeather';
 import SearchCityWeatherForm from 'components/SearchCityWeatherForm';
 import FoundCityWeather from 'components/FoundCityWeather';
+import { BackLink, StyledContainer } from './WeatherPage.styled';
 
 const WeatherPage = () => {
   const [weather, setWeather] = useState([]);
@@ -39,15 +38,17 @@ const WeatherPage = () => {
     }
   };
 
+  console.log(weather);
+
   return (
-    <Container>
-      <Link to={backLinkHref}>
+    <StyledContainer>
+      <BackLink to={backLinkHref}>
         {'<-'} {''} Go Back
-      </Link>
+      </BackLink>
       <SearchCityWeatherForm onSubmit={handleCityNameSubmit} />
       {isLoading && <Loader />}
       {weather && <FoundCityWeather weather={weather} location={location} />}
-    </Container>
+    </StyledContainer>
   );
 };
 
