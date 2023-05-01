@@ -8,7 +8,7 @@ import FoundCityWeather from 'components/FoundCityWeather';
 import { BackLink, StyledContainer } from './WeatherPage.styled';
 
 const WeatherPage = () => {
-  const [weather, setWeather] = useState([]);
+  const [weather, setWeather] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movie-viewer';
@@ -23,7 +23,11 @@ const WeatherPage = () => {
         setWeather(response);
         setIsLoading(false);
       } catch (error) {
-        toast.error('Oops! Something went wrong!');
+        if (error.response.status === 404) {
+          toast.error('This city name was not found');
+        } else {
+          toast.error('Oops! Something went wrong!');
+        }
       }
     }
     if (cityName) {
@@ -37,8 +41,6 @@ const WeatherPage = () => {
       setSearchParams(cityName);
     }
   };
-
-  console.log(weather);
 
   return (
     <StyledContainer>

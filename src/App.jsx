@@ -8,7 +8,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import HomePage from './pages/Home';
 import MovieInfo from './pages/MovieInfo';
 import TvShowsInfo from 'pages/TvShowsInfo';
-import SearchPage from './pages/SearchPage';
+import SearchPage from './pages/MediaSearchPage';
 import MovieReviews from 'pages/MovieInfo/MovieReviews';
 import MovieCast from 'pages/MovieInfo/MovieCast';
 import TvShowReviews from 'pages/TvShowsInfo/TvShowReviews';

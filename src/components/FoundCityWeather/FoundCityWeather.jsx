@@ -2,7 +2,8 @@ const FoundCityWeather = ({ weather }) => {
   console.log(weather);
   return (
     <div>
-      <h1>City name: {weather.name}</h1>
+      <p>Country:{weather.sys.country}</p>
+      <p>City name: {weather.name}</p>
     </div>
   );
 };

@@ -5,10 +5,10 @@ import { searchMoviesAndTVShows } from '../../services/fetchMovies';
 import { toast } from 'react-toastify';
 import { useState, useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { SearchFormWrapper, BackLink } from './SearchPage.styled';
+import { SearchFormWrapper, BackLink } from './MediaSearchPage.styled';
 
-const SearchPage = () => {
-  const [media, setMedia] = useState([]);
+const MediaSearchPage = () => {
+  const [media, setMedia] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -56,4 +56,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default MediaSearchPage;
