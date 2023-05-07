@@ -2,13 +2,17 @@ import { useState, useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loader from '../../components/Loader';
-import { getWeatherByCityName } from '../../services/fetchWeather';
+import {
+  getWeatherByCityName,
+  getForecastWeather,
+} from '../../services/fetchWeather';
 import SearchCityWeatherForm from 'components/SearchCityWeatherForm';
 import FoundCityWeather from 'components/FoundCityWeather';
 import { BackLink, StyledContainer } from './WeatherPage.styled';
 
 const WeatherPage = () => {
   const [weather, setWeather] = useState(null);
+  const [forecast, setForecast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movie-viewer';
@@ -20,7 +24,9 @@ const WeatherPage = () => {
     async function getCityWeather() {
       try {
         const response = await getWeatherByCityName(cityName);
+        const response2 = await getForecastWeather(cityName);
         setWeather(response);
+        setForecast(response2);
         setIsLoading(false);
       } catch (error) {
         if (error.response.status === 404) {
@@ -49,7 +55,13 @@ const WeatherPage = () => {
       </BackLink>
       <SearchCityWeatherForm onSubmit={handleCityNameSubmit} />
       {isLoading && <Loader />}
-      {weather && <FoundCityWeather weather={weather} location={location} />}
+      {weather && (
+        <FoundCityWeather
+          weather={weather}
+          forecast={forecast}
+          location={location}
+        />
+      )}
     </StyledContainer>
   );
 };

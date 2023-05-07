@@ -1,18 +1,22 @@
-import Container from 'layout/common/Container/Container';
 import {
   MainWrapper,
   WeatherIcon,
   WeatherInfoWrapper,
   WeatherIconWrapper,
-  SecondaryWeatherInfoWrapper,
+  ForecastWeatherWrapper,
   SunriseIcon,
   CloudIcon,
   SunsetIcon,
   IconWrapper,
   HumidityIcon,
+  InfoWeatherValue,
+  CityName,
+  CurrentTemp,
+  FeelTemp,
+  WeatherValue,
 } from './FoundCityWeather.styled';
 
-const FoundCityWeather = ({ weather }) => {
+const FoundCityWeather = ({ weather, forecast }) => {
   const currentTime = new Date(weather.dt * 1000).toLocaleString('en-US', {
     month: 'short',
     day: 'numeric',
@@ -36,46 +40,44 @@ const FoundCityWeather = ({ weather }) => {
       hour12: false,
     }
   );
-  const currentTemp = Math.round(weather.main.temp) + '°';
-  const feelTemp = Math.round(weather.main.feels_like) + '°';
+  const currentTemp = Math.round(weather.main.temp) + '°C';
+  const feelTemp = Math.round(weather.main.feels_like) + '°C';
 
   console.log(weather);
+  console.log(forecast);
   return (
-    <Container>
-      <MainWrapper>
+    <MainWrapper>
+      <WeatherInfoWrapper>
+        <InfoWeatherValue>{currentTime}</InfoWeatherValue>
+        <CityName>
+          {weather.name}, {weather.sys.country}
+        </CityName>
+        <CurrentTemp>{currentTemp}</CurrentTemp>
+        <FeelTemp>{`(Feels like ${feelTemp})`}</FeelTemp>
         <WeatherIconWrapper>
           <WeatherIcon
-            src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`}
-            alt={'clear'}
-            width="64px"
+            src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png?size=400`}
+            alt={weather.weather[0].main}
           ></WeatherIcon>
+          <WeatherValue>{weather.weather[0].main}</WeatherValue>
         </WeatherIconWrapper>
-        <WeatherInfoWrapper>
-          <p>{currentTime}</p>
-          <p>
-            {weather.name}, {weather.sys.country}
-          </p>
-          <p>
-            {`${currentTemp}`}
-            <span>{`(Feels like ${feelTemp}C)`}</span>
-          </p>
-          <p>{weather.weather[0].main}</p>
-          <IconWrapper>
-            <CloudIcon /> {`${weather.clouds.all}%`}
-          </IconWrapper>
-          <IconWrapper>
-            <HumidityIcon /> {`${weather.main.humidity}%`}
-          </IconWrapper>
-          <IconWrapper>
-            <SunriseIcon /> {sunriseTime}
-          </IconWrapper>
-          <IconWrapper>
-            <SunsetIcon /> {sunsetTime}
-          </IconWrapper>
-        </WeatherInfoWrapper>
-      </MainWrapper>
-      <SecondaryWeatherInfoWrapper></SecondaryWeatherInfoWrapper>
-    </Container>
+        <IconWrapper>
+          <CloudIcon />{' '}
+          <InfoWeatherValue>{`${weather.clouds.all}%`}</InfoWeatherValue>
+        </IconWrapper>
+        <IconWrapper>
+          <HumidityIcon />{' '}
+          <InfoWeatherValue>{`${weather.main.humidity}%`}</InfoWeatherValue>
+        </IconWrapper>
+        <IconWrapper>
+          <SunriseIcon /> <InfoWeatherValue>{sunriseTime}</InfoWeatherValue>
+        </IconWrapper>
+        <IconWrapper>
+          <SunsetIcon /> <InfoWeatherValue>{sunsetTime}</InfoWeatherValue>
+        </IconWrapper>
+      </WeatherInfoWrapper>
+      <ForecastWeatherWrapper></ForecastWeatherWrapper>
+    </MainWrapper>
   );
 };
 

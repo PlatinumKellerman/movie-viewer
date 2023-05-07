@@ -53,8 +53,43 @@ export const SearchButton = styled.button`
 `;
 
 export const ErrorText = styled.p`
-  color: red;
-  font-size: 16px;
+  color: ${p => p.theme.colors.accent};
+  font-size: ${p => p.theme.fontSizes.xs};
   padding: 5px;
   text-align: center;
+`;
+
+export const CitiesWrapper = styled.ul`
+  padding: 15px;
+`;
+
+export const CitiesList = styled.ul`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+
+export const CityNameItem = styled.li`
+  margin-right: 15px;
+  &:last-child {
+    margin-right: 0px;
+  }
+`;
+
+export const CityNameButton = styled.button`
+  padding: 3px 5px;
+  font-size: ${p => p.theme.fontSizes.m};
+  background: none;
+  color: ${p => p.theme.colors.primary};
+  font-family: ${p => p.theme.fonts.monospace};
+  border: none;
+  &:hover,
+  :focus,
+  :active {
+    background-color: ${p => p.theme.colors.accent};
+    border-radius: 5px;
+    color: ${p => p.theme.colors.light};
+    transition-duration: 500ms;
+    transition-timing-function: $timing-function;
+  }
 `;

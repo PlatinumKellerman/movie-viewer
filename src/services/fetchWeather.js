@@ -17,3 +17,12 @@ export async function getWeatherByCityName(cityName) {
   });
   return response.data;
 }
+
+export async function getForecastWeather(cityName) {
+  const response = await instance.get(`forecast`, {
+    params: {
+      q: cityName,
+    },
+  });
+  return response.data;
+}

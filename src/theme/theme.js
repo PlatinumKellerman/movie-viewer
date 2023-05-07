@@ -21,6 +21,8 @@ export const theme = {
     accentMuted: '',
     muted: '#CCCCCC',
     imdb: '#f1c40f',
+    cloud: '#0c5e8f',
+    humidity: '#08fdff',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fonts: {
