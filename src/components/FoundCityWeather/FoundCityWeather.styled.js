@@ -3,6 +3,7 @@ import { ReactComponent as Sunrise } from '../../assets/sunrise.svg';
 import { ReactComponent as Sunset } from '../../assets/sunset.svg';
 import { ReactComponent as Cloud } from '../../assets/cloud.svg';
 import { ReactComponent as Humidity } from '../../assets/humidity.svg';
+import { ReactComponent as Wind } from '../../assets/wind.svg';
 
 export const MainWrapper = styled.div`
   margin: 15px;
@@ -16,7 +17,7 @@ export const MainWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 100%;
   }
 `;
 
@@ -71,6 +72,14 @@ export const HumidityIcon = styled(Humidity)`
   color: ${p => p.theme.colors.cloud};
 `;
 
+export const WindIcon = styled(Wind)`
+  color: ${p => p.theme.colors.dark};
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+  color: ${p => p.theme.colors.cloud};
+`;
+
 export const IconWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -96,7 +105,7 @@ export const CityName = styled.p`
 `;
 
 export const CurrentTemp = styled.p`
-  font-size: ${p => p.theme.fontSizes.l};
+  font-size: ${p => p.theme.fontSizes.xl};
   font-weight: ${p => p.theme.fontWeights.bold};
   color: ${p => p.theme.colors.accent};
 `;
