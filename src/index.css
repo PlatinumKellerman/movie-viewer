@@ -2,6 +2,10 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css');
 
+#map {
+  height: 400px;
+}
+
 /* Змінює колір активної крапки */
 .slick-dots li.slick-active button:before {
   color: #ff0000;

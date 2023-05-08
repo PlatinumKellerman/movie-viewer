@@ -6,18 +6,17 @@ import { ReactComponent as Humidity } from '../../assets/humidity.svg';
 import { ReactComponent as Wind } from '../../assets/wind.svg';
 
 export const MainWrapper = styled.div`
-  margin: 15px;
   width: 90%;
   border-radius: 20px;
-  padding: 15px;
+  padding: 30px;
   display: block;
   background-color: ${p => p.theme.colors.muted};
   @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
     width: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
+    justify-content: space-evenly;
+    width: 95%;
   }
 `;
 
@@ -29,11 +28,16 @@ export const WeatherIconWrapper = styled.div`
 `;
 
 export const WeatherInfoWrapper = styled.div`
-  width: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: ${p => p.theme.fonts.monospace};
+  margin-bottom: 30px;
+  @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
+    width: 50%;
+    margin-bottom: 0px;
+  }
 `;
 
 export const WeatherIcon = styled.img`
@@ -118,8 +122,66 @@ export const FeelTemp = styled.p`
 export const WeatherValue = styled.p`
   margin-bottom: 50px;
   font-size: ${p => p.theme.fontSizes.mm};
+  text-transform: capitalize;
 `;
 
 export const ForecastWeatherWrapper = styled.div`
-  width: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const ForecastList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  font-family: ${p => p.theme.fonts.monospace};
+  font-size: ${p => p.theme.fontSizes.s};
+`;
+
+export const ForecastItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  &:last-child {
+    margin-right: 0px;
+  }
+  @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
+    margin-right: 30px;
+  }
+`;
+
+export const ForecastWeatherIcon = styled.img`
+  margin-left: auto;
+  margin-right: auto;
+  width: 70px;
+  height: 70px;
+`;
+
+export const ForecastDate = styled.p`
+  text-align: center;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.xm};
+`;
+
+export const ForecastText = styled.p`
+  font-weight: ${p => p.theme.fontWeights.bold};
+`;
+
+export const ForecastStatus = styled.span`
+  color: ${p => p.theme.colors.cloud};
+  font-size: ${p => p.theme.fontSizes.xm};
+`;
+
+export const ForecastCurrTemp = styled.span`
+  color: ${p => p.theme.colors.accent};
+  font-size: ${p => p.theme.fontSizes.xm};
+`;
+
+export const ForecastTitle = styled.h3`
+  text-align: center;
+  color: ${p => p.theme.colors.cloud};
+  font-size: ${p => p.theme.fontSizes.mm};
+  margin-bottom: 20px;
 `;

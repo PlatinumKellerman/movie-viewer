@@ -1,3 +1,5 @@
+import converter from 'degrees-to-compass';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import {
   MainWrapper,
   WeatherIcon,
@@ -15,6 +17,14 @@ import {
   CurrentTemp,
   FeelTemp,
   WeatherValue,
+  ForecastList,
+  ForecastWeatherIcon,
+  ForecastItem,
+  ForecastDate,
+  ForecastText,
+  ForecastStatus,
+  ForecastTitle,
+  ForecastCurrTemp,
 } from './FoundCityWeather.styled';
 
 const FoundCityWeather = ({ weather, forecast }) => {
@@ -44,29 +54,25 @@ const FoundCityWeather = ({ weather, forecast }) => {
   const currentTemp = Math.round(weather.main.temp) + '°C';
   const feelTemp = Math.round(weather.main.feels_like) + '°C';
   const windSpeed = Math.round(weather.wind.speed);
-  const converter = require('degrees-to-compass');
 
   // Отримуємо поточну дату та додамо один день, щоб отримати дату завтрашнього дня
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  const firstForecastOfDay = forecast.list
-    .filter(forecast => {
-      // Повертаємо прогнози з датою, яка є пізнішою за завтрашню
-      const date = new Date(forecast.dt_txt);
-      return date >= tomorrow;
-    })
-    .reduce((acc, forecast) => {
-      const date = forecast.dt_txt.split(' ')[0]; // отримуємо дату прогнозу
-      if (acc[date] === undefined) {
-        // якщо дата ще не зустрічалася
-        acc[date] = forecast; // додаємо прогноз до об'єкту з першим прогнозом кожного дня
-      }
-      return acc;
-    }, {});
+  const firstForecastOfDay = forecast.list.reduce((acc, forecast) => {
+    const date = forecast.dt_txt.split(' ')[0];
+    const time = forecast.dt_txt.split(' ')[1]; // Отримуємо час прогнозу
+    const isTomorrowOrLater = new Date(forecast.dt_txt) >= tomorrow;
+
+    if (isTomorrowOrLater && time === '12:00:00') {
+      acc[date] = forecast;
+    } else if (acc[date] === undefined && isTomorrowOrLater) {
+      acc[date] = forecast;
+    }
+    return acc;
+  }, {});
   const firstForecastArray = Object.values(firstForecastOfDay); // отримуємо масив з першим прогнозом кожного дня
 
-  console.log(firstForecastArray);
   return (
     <MainWrapper>
       <WeatherInfoWrapper>
@@ -79,9 +85,9 @@ const FoundCityWeather = ({ weather, forecast }) => {
         <WeatherIconWrapper>
           <WeatherIcon
             src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png?size=400`}
-            alt={weather.weather[0].main}
+            alt={weather.weather[0].description}
           ></WeatherIcon>
-          <WeatherValue>{weather.weather[0].main}</WeatherValue>
+          <WeatherValue>{weather.weather[0].description}</WeatherValue>
         </WeatherIconWrapper>
         <IconWrapper>
           <WindIcon />{' '}
@@ -106,57 +112,102 @@ const FoundCityWeather = ({ weather, forecast }) => {
         </IconWrapper>
       </WeatherInfoWrapper>
       <ForecastWeatherWrapper>
-        <ul>
+        <ForecastTitle>Weather forecast for 5 days:</ForecastTitle>
+        <ForecastList>
           {firstForecastArray.map(
-            ({
-              clouds,
-              dt,
-              dt_txt,
-              main,
-              pop,
-              rain,
-              visibility,
-              weather,
-              wind,
-            }) => {
+            ({ clouds, dt, main, pop, rain, visibility, weather, wind }) => {
               const date = new Date(dt * 1000);
               const formattedDate = date.toLocaleDateString('en-US', {
                 weekday: 'long',
                 month: 'short',
                 day: 'numeric',
               });
-              const currentTemp = Math.round(main.temp) + '°C';
+              const currentTemp = Math.round(main.temp);
               const feelTemp = Math.round(main.feels_like) + '°C';
               return (
-                <li key={dt}>
-                  <div>
-                    <p>{formattedDate}</p>
-                    <img
-                      src={`http://openweathermap.org/img/w/${weather[0].icon}.png?size=400`}
-                      alt={weather[0].main}
-                    ></img>
-                    <p>Status: {weather[0].description}</p>
-                    <p>Temperature: {currentTemp}</p>
-                    <p>Feels like: {feelTemp}</p>
-                    {rain && <p>Rain: {rain['3h']} mm</p>}
-                    {clouds ? (
-                      <p>Clouds: {clouds.all} %</p>
-                    ) : (
-                      <p>Clouds: no info</p>
-                    )}
-                    <p>Pressure: {main.pressure} hPa</p>
-                    <p>Humidity: {main.humidity} %</p>
-                    <p>Precipitation probability: {Math.round(pop * 100)} %</p>
-                    <p>Visibility: {Math.round(visibility / 1000)} km</p>
-                    <p>Wind speed: {Math.round(wind.speed)} m/s</p>
-                    <p>Wind direction: {converter.convert(wind.deg)}</p>
-                    <p></p>
-                  </div>
-                </li>
+                <ForecastItem key={dt}>
+                  <ForecastDate>{formattedDate}</ForecastDate>
+                  <ForecastWeatherIcon
+                    src={`http://openweathermap.org/img/w/${weather[0].icon}.png?size=400`}
+                    alt={weather[0].main}
+                  ></ForecastWeatherIcon>
+                  <ForecastText>
+                    Status:{' '}
+                    <ForecastStatus>{weather[0].description}</ForecastStatus>
+                  </ForecastText>
+                  <ForecastText>
+                    Temperature:{' '}
+                    <ForecastCurrTemp>{currentTemp}</ForecastCurrTemp>
+                  </ForecastText>
+                  <ForecastText>
+                    Feels like: <ForecastStatus>{feelTemp}</ForecastStatus>
+                  </ForecastText>
+                  <ForecastText>
+                    Precip. prob.:{' '}
+                    <ForecastStatus>{Math.round(pop * 100)}%</ForecastStatus>
+                  </ForecastText>
+                  {rain && (
+                    <ForecastText>
+                      Rain: <ForecastStatus>{rain['3h']}mm</ForecastStatus>
+                    </ForecastText>
+                  )}
+                  <ForecastText>
+                    Clouds: <ForecastStatus>{clouds.all}%</ForecastStatus>
+                  </ForecastText>
+                  <ForecastText>
+                    Pressure:{' '}
+                    <ForecastStatus>{main.pressure}hPa</ForecastStatus>
+                  </ForecastText>
+                  <ForecastText>
+                    Humidity: <ForecastStatus>{main.humidity}%</ForecastStatus>
+                  </ForecastText>
+                  <ForecastText>
+                    Visibility:{' '}
+                    <ForecastStatus>
+                      {Math.round(visibility / 1000)}km
+                    </ForecastStatus>
+                  </ForecastText>
+                  <ForecastText>
+                    Wind speed:{' '}
+                    <ForecastStatus>{Math.round(wind.speed)}m/s</ForecastStatus>
+                  </ForecastText>
+                  <ForecastText>
+                    Wind direction:{' '}
+                    <ForecastStatus>
+                      {converter.convert(wind.deg)}
+                    </ForecastStatus>
+                  </ForecastText>
+                </ForecastItem>
               );
             }
           )}
-        </ul>
+        </ForecastList>
+        <MapContainer
+          key={`${weather.coord.lat}-${weather.coord.lon}`}
+          center={[weather.coord.lat, weather.coord.lon]}
+          zoom={13}
+          scrollWheelZoom={true}
+          style={{ height: '350px' }}
+        >
+          {/* MAPBOX TileLayer */}
+          {/* <TileLayer
+            url="https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}"
+            attribution="<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox</a> <a href='http://openstreetmap.org/about/' target='_blank'>&copy; OpenStreetMap</a> <a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
+            accessToken="pk.eyJ1IjoicGxhdGludW0wMDEiLCJhIjoiY2xoZXU3a2NjMTBtZzNrcDRvM3prZXJlZSJ9.dzTBZ5lMEfVLKUa96H7ifg"
+            id="mapbox/streets-v11"
+          /> */}
+
+          {/* openstreetmap  TileLayer */}
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+          />
+          <Marker position={[weather.coord.lat, weather.coord.lon]}>
+            <Popup>
+              {weather.name}, {weather.sys.country}
+            </Popup>
+          </Marker>
+        </MapContainer>
       </ForecastWeatherWrapper>
     </MainWrapper>
   );
