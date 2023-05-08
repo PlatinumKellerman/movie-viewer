@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/movie-viewer/static/css/main.4f0abf3a.css",
-    "main.js": "/movie-viewer/static/js/main.5a08bbe0.js",
+    "main.css": "/movie-viewer/static/css/main.12850eb8.css",
+    "main.js": "/movie-viewer/static/js/main.d91ba4d7.js",
     "static/media/poster_plug-min.jpg": "/movie-viewer/static/media/poster_plug-min.787cd11d5b4a7fddcde7.jpg",
     "static/media/404.jpg": "/movie-viewer/static/media/404.0d8e1c9586c227d1f081.jpg",
     "static/media/bodyBackground2.jpg": "/movie-viewer/static/media/bodyBackground2.7e735e1368f84061788c.jpg",
@@ -16,14 +16,14 @@
     "static/media/sunrise.svg": "/movie-viewer/static/media/sunrise.7ee34cbecd11b75cbfe2c1fb2bb77bcb.svg",
     "static/media/imdb-logo-min.svg": "/movie-viewer/static/media/imdb-logo-min.de324add9ff24d7c318b8910137a0005.svg",
     "static/media/slick.woff": "/movie-viewer/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/movie-viewer/index.html",
     "static/media/sunset.svg": "/movie-viewer/static/media/sunset.9814af73effd717ff227803e45c75302.svg",
     "static/media/cloud.svg": "/movie-viewer/static/media/cloud.b22ae9e3b68e5763d78a72f82a99c8b4.svg",
-    "index.html": "/movie-viewer/index.html",
-    "main.4f0abf3a.css.map": "/movie-viewer/static/css/main.4f0abf3a.css.map",
-    "main.5a08bbe0.js.map": "/movie-viewer/static/js/main.5a08bbe0.js.map"
+    "main.12850eb8.css.map": "/movie-viewer/static/css/main.12850eb8.css.map",
+    "main.d91ba4d7.js.map": "/movie-viewer/static/js/main.d91ba4d7.js.map"
   },
   "entrypoints": [
-    "static/css/main.4f0abf3a.css",
-    "static/js/main.5a08bbe0.js"
+    "static/css/main.12850eb8.css",
+    "static/js/main.d91ba4d7.js"
   ]
 }
