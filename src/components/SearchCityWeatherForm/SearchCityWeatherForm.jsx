@@ -1,3 +1,5 @@
+import Container from 'layout/common/Container/Container';
+import { uaCities, usaStateCapitals } from '../../constants/cities';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import {
@@ -9,7 +11,8 @@ import {
   CitiesList,
   CityNameItem,
   CityNameButton,
-  CityName,
+  UsaCityNameButton,
+  UsaCityNameSpan,
 } from './SearchCityWeatherForm.styled';
 
 const SearchCityWeatherForm = ({ onSubmit }) => {
@@ -22,12 +25,12 @@ const SearchCityWeatherForm = ({ onSubmit }) => {
     resetForm();
   };
 
-  const handleSmilaWeather = query => {
-    onSubmit({ query });
+  const handleCityWeather = city => {
+    onSubmit({ query: city });
   };
 
   return (
-    <>
+    <Container>
       <Formik
         initialValues={{ query: '' }}
         validationSchema={schema}
@@ -49,131 +52,32 @@ const SearchCityWeatherForm = ({ onSubmit }) => {
         </StyledForm>
       </Formik>
       <CitiesWrapper>
-        <CityName>Ukraine: </CityName>
         <CitiesList>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Smila')}
-            >
-              Smila
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Cherkasy')}
-            >
-              Cherkasy
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Kyiv')}
-            >
-              Kyiv
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Lviv')}
-            >
-              Lviv
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Kharkiv')}
-            >
-              Kharkiv
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Odesa')}
-            >
-              Odesa
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Donetsk')}
-            >
-              Donetsk
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Zaporizhzhia')}
-            >
-              Zaporizhzhia
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Vinnytsya')}
-            >
-              Vinnytsya
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Zhytomyr')}
-            >
-              Zhytomyr
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Ivano-Frankivsk')}
-            >
-              Ivano-Frankivsk
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Kropyvnytskyi')}
-            >
-              Kropyvnytskyi
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Zhitomir')}
-            >
-              Zhitomir
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Zhitomir')}
-            >
-              Zhitomir
-            </CityNameButton>
-          </CityNameItem>
-          <CityNameItem>
-            <CityNameButton
-              type="button"
-              onClick={() => handleSmilaWeather('Zhitomir')}
-            >
-              Zhitomir
-            </CityNameButton>
-          </CityNameItem>
+          {uaCities.map(city => (
+            <CityNameItem key={city}>
+              <CityNameButton
+                type="button"
+                onClick={() => handleCityWeather(city)}
+              >
+                {city}
+              </CityNameButton>
+            </CityNameItem>
+          ))}
+        </CitiesList>
+        <CitiesList>
+          {usaStateCapitals.map(city => (
+            <CityNameItem key={city}>
+              <UsaCityNameButton
+                type="button"
+                onClick={() => handleCityWeather(city)}
+              >
+                <UsaCityNameSpan>{city}</UsaCityNameSpan>
+              </UsaCityNameButton>
+            </CityNameItem>
+          ))}
         </CitiesList>
       </CitiesWrapper>
-    </>
+    </Container>
   );
 };
 

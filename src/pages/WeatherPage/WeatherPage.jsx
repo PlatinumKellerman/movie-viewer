@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Loader from '../../components/Loader';
 import {
   getWeatherByCityName,
   getForecastWeather,
@@ -13,7 +12,6 @@ import { BackLink, StyledContainer } from './WeatherPage.styled';
 const WeatherPage = () => {
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movie-viewer';
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,7 +25,6 @@ const WeatherPage = () => {
         const response2 = await getForecastWeather(cityName);
         setWeather(response);
         setForecast(response2);
-        setIsLoading(false);
       } catch (error) {
         if (error.response.status === 404) {
           toast.error('This city name was not found');
@@ -38,7 +35,6 @@ const WeatherPage = () => {
     }
     if (cityName) {
       getCityWeather();
-      setIsLoading(true);
     }
   }, [cityName]);
 
@@ -54,7 +50,6 @@ const WeatherPage = () => {
         {'<-'} {''} Go Back
       </BackLink>
       <SearchCityWeatherForm onSubmit={handleCityNameSubmit} />
-      {isLoading && <Loader />}
       {weather && (
         <FoundCityWeather
           weather={weather}
