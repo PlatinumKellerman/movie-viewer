@@ -1,3 +1,4 @@
+import ReactCountryFlag from 'react-country-flag';
 import converter from 'degrees-to-compass';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import {
@@ -58,12 +59,10 @@ const FoundCityWeather = ({ weather, forecast }) => {
   // Отримуємо поточну дату та додамо один день, щоб отримати дату завтрашнього дня
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-
   const firstForecastOfDay = forecast.list.reduce((acc, forecast) => {
     const date = forecast.dt_txt.split(' ')[0];
     const time = forecast.dt_txt.split(' ')[1]; // Отримуємо час прогнозу
     const isTomorrowOrLater = new Date(forecast.dt_txt) >= tomorrow;
-
     if (isTomorrowOrLater && time === '12:00:00') {
       acc[date] = forecast;
     } else if (acc[date] === undefined && isTomorrowOrLater) {
@@ -78,7 +77,17 @@ const FoundCityWeather = ({ weather, forecast }) => {
       <WeatherInfoWrapper>
         <InfoWeatherValue>{currentTime}</InfoWeatherValue>
         <CityName>
-          {weather.name}, {weather.sys.country}
+          {weather.name}, {weather.sys.country}{' '}
+          <ReactCountryFlag
+            countryCode={weather.sys.country}
+            style={{
+              width: 'auto',
+              height: '36px',
+              borderRadius: '10px',
+            }}
+            title={weather.sys.country}
+            svg
+          />
         </CityName>
         <CurrentTemp>{currentTemp}</CurrentTemp>
         <FeelTemp>{`(Feels like ${feelTemp})`}</FeelTemp>
@@ -168,13 +177,9 @@ const FoundCityWeather = ({ weather, forecast }) => {
                     </ForecastStatus>
                   </ForecastText>
                   <ForecastText>
-                    Wind speed:{' '}
-                    <ForecastStatus>{Math.round(wind.speed)}m/s</ForecastStatus>
-                  </ForecastText>
-                  <ForecastText>
-                    Wind direction:{' '}
+                    Wind:{' '}
                     <ForecastStatus>
-                      {converter.convert(wind.deg)}
+                      {Math.round(wind.speed)}m/s {converter.convert(wind.deg)}
                     </ForecastStatus>
                   </ForecastText>
                 </ForecastItem>

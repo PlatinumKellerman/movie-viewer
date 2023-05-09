@@ -61,6 +61,8 @@ export const ErrorText = styled.p`
 
 export const CitiesWrapper = styled.ul`
   padding: 15px;
+  display: flex;
+  align-items: center;
 `;
 
 export const CitiesList = styled.ul`
@@ -76,11 +78,18 @@ export const CityNameItem = styled.li`
   }
 `;
 
+export const CityName = styled.p`
+  margin-right: 10px;
+  font-family: ${p => p.theme.fonts.monospace};
+  color: ${p => p.theme.colors.muted};
+  font-size: ${p => p.theme.fontSizes.s};
+`;
+
 export const CityNameButton = styled.button`
   padding: 3px 5px;
-  font-size: ${p => p.theme.fontSizes.m};
+  font-size: ${p => p.theme.fontSizes.s};
   background: none;
-  color: ${p => p.theme.colors.primary};
+  color: ${p => p.theme.colors.muted};
   font-family: ${p => p.theme.fonts.monospace};
   border: none;
   &:hover,

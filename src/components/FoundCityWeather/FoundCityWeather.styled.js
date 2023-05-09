@@ -95,6 +95,7 @@ export const IconWrapper = styled.div`
 
 export const InfoWeatherValue = styled.p`
   font-size: ${p => p.theme.fontSizes.m};
+  font-weight: ${p => p.theme.fontWeights.bold};
   margin-bottom: 15px;
   &:last-child {
     margin-bottom: 0px;
@@ -123,6 +124,7 @@ export const WeatherValue = styled.p`
   margin-bottom: 50px;
   font-size: ${p => p.theme.fontSizes.mm};
   text-transform: capitalize;
+  font-weight: ${p => p.theme.fontWeights.bold};
 `;
 
 export const ForecastWeatherWrapper = styled.div`
@@ -163,6 +165,7 @@ export const ForecastDate = styled.p`
   text-align: center;
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.xm};
+  color: ${p => p.theme.colors.accent};
 `;
 
 export const ForecastText = styled.p`

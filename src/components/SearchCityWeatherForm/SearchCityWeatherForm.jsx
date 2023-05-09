@@ -9,6 +9,7 @@ import {
   CitiesList,
   CityNameItem,
   CityNameButton,
+  CityName,
 } from './SearchCityWeatherForm.styled';
 
 const SearchCityWeatherForm = ({ onSubmit }) => {
@@ -36,7 +37,7 @@ const SearchCityWeatherForm = ({ onSubmit }) => {
           <SearchInput
             name="query"
             type="text"
-            autoComplete="off"
+            autoComplete="on"
             autoFocus
             placeholder="Enter city name"
           />
@@ -48,6 +49,7 @@ const SearchCityWeatherForm = ({ onSubmit }) => {
         </StyledForm>
       </Formik>
       <CitiesWrapper>
+        <CityName>Ukraine: </CityName>
         <CitiesList>
           <CityNameItem>
             <CityNameButton
@@ -84,49 +86,89 @@ const SearchCityWeatherForm = ({ onSubmit }) => {
           <CityNameItem>
             <CityNameButton
               type="button"
-              onClick={() => handleSmilaWeather('Moscow')}
+              onClick={() => handleSmilaWeather('Kharkiv')}
             >
-              Moscow
+              Kharkiv
             </CityNameButton>
           </CityNameItem>
           <CityNameItem>
             <CityNameButton
               type="button"
-              onClick={() => handleSmilaWeather('Saint Petersburg')}
+              onClick={() => handleSmilaWeather('Odesa')}
             >
-              Saint Petersburg
+              Odesa
             </CityNameButton>
           </CityNameItem>
           <CityNameItem>
             <CityNameButton
               type="button"
-              onClick={() => handleSmilaWeather('Secaucus')}
+              onClick={() => handleSmilaWeather('Donetsk')}
             >
-              Secaucus
+              Donetsk
             </CityNameButton>
           </CityNameItem>
           <CityNameItem>
             <CityNameButton
               type="button"
-              onClick={() => handleSmilaWeather('London')}
+              onClick={() => handleSmilaWeather('Zaporizhzhia')}
             >
-              London
+              Zaporizhzhia
             </CityNameButton>
           </CityNameItem>
           <CityNameItem>
             <CityNameButton
               type="button"
-              onClick={() => handleSmilaWeather('Poteau')}
+              onClick={() => handleSmilaWeather('Vinnytsya')}
             >
-              Poteau
+              Vinnytsya
             </CityNameButton>
           </CityNameItem>
           <CityNameItem>
             <CityNameButton
               type="button"
-              onClick={() => handleSmilaWeather('New York')}
+              onClick={() => handleSmilaWeather('Zhytomyr')}
             >
-              New York
+              Zhytomyr
+            </CityNameButton>
+          </CityNameItem>
+          <CityNameItem>
+            <CityNameButton
+              type="button"
+              onClick={() => handleSmilaWeather('Ivano-Frankivsk')}
+            >
+              Ivano-Frankivsk
+            </CityNameButton>
+          </CityNameItem>
+          <CityNameItem>
+            <CityNameButton
+              type="button"
+              onClick={() => handleSmilaWeather('Kropyvnytskyi')}
+            >
+              Kropyvnytskyi
+            </CityNameButton>
+          </CityNameItem>
+          <CityNameItem>
+            <CityNameButton
+              type="button"
+              onClick={() => handleSmilaWeather('Zhitomir')}
+            >
+              Zhitomir
+            </CityNameButton>
+          </CityNameItem>
+          <CityNameItem>
+            <CityNameButton
+              type="button"
+              onClick={() => handleSmilaWeather('Zhitomir')}
+            >
+              Zhitomir
+            </CityNameButton>
+          </CityNameItem>
+          <CityNameItem>
+            <CityNameButton
+              type="button"
+              onClick={() => handleSmilaWeather('Zhitomir')}
+            >
+              Zhitomir
             </CityNameButton>
           </CityNameItem>
         </CitiesList>
