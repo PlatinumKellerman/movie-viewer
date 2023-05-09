@@ -121,7 +121,7 @@ const FoundCityWeather = ({ weather, forecast }) => {
         </IconWrapper>
       </WeatherInfoWrapper>
       <ForecastWeatherWrapper>
-        <ForecastTitle>Weather forecast for 5 days:</ForecastTitle>
+        <ForecastTitle>Weather forecast:</ForecastTitle>
         <ForecastList>
           {firstForecastArray.map(
             ({ clouds, dt, main, pop, rain, visibility, weather, wind }) => {
@@ -190,7 +190,7 @@ const FoundCityWeather = ({ weather, forecast }) => {
         <MapContainer
           key={`${weather.coord.lat}-${weather.coord.lon}`}
           center={[weather.coord.lat, weather.coord.lon]}
-          zoom={13}
+          zoom={9}
           scrollWheelZoom={true}
           style={{ height: '350px' }}
         >

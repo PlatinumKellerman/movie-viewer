@@ -125,8 +125,8 @@ export const UsaCityNameButton = styled.button`
   :active {
     background-image: linear-gradient(
         to right,
-        rgba(47, 48, 58, 0.5),
-        rgba(47, 48, 58, 0.5)
+        rgba(47, 48, 58, 0.6),
+        rgba(47, 48, 58, 0.6)
       ),
       url(${flag});
     background-size: 100%;
@@ -144,6 +144,5 @@ export const UsaCityNameSpan = styled.p`
     transform: scale(1.05);
     transition-duration: 500ms;
     transition-timing-function: $timing-function;
-    text-shadow: ${p => p.theme.colors.dark} 1px 0px 0px;
   }
 `;
