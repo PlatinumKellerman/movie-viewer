@@ -146,11 +146,11 @@ export const ForecastItem = styled.li`
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
-  &:last-child {
+  /* &:last-child {
     margin-right: 0px;
-  }
-  @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
-    margin-right: 30px;
+  } */
+  @media (min-width: ${p => p.theme.breakpoints.values.sm}px) {
+    margin: 0px 15px 30px 15px;
   }
 `;
 
