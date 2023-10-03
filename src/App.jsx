@@ -8,7 +8,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import HomePage from './pages/Home';
 import MovieInfo from './pages/MovieInfo';
 import TvShowsInfo from 'pages/TvShowsInfo';
-import SearchPage from './pages/MediaSearchPage';
+import MediaSearchPage from './pages/MediaSearchPage';
 import MovieReviews from 'pages/MovieInfo/MovieReviews';
 import MovieCast from 'pages/MovieInfo/MovieCast';
 import TvShowReviews from 'pages/TvShowsInfo/TvShowReviews';
@@ -20,7 +20,7 @@ function App() {
     <Container>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/movie-viewer" element={<HomePage />} />
+          <Route path="/movie-viewer/" element={<HomePage />}></Route>
           <Route path="/movie-viewer/movies/:movieId" element={<MovieInfo />}>
             <Route path="cast" element={<MovieCast />} />
             <Route path="reviews" element={<MovieReviews />} />
@@ -32,7 +32,10 @@ function App() {
             <Route path="reviews" element={<TvShowReviews />} />
             <Route path="cast" element={<TvShowCast />} />
           </Route>
-          <Route path="/movie-viewer/search" element={<SearchPage />}></Route>
+          <Route
+            path="/movie-viewer/search"
+            element={<MediaSearchPage />}
+          ></Route>
           <Route path="/movie-viewer/weather" element={<WeatherPage />}></Route>
           <Route path="/*" element={<NotFoundPage />} />
         </Route>
