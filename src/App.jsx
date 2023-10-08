@@ -20,7 +20,7 @@ function App() {
     <Container>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/movie-viewer/" element={<HomePage />}></Route>
+          <Route index element={<HomePage />} />
           <Route path="/movie-viewer/movies/:movieId" element={<MovieInfo />}>
             <Route path="cast" element={<MovieCast />} />
             <Route path="reviews" element={<MovieReviews />} />
@@ -36,7 +36,7 @@ function App() {
             path="/movie-viewer/search"
             element={<MediaSearchPage />}
           ></Route>
-          <Route path="/movie-viewer/weather" element={<WeatherPage />}></Route>
+          <Route path="/movie-viewer/weather" element={<WeatherPage />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Route>
       </Routes>
