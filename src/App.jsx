@@ -1,26 +1,28 @@
 import './App.css';
-import Container from './layout/common/Container/Container';
+import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Layout } from './layout/Layout';
-import NotFoundPage from './pages/NotFoundPage';
-import HomePage from './pages/Home';
-import MovieInfo from './pages/MovieInfo';
-import TvShowsInfo from 'pages/TvShowsInfo';
-import MediaSearchPage from './pages/MediaSearchPage';
-import MovieReviews from 'pages/MovieInfo/MovieReviews';
-import MovieCast from 'pages/MovieInfo/MovieCast';
-import TvShowReviews from 'pages/TvShowsInfo/TvShowReviews';
-import TvShowCast from 'pages/TvShowsInfo/TvShowCast';
-import WeatherPage from 'pages/WeatherPage';
+import Container from './layout/common/Container/Container';
+
+const HomePage = lazy(() => import('./pages/Home'));
+const MovieInfo = lazy(() => import('./pages/MovieInfo'));
+const MovieCast = lazy(() => import('./pages/MovieInfo/MovieCast'));
+const MovieReviews = lazy(() => import('./pages/MovieInfo/MovieReviews'));
+const TvShowsInfo = lazy(() => import('./pages/TvShowsInfo'));
+const TvShowReviews = lazy(() => import('./pages/TvShowsInfo/TvShowReviews'));
+const TvShowCast = lazy(() => import('./pages/TvShowsInfo/TvShowCast'));
+const MediaSearchPage = lazy(() => import('./pages/MediaSearchPage'));
+const WeatherPage = lazy(() => import('./pages/WeatherPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
   return (
     <Container>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
+          <Route path="/movie-viewer" element={<HomePage />} />
           <Route path="/movie-viewer/movies/:movieId" element={<MovieInfo />}>
             <Route path="cast" element={<MovieCast />} />
             <Route path="reviews" element={<MovieReviews />} />
