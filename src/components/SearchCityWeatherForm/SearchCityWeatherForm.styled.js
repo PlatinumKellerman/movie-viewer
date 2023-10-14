@@ -146,3 +146,60 @@ export const UsaCityNameSpan = styled.p`
     transition-timing-function: $timing-function;
   }
 `;
+
+export const UaMenuButton = styled.button`
+  padding: 3px 5px;
+  font-size: ${p => p.theme.fontSizes.l};
+  background: none;
+  color: ${p => p.theme.colors.muted};
+  font-family: ${p => p.theme.fonts.monospace};
+  border: none;
+  &:hover,
+  :focus,
+  :active {
+    color: ${p => p.theme.colors.muted};
+    background-color: rgba(0, 91, 187, 1);
+    background-image: linear-gradient(
+      135deg,
+      rgba(0, 91, 187, 1) 50%,
+      rgba(255, 213, 0, 0.8) 50%
+    );
+    border-radius: 5px;
+    color: ${p => p.theme.colors.light};
+    transition-duration: 500ms;
+    transition-timing-function: $timing-function;
+    transform: scale(1.05);
+  }
+`;
+
+export const UsaMenuButton = styled.button`
+  padding: 3px 5px;
+  font-size: ${p => p.theme.fontSizes.l};
+  background: none;
+  color: ${p => p.theme.colors.muted};
+  font-family: ${p => p.theme.fonts.monospace};
+  border: none;
+  &:hover,
+  :focus,
+  :active {
+    background-image: linear-gradient(
+        to right,
+        rgba(47, 48, 58, 0.6),
+        rgba(47, 48, 58, 0.6)
+      ),
+      url(${flag});
+    background-size: 130%;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    transition-duration: 500ms;
+    transition-timing-function: $timing-function;
+    transform: scale(1.05);
+  }
+`;
+
+export const MenuWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 20px, 50px;
+  margin-bottom: 50px;
+`;

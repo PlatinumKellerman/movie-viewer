@@ -1,9 +1,11 @@
+import * as React from 'react';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import { useMediaQuery } from 'react-responsive';
 import Container from 'layout/common/Container/Container';
 import { uaCities, usaStateCapitals } from '../../constants/cities';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import CitiesBurgerMenu from './CitiesBurgerMenu';
 import {
   SearchInput,
   SearchButton,
@@ -15,9 +17,14 @@ import {
   CityNameButton,
   UsaCityNameButton,
   UsaCityNameSpan,
+  UaMenuButton,
+  UsaMenuButton,
+  MenuWrapper,
 } from './SearchCityWeatherForm.styled';
 
 const SearchCityWeatherForm = ({ onSubmit }) => {
+  const ITEM_HEIGHT = 48;
+
   const schema = yup.object().shape({
     query: yup.string().required('Search field cannot be empty'),
   });
@@ -32,6 +39,36 @@ const SearchCityWeatherForm = ({ onSubmit }) => {
   };
 
   const isMobile = useMediaQuery({ maxWidth: 768 });
+
+  const [anchorElUa, setAnchorElUa] = React.useState(null);
+  const openUa = Boolean(anchorElUa);
+  const handleClickUa = event => {
+    setAnchorElUa(event.currentTarget);
+  };
+  const handleCloseUa = () => {
+    setAnchorElUa(null);
+  };
+  const handleMenuClickUa = (event, option) => {
+    if (event.currentTarget) {
+      setAnchorElUa(event.currentTarget);
+    }
+    handleCityWeather(option);
+  };
+
+  const [anchorElUsa, setAnchorElUsa] = React.useState(null);
+  const openUsa = Boolean(anchorElUsa);
+  const handleClickUsa = event => {
+    setAnchorElUsa(event.currentTarget);
+  };
+  const handleCloseUsa = () => {
+    setAnchorElUsa(null);
+  };
+  const handleMenuClickUsa = (event, option) => {
+    if (event.currentTarget) {
+      setAnchorElUsa(event.currentTarget);
+    }
+    handleCityWeather(option);
+  };
 
   return (
     <Container>
@@ -57,7 +94,96 @@ const SearchCityWeatherForm = ({ onSubmit }) => {
       </Formik>
       <div>
         {isMobile ? (
-          <div>{<CitiesBurgerMenu />}</div>
+          <div>
+            {
+              <MenuWrapper>
+                <div>
+                  <UaMenuButton
+                    aria-label="more"
+                    id="long-button-ua"
+                    aria-controls={openUa ? 'long-button-ua' : undefined}
+                    aria-expanded={openUa ? 'true' : undefined}
+                    aria-haspopup="true"
+                    onClick={handleClickUa}
+                  >
+                    UA
+                  </UaMenuButton>
+                  <Menu
+                    id="long-menu"
+                    MenuListProps={{
+                      'aria-labelledby': 'long-button',
+                    }}
+                    anchorEl={anchorElUa}
+                    open={openUa}
+                    onClose={handleCloseUa}
+                    PaperProps={{
+                      style: {
+                        maxHeight: '40%',
+                        width: 'auto',
+                        backgroundColor: '#474B4F',
+                        color: '#ffffff',
+                      },
+                    }}
+                  >
+                    {uaCities.map(option => (
+                      <MenuItem
+                        key={option}
+                        selected={option === 'Pyxis'}
+                        onClick={e => {
+                          handleMenuClickUa(e, option);
+                          handleCloseUa();
+                        }}
+                      >
+                        {option}
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </div>
+                <div>
+                  <UsaMenuButton
+                    aria-label="more"
+                    id="long-button-usa"
+                    aria-controls={openUsa ? 'long-button-usa' : undefined}
+                    aria-expanded={openUsa ? 'true' : undefined}
+                    aria-haspopup="true"
+                    onClick={handleClickUsa}
+                  >
+                    USA
+                  </UsaMenuButton>
+                  <Menu
+                    id="long-menu"
+                    MenuListProps={{
+                      'aria-labelledby': 'long-button',
+                    }}
+                    anchorEl={anchorElUsa}
+                    open={openUsa}
+                    onClose={handleCloseUsa}
+                    PaperProps={{
+                      style: {
+                        maxHeight: '40%',
+                        width: 'auto',
+                        backgroundColor: '#474B4F',
+                        color: '#ffffff',
+                      },
+                    }}
+                  >
+                    {usaStateCapitals.map(option => (
+                      <MenuItem
+                        key={option}
+                        selected={option === 'Pyxis'}
+                        onClick={e => {
+                          handleMenuClickUsa(e, option);
+                          handleCloseUsa();
+                        }}
+                      >
+                        {option}
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </div>
+              </MenuWrapper>
+            }
+          </div>
         ) : (
           <CitiesWrapper>
             <CitiesList>
@@ -67,7 +193,7 @@ const SearchCityWeatherForm = ({ onSubmit }) => {
                     type="button"
                     onClick={() => handleCityWeather(city)}
                   >
-                    {city}
+                    <UsaCityNameSpan>{city}</UsaCityNameSpan>
                   </CityNameButton>
                 </CityNameItem>
               ))}
