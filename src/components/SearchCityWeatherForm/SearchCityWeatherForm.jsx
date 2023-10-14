@@ -1,7 +1,9 @@
+import { useMediaQuery } from 'react-responsive';
 import Container from 'layout/common/Container/Container';
 import { uaCities, usaStateCapitals } from '../../constants/cities';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import CitiesBurgerMenu from './CitiesBurgerMenu';
 import {
   SearchInput,
   SearchButton,
@@ -29,6 +31,8 @@ const SearchCityWeatherForm = ({ onSubmit }) => {
     onSubmit({ query: city });
   };
 
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   return (
     <Container>
       <Formik
@@ -51,32 +55,38 @@ const SearchCityWeatherForm = ({ onSubmit }) => {
           />
         </StyledForm>
       </Formik>
-      <CitiesWrapper>
-        <CitiesList>
-          {uaCities.map(city => (
-            <CityNameItem key={city}>
-              <CityNameButton
-                type="button"
-                onClick={() => handleCityWeather(city)}
-              >
-                {city}
-              </CityNameButton>
-            </CityNameItem>
-          ))}
-        </CitiesList>
-        <CitiesList>
-          {usaStateCapitals.map(city => (
-            <CityNameItem key={city}>
-              <UsaCityNameButton
-                type="button"
-                onClick={() => handleCityWeather(city)}
-              >
-                <UsaCityNameSpan>{city}</UsaCityNameSpan>
-              </UsaCityNameButton>
-            </CityNameItem>
-          ))}
-        </CitiesList>
-      </CitiesWrapper>
+      <div>
+        {isMobile ? (
+          <div>{<CitiesBurgerMenu />}</div>
+        ) : (
+          <CitiesWrapper>
+            <CitiesList>
+              {uaCities.map(city => (
+                <CityNameItem key={city}>
+                  <CityNameButton
+                    type="button"
+                    onClick={() => handleCityWeather(city)}
+                  >
+                    {city}
+                  </CityNameButton>
+                </CityNameItem>
+              ))}
+            </CitiesList>
+            <CitiesList>
+              {usaStateCapitals.map(city => (
+                <CityNameItem key={city}>
+                  <UsaCityNameButton
+                    type="button"
+                    onClick={() => handleCityWeather(city)}
+                  >
+                    <UsaCityNameSpan>{city}</UsaCityNameSpan>
+                  </UsaCityNameButton>
+                </CityNameItem>
+              ))}
+            </CitiesList>
+          </CitiesWrapper>
+        )}
+      </div>
     </Container>
   );
 };
