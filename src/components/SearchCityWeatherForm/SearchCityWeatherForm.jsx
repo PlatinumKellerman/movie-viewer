@@ -23,8 +23,6 @@ import {
 } from './SearchCityWeatherForm.styled';
 
 const SearchCityWeatherForm = ({ onSubmit }) => {
-  const ITEM_HEIGHT = 48;
-
   const schema = yup.object().shape({
     query: yup.string().required('Search field cannot be empty'),
   });
