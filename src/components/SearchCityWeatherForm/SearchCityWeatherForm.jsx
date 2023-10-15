@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useMediaQuery } from 'react-responsive';
@@ -23,6 +24,8 @@ import {
 } from './SearchCityWeatherForm.styled';
 
 const SearchCityWeatherForm = ({ onSubmit }) => {
+  const [touched, setTouched] = useState(false);
+
   const schema = yup.object().shape({
     query: yup.string().required('Search field cannot be empty'),
   });
@@ -82,10 +85,11 @@ const SearchCityWeatherForm = ({ onSubmit }) => {
             autoComplete="on"
             autoFocus
             placeholder="Enter city name"
+            onBlur={() => setTouched(true)}
           />
           <SearchButton type="submit">Search</SearchButton>
           <ErrorMessage
-            render={message => <ErrorText>{message}</ErrorText>}
+            render={message => <ErrorText>{touched && message}</ErrorText>}
             name="query"
           />
         </StyledForm>
