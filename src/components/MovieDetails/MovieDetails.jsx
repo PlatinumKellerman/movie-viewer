@@ -1,3 +1,4 @@
+import movieTrailer from 'movie-trailer';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useLocation } from 'react-router-dom';
@@ -44,6 +45,25 @@ export const MovieDetails = ({ movie }) => {
     },
   };
 
+  let trailerUrl;
+  async function getTrailer() {
+    try {
+      const url = await movieTrailer(movie.title);
+      if (url) {
+        trailerUrl = url;
+      } else {
+        console.log(`Trailer not found for ${movie.title}`);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+  getTrailer().then(() => {
+    console.log(trailerUrl);
+  });
+
+  console.log(trailerUrl);
+
   return (
     <MainWrapper>
       <HomeLink />
@@ -57,6 +77,19 @@ export const MovieDetails = ({ movie }) => {
           ) : (
             <PosterPlug src={poster_plug} alt={'Poster Plug'} />
           )}
+          {trailerUrl ? (
+            <a
+              href={trailerUrl || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Movie Trailer"
+            >
+              <MovieTitle>MOVIE TRAILER</MovieTitle>
+            </a>
+          ) : (
+            <MovieTitle>PIZDEC</MovieTitle>
+          )}
+
           <ProdLogoWrapper>
             {movie.production_companies &&
               movie.production_companies.map(logo => (
