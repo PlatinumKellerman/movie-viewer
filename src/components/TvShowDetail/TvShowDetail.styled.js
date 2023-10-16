@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { ReactComponent as YouTubeLogoMin } from '../../assets/youtube-logo.svg';
 
 export const MainWrapper = styled.div`
   padding: 15px 10px;
@@ -17,6 +18,7 @@ export const Wrapper = styled.div`
 `;
 
 export const PosterWrapper = styled.div`
+  position: relative;
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     margin-right: 30px;
   }
@@ -31,6 +33,36 @@ export const Poster = styled.img`
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     min-width: 300px;
     max-width: 500px;
+  }
+`;
+
+const pulse = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
+export const YouTubeLogo = styled(YouTubeLogoMin)`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 30%;
+  height: auto;
+  color: ${p => p.theme.colors.dark};
+  stroke: ${p => p.theme.colors.light};
+  &:hover,
+  &:focus,
+  &:active {
+    animation: ${pulse} 2s infinite;
+    cursor: pointer;
+    transition-duration: 500ms;
+    transition-property: all;
   }
 `;
 

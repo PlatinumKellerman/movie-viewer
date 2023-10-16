@@ -13,6 +13,9 @@ import {
 const PopularTvShows = ({ shows, location }) => {
   const settings = {
     dots: true,
+    customPaging: function (i) {
+      return <span style={{ color: '#fff' }}>•</span>;
+    },
     arrows: false,
     infinite: true,
     speed: 700,
@@ -26,6 +29,8 @@ const PopularTvShows = ({ shows, location }) => {
     centerMode: true,
     centerPadding: '5px',
     cssEase: 'ease-in-out',
+    vertical: false,
+    swipeToSlide: true,
     responsive: [
       {
         breakpoint: 1201,

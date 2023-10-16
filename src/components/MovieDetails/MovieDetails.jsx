@@ -1,7 +1,9 @@
 import movieTrailer from 'movie-trailer';
+import { toast } from 'react-toastify';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import HomeLink from 'components/ui/HomeLink';
 import AddInfoLinks from 'components/AddInfoLinks';
 import poster_plug from '../../assets/poster_plug-min.jpg';
@@ -21,12 +23,34 @@ import {
   ProdLogo,
   ProdLogoWrapper,
   ImdbLogo,
+  YouTubeLogo,
   PosterPlug,
 } from './MovieDetails.styled';
 
 export const MovieDetails = ({ movie }) => {
   const location = useLocation();
   const releaseYear = new Date(movie.release_date).getUTCFullYear();
+
+  //Get trailer URL
+  const [trailerUrl, setTrailerUrl] = useState('');
+  useEffect(() => {
+    const getTrailerUrl = async () => {
+      try {
+        const url = await movieTrailer(movie.title);
+        if (url) {
+          setTrailerUrl(url);
+        } else {
+          toast.error(`Sorry, there are no trailers for this movie.`);
+        }
+      } catch (error) {
+        toast.error('Oops! Something went wrong!');
+      }
+    };
+
+    getTrailerUrl();
+  }, [movie.title]);
+
+  // Circular Progress Bar
   const userScore = Number(movie.vote_average).toFixed(1) * 10;
   const progressBarStyles = {
     textSize: '5px',
@@ -45,25 +69,6 @@ export const MovieDetails = ({ movie }) => {
     },
   };
 
-  let trailerUrl;
-  async function getTrailer() {
-    try {
-      const url = await movieTrailer(movie.title);
-      if (url) {
-        trailerUrl = url;
-      } else {
-        console.log(`Trailer not found for ${movie.title}`);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
-  getTrailer().then(() => {
-    console.log(trailerUrl);
-  });
-
-  console.log(trailerUrl);
-
   return (
     <MainWrapper>
       <HomeLink />
@@ -79,17 +84,16 @@ export const MovieDetails = ({ movie }) => {
           )}
           {trailerUrl ? (
             <a
-              href={trailerUrl || '#'}
+              href={trailerUrl}
               target="_blank"
               rel="noopener noreferrer"
               title="Movie Trailer"
             >
-              <MovieTitle>MOVIE TRAILER</MovieTitle>
+              <YouTubeLogo />
             </a>
           ) : (
-            <MovieTitle>PIZDEC</MovieTitle>
+            <p></p>
           )}
-
           <ProdLogoWrapper>
             {movie.production_companies &&
               movie.production_companies.map(logo => (

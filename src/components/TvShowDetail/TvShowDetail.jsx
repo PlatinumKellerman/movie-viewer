@@ -1,4 +1,7 @@
+import movieTrailer from 'movie-trailer';
+import { toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import HomeLink from '../ui/HomeLink';
@@ -18,9 +21,29 @@ import {
   Tagline,
   NetworkPoster,
   ProdLogoWrapper,
+  YouTubeLogo,
 } from './TvShowDetail.styled';
 
 const TvShowDetail = ({ show }) => {
+  //Get trailer URL
+  const [trailerUrl, setTrailerUrl] = useState('');
+  useEffect(() => {
+    const getTrailerUrl = async () => {
+      try {
+        const url = await movieTrailer(show.name);
+        if (url) {
+          setTrailerUrl(url);
+        } else {
+          toast.error(`Sorry, there are no trailers for this TV show.`);
+        }
+      } catch (error) {
+        toast.error('Oops! Something went wrong!');
+      }
+    };
+
+    getTrailerUrl();
+  }, [show.name]);
+
   const location = useLocation();
   const releaseYear = new Date(show.first_air_date).getUTCFullYear();
   const userScore = Number(show.vote_average).toFixed(1) * 10;
@@ -51,6 +74,18 @@ const TvShowDetail = ({ show }) => {
               src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
               alt={show.name}
             ></Poster>
+          )}
+          {trailerUrl ? (
+            <a
+              href={trailerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Movie Trailer"
+            >
+              <YouTubeLogo />
+            </a>
+          ) : (
+            <p></p>
           )}
           <ProdLogoWrapper>
             {show.production_companies.map(logo => (
