@@ -4,6 +4,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { toast } from 'react-toastify';
 import Container from '../../layout/common/Container/Container';
+import ScrollArrow from '../../components/ScrollArrow';
 import Loader from '../../components/Loader';
 import {
   getMostPopularMovies,
@@ -18,20 +19,33 @@ const HomePage = () => {
   const [shows, setShows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
-  const [activePage, setActivePage] = useState(1); // Зберігаємо активну сторінку.
+  const [activePage, setActivePage] = useState(1);
 
   useEffect(() => {
-    fetchPopularMedia(activePage); // Отримуємо дані на початковій сторінці.
-  }, [activePage]); // Для запуску лише одного разу при завантаженні сторінки.
+    fetchPopularTv();
+  }, [shows]);
 
-  const fetchPopularMedia = async activePage => {
+  useEffect(() => {
+    fetchPopularMovies(activePage);
+  }, [activePage]);
+
+  const fetchPopularMovies = async activePage => {
     try {
-      const [moviesResponse, showsResponse] = await Promise.all([
+      const [moviesResponse] = await Promise.all([
         getMostPopularMovies(activePage),
-        getMostPopularTvShows(),
       ]);
       setMovies(moviesResponse);
-      setShows(showsResponse);
+      setIsLoading(false);
+    } catch (error) {
+      toast.error('Oops! Something went wrong!');
+      setIsLoading(false);
+    }
+  };
+
+  const fetchPopularTv = async () => {
+    try {
+      const [showResponse] = await Promise.all([getMostPopularTvShows()]);
+      setShows(showResponse);
       setIsLoading(false);
     } catch (error) {
       toast.error('Oops! Something went wrong!');
@@ -42,7 +56,7 @@ const HomePage = () => {
   const handlePageChange = (event, newPage) => {
     setActivePage(newPage);
     setIsLoading(true);
-    fetchPopularMedia(newPage); // Виконуємо запит з новим номером сторінки.
+    fetchPopularMovies(newPage);
   };
 
   return (
@@ -55,22 +69,73 @@ const HomePage = () => {
         <>
           <HomePageTitle>Most popular TV shows</HomePageTitle>
           {shows && <PopularTvShows shows={shows} location={location} />}
-          <HomePageTitle>Trending movies for the WEEK</HomePageTitle>
+          <HomePageTitle
+            style={{
+              marginTop: '30px',
+            }}
+          >
+            Trending movies for the WEEK
+          </HomePageTitle>
           <Stack spacing={2}>
             <Pagination
-              count={1000}
+              count={500}
               page={activePage}
               onChange={handlePageChange}
+              showFirstButton
+              showLastButton
+              color="secondary"
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                marginTop: '16px',
+                marginBottom: '16px',
+                '& .MuiPaginationItem-root': {
+                  color: 'white',
+                },
+                '& .MuiPaginationItem-page.Mui-selected': {
+                  backgroundColor: '#61892F',
+                },
+                '& .MuiPaginationItem-page:hover': {
+                  backgroundColor: '#61892F',
+                },
+                '& .MuiPaginationItem-icon:hover': {
+                  backgroundColor: '#61892F',
+                },
+              }}
             />
           </Stack>
           {movies && <PopularMovies movies={movies} location={location} />}
+          <ScrollArrow
+            sx={{
+              display: 'flex',
+            }}
+          />
         </>
       )}
       <Stack spacing={2}>
         <Pagination
-          count={1000}
+          count={500}
           page={activePage}
           onChange={handlePageChange}
+          color="secondary"
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '16px',
+            marginBottom: '16px',
+            '& .MuiPaginationItem-root': {
+              color: 'white',
+            },
+            '& .MuiPaginationItem-page.Mui-selected': {
+              backgroundColor: '#61892F',
+            },
+            '& .MuiPaginationItem-page:hover': {
+              backgroundColor: '#61892F',
+            },
+            '& .MuiPaginationItem-icon:hover': {
+              backgroundColor: '#61892F',
+            },
+          }}
         />
       </Stack>
     </Container>
