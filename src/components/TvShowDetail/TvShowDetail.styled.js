@@ -64,6 +64,11 @@ export const YouTubeLogo = styled(YouTubeLogoMin)`
     transition-duration: 500ms;
     transition-property: all;
   }
+  @media (max-width: ${p => p.theme.breakpoints.values.lg}px) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `;
 
 export const NetworkPoster = styled.img`

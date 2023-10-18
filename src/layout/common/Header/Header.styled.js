@@ -88,10 +88,15 @@ export const WeatherLogo = styled(Weather)`
   }
 `;
 
-export const SearchMovieLink = styled(Link)``;
+export const SearchMovieLink = styled(Link)`
+  margin-right: 5px;
+`;
 
 export const MainLogoLink = styled(Link)`
   margin-right: 25px;
+  @media (max-width: ${p => p.theme.breakpoints.values.md}px) {
+    margin-right: 5px;
+  }
 `;
 
 export const HeaderLinksWrapper = styled.div``;

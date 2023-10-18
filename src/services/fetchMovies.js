@@ -11,8 +11,12 @@ const instance = axios.create({
   },
 });
 
-export async function getMostPopularMovies() {
-  const response = await instance.get(`/trending/movie/week`);
+export async function getMostPopularMovies(pageNumber) {
+  const params = { ...instance.defaults.params };
+  params.page = pageNumber;
+
+  const response = await instance.get(`/trending/movie/week`, { params });
+
   return response.data.results;
 }
 
