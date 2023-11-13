@@ -76,34 +76,6 @@ const HomePage = () => {
           >
             Trending movies for the WEEK
           </HomePageTitle>
-          <Stack spacing={2}>
-            <Pagination
-              count={500}
-              page={activePage}
-              onChange={handlePageChange}
-              showFirstButton
-              showLastButton
-              color="secondary"
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                marginTop: '16px',
-                marginBottom: '16px',
-                '& .MuiPaginationItem-root': {
-                  color: 'white',
-                },
-                '& .MuiPaginationItem-page.Mui-selected': {
-                  backgroundColor: '#61892F',
-                },
-                '& .MuiPaginationItem-page:hover': {
-                  backgroundColor: '#61892F',
-                },
-                '& .MuiPaginationItem-icon:hover': {
-                  backgroundColor: '#61892F',
-                },
-              }}
-            />
-          </Stack>
           {movies && <PopularMovies movies={movies} location={location} />}
           <ScrollArrow
             sx={{
