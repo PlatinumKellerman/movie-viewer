@@ -11,12 +11,15 @@ export const MainWrapper = styled.div`
   padding: 30px;
   display: block;
   background-color: ${p => p.theme.colors.muted};
-  @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
-    width: auto;
+`;
+
+export const InfoForecastWrapper = styled.div`
+  @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     width: 95%;
+    margin-bottom: 30px;
   }
 `;
 
@@ -34,10 +37,6 @@ export const WeatherInfoWrapper = styled.div`
   align-items: center;
   font-family: ${p => p.theme.fonts.monospace};
   margin-bottom: 30px;
-  @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
-    width: 50%;
-    margin-bottom: 0px;
-  }
 `;
 
 export const WeatherIcon = styled.img`
@@ -107,6 +106,7 @@ export const CityName = styled.p`
   font-size: ${p => p.theme.fontSizes.l};
   font-weight: ${p => p.theme.fontWeights.bold};
   color: ${p => p.theme.colors.cloud};
+  text-align: center;
 `;
 
 export const CurrentTemp = styled.p`
@@ -125,13 +125,15 @@ export const WeatherValue = styled.p`
   font-size: ${p => p.theme.fontSizes.mm};
   text-transform: capitalize;
   font-weight: ${p => p.theme.fontWeights.bold};
+  text-align: center;
 `;
 
 export const ForecastWeatherWrapper = styled.div`
-  width: 100%;
+  width: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 30px;
 `;
 
 export const ForecastList = styled.ul`

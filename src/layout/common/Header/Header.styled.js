@@ -30,10 +30,10 @@ export const HeaderTitle = styled.h1`
   letter-spacing: 10px;
   margin-left: auto;
   margin-right: auto;
-  font-size: ${p => p.theme.fontSizes.l};
+  font-size: ${p => p.theme.fontSizes.mm};
   color: ${p => p.theme.colors.primary};
   font-family: ${p => p.theme.fonts.heading};
-  @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
+  @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     font-size: ${p => p.theme.fontSizes.xl};
   }
 `;
