@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Layout } from './layout/Layout';
-import Container from './layout/common/Container/Container';
+import Container from './layout/common/Container';
 
 const HomePage = lazy(() => import('./pages/Home'));
 const MovieInfo = lazy(() => import('./pages/MovieInfo'));

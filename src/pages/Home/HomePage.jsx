@@ -3,9 +3,10 @@ import { useLocation } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { toast } from 'react-toastify';
-import Container from '../../layout/common/Container/Container';
+import Container from '../../layout/common/Container';
 import ScrollArrow from '../../components/ScrollArrow';
 import Loader from '../../components/Loader';
+
 import {
   getMostPopularMovies,
   getMostPopularTvShows,
