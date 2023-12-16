@@ -1,3 +1,4 @@
+import Media from 'react-media';
 import {
   HeaderBar,
   HeaderLogo,
@@ -21,7 +22,10 @@ const Header = () => {
         <SearchMovieLogo />
       </SearchMovieLink>
       <TitleWrapper>
-        <HeaderTitle>Movie Finder</HeaderTitle>
+        <Media
+          query="(max-width: 599px)"
+          render={() => <HeaderTitle>Movie Finder</HeaderTitle>}
+        ></Media>
       </TitleWrapper>
       <MainLogoLink to={`/movie-viewer/weather`} title="Weather page">
         <WeatherLogo />
