@@ -21,12 +21,15 @@ const Header = () => {
       <SearchMovieLink to={`/movie-viewer/search`} title="Search movie by name">
         <SearchMovieLogo />
       </SearchMovieLink>
-      <TitleWrapper>
-        <Media
-          query="(max-width: 599px)"
-          render={() => <HeaderTitle>Movie Finder</HeaderTitle>}
-        ></Media>
-      </TitleWrapper>
+      <Media
+        query="(min-width: 480px)"
+        render={() => (
+          <TitleWrapper>
+            {' '}
+            <HeaderTitle>Movie Finder</HeaderTitle>
+          </TitleWrapper>
+        )}
+      ></Media>
       <MainLogoLink to={`/movie-viewer/weather`} title="Weather page">
         <WeatherLogo />
       </MainLogoLink>
