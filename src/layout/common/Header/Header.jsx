@@ -22,7 +22,7 @@ const Header = () => {
         <SearchMovieLogo />
       </SearchMovieLink>
       <Media
-        query="(min-width: 480px)"
+        query="(min-width: 520px)"
         render={() => (
           <TitleWrapper>
             {' '}
