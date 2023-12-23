@@ -185,6 +185,26 @@ export const InfoValue = styled.p`
   }
 `;
 
+export const CastList = styled.p`
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSizes.xs};
+  color: ${p => p.theme.colors.light};
+  @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
+    font-size: ${p => p.theme.fontSizes.m};
+  }
+  span {
+    color: ${p => p.theme.colors.accent};
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  &:last-child {
+    margin-bottom: 0px;
+  }
+`;
+
 export const Accent = styled.span`
   padding: 2px 5px;
   background-color: ${p => p.theme.colors.accent};

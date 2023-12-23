@@ -10,6 +10,7 @@ import {
 } from './PopularMovies.styled';
 
 const PopularMovies = ({ movies, location }) => {
+  // console.log(movies);
   return (
     <Container>
       <List>

@@ -1,9 +1,11 @@
 import movieTrailer from 'movie-trailer';
 import { toast } from 'react-toastify';
 import { CircularProgressbar } from 'react-circular-progressbar';
+import { getMovieCast } from '../../services/fetchMovies';
 import 'react-circular-progressbar/dist/styles.css';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import HomeLink from 'components/ui/HomeLink';
 import AddInfoLinks from 'components/AddInfoLinks';
 import poster_plug from '../../assets/poster_plug-min.jpg';
@@ -25,14 +27,18 @@ import {
   ImdbLogo,
   YouTubeLogo,
   PosterPlug,
+  CastList,
 } from './MovieDetails.styled';
 
 export const MovieDetails = ({ movie }) => {
   const location = useLocation();
   const releaseYear = new Date(movie.release_date).getUTCFullYear();
 
-  //Get trailer URL
+  const { movieId } = useParams();
   const [trailerUrl, setTrailerUrl] = useState('');
+  const [cast, setCast] = useState([]);
+  const [showAllCast, setShowAllCast] = useState(false);
+
   useEffect(() => {
     const getTrailerUrl = async () => {
       try {
@@ -49,6 +55,18 @@ export const MovieDetails = ({ movie }) => {
 
     getTrailerUrl();
   }, [movie.title]);
+
+  useEffect(() => {
+    const movieCastResp = async () => {
+      try {
+        const response = await getMovieCast(movieId);
+        setCast(response.cast);
+      } catch (error) {
+        toast.error('Oops! Something went wrong!');
+      }
+    };
+    movieCastResp();
+  }, [movieId]);
 
   // Circular Progress Bar
   const userScore = Number(movie.vote_average).toFixed(1) * 10;
@@ -118,6 +136,18 @@ export const MovieDetails = ({ movie }) => {
           </a>
           <Tagline>{movie.tagline}</Tagline>
           <DetailsWrapper>
+            <InfoParams>Cast:</InfoParams>
+            <CastList>
+              {showAllCast
+                ? cast.map(actor => actor.name).join(', ')
+                : cast
+                    .slice(0, 4)
+                    .map(actor => actor.name)
+                    .join(', ')}
+              {cast.length > 4 && (
+                <span onClick={() => setShowAllCast(!showAllCast)}> ...</span>
+              )}
+            </CastList>
             <InfoParams>Rating:</InfoParams>
             <InfoValue>
               <Accent>{movie.vote_average}</Accent>
