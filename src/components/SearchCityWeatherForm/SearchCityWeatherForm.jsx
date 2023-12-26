@@ -61,9 +61,11 @@ const SearchCityWeatherForm = ({ onSubmit }) => {
   const handleClickUsa = event => {
     setAnchorElUsa(event.currentTarget);
   };
+
   const handleCloseUsa = () => {
     setAnchorElUsa(null);
   };
+
   const handleMenuClickUsa = (event, option) => {
     if (event.currentTarget) {
       setAnchorElUsa(event.currentTarget);

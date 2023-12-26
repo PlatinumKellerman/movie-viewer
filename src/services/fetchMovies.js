@@ -72,3 +72,12 @@ export async function getTvShowCast(id) {
   const response = await instance.get(`/tv/${id}/credits`);
   return response.data;
 }
+
+export async function getActorId(query) {
+  const response = await instance.get('/search/person', {
+    params: {
+      query,
+    },
+  });
+  return response.data.results;
+}

@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import HomeLink from 'components/ui/HomeLink';
 import AddInfoLinks from 'components/AddInfoLinks';
 import poster_plug from '../../assets/poster_plug-min.jpg';
+// import { getActorId } from '../../services/fetchMovies';
 import {
   MainWrapper,
   Poster,
@@ -67,6 +68,20 @@ export const MovieDetails = ({ movie }) => {
     };
     movieCastResp();
   }, [movieId]);
+
+  // const GetActorName = async () => {
+  //   try {
+  //     const response = await getActorId('Cillian Murphy');
+  //     console.log(response);
+  //   } catch (error) {
+  //     toast.error('Oops! Something went wrong!');
+  //   }
+  // };
+
+  const handleActorName = name => {
+    // onSubmit({ query: name });
+    console.log(name);
+  };
 
   // Circular Progress Bar
   const userScore = Number(movie.vote_average).toFixed(1) * 10;
@@ -139,13 +154,27 @@ export const MovieDetails = ({ movie }) => {
             <InfoParams>Cast:</InfoParams>
             <CastList>
               {showAllCast
-                ? cast.map(actor => actor.name).join(', ')
-                : cast
-                    .slice(0, 4)
-                    .map(actor => actor.name)
-                    .join(', ')}
+                ? cast.map(actor => (
+                    <button
+                      onClick={() => handleActorName(actor.name)}
+                      key={actor.id}
+                    >
+                      {actor.name}
+                    </button>
+                  ))
+                : cast.slice(0, 4).map(actor => (
+                    <button
+                      onClick={() => handleActorName(actor.name)}
+                      key={actor.id}
+                    >
+                      {actor.name}
+                    </button>
+                  ))}
+
               {cast.length > 4 && (
-                <span onClick={() => setShowAllCast(!showAllCast)}> ...</span>
+                <button onClick={() => setShowAllCast(!showAllCast)}>
+                  ...
+                </button>
               )}
             </CastList>
             <InfoParams>Rating:</InfoParams>
