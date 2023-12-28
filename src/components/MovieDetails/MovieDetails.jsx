@@ -29,6 +29,8 @@ import {
   YouTubeLogo,
   PosterPlug,
   CastList,
+  CastItem,
+  CastNameButton,
 } from './MovieDetails.styled';
 
 export const MovieDetails = ({ movie }) => {
@@ -39,6 +41,7 @@ export const MovieDetails = ({ movie }) => {
   const [trailerUrl, setTrailerUrl] = useState('');
   const [cast, setCast] = useState([]);
   const [showAllCast, setShowAllCast] = useState(false);
+  const [actorName, setActorName] = useState('');
 
   useEffect(() => {
     const getTrailerUrl = async () => {
@@ -79,8 +82,8 @@ export const MovieDetails = ({ movie }) => {
   // };
 
   const handleActorName = name => {
-    // onSubmit({ query: name });
-    console.log(name);
+    setActorName(name);
+    console.log(actorName);
   };
 
   // Circular Progress Bar
@@ -155,26 +158,33 @@ export const MovieDetails = ({ movie }) => {
             <CastList>
               {showAllCast
                 ? cast.map(actor => (
-                    <button
-                      onClick={() => handleActorName(actor.name)}
-                      key={actor.id}
-                    >
-                      {actor.name}
-                    </button>
+                    <CastItem key={actor.id}>
+                      <CastNameButton
+                        onClick={() => handleActorName(actor.name)}
+                        key={actor.id}
+                      >
+                        {actor.name}
+                      </CastNameButton>
+                    </CastItem>
                   ))
-                : cast.slice(0, 4).map(actor => (
-                    <button
-                      onClick={() => handleActorName(actor.name)}
-                      key={actor.id}
-                    >
-                      {actor.name}
-                    </button>
+                : cast.slice(0, 5).map(actor => (
+                    <CastItem key={actor.id}>
+                      <CastNameButton
+                        onClick={() => handleActorName(actor.name)}
+                        key={actor.id}
+                      >
+                        {actor.name}
+                      </CastNameButton>
+                    </CastItem>
                   ))}
 
               {cast.length > 4 && (
-                <button onClick={() => setShowAllCast(!showAllCast)}>
-                  ...
-                </button>
+                <CastNameButton
+                  style={{ marginBottom: '20px' }}
+                  onClick={() => setShowAllCast(!showAllCast)}
+                >
+                  . . .
+                </CastNameButton>
               )}
             </CastList>
             <InfoParams>Rating:</InfoParams>

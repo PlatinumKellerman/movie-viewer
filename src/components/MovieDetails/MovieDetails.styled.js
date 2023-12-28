@@ -185,23 +185,28 @@ export const InfoValue = styled.p`
   }
 `;
 
-export const CastList = styled.p`
+export const CastList = styled.ul`
+  display: inline;
+`;
+
+export const CastItem = styled.li``;
+
+export const CastNameButton = styled.button`
+  border: none;
   letter-spacing: 2px;
-  margin-bottom: 20px;
-  padding-bottom: 5px;
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSizes.xs};
   color: ${p => p.theme.colors.light};
+  background-color: ${p => p.theme.colors.dark};
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${p => p.theme.colors.accent};
+    transition-duration: 200ms;
+    transition-property: all;
+  }
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     font-size: ${p => p.theme.fontSizes.m};
-  }
-  span {
-    color: ${p => p.theme.colors.accent};
-    cursor: pointer;
-    margin-left: 5px;
-  }
-  &:last-child {
-    margin-bottom: 0px;
   }
 `;
 
