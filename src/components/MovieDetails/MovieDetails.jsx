@@ -33,10 +33,10 @@ import {
   CastNameButton,
 } from './MovieDetails.styled';
 
-export const MovieDetails = ({ movie }) => {
+export const MovieDetails = ({ movie, images }) => {
   const location = useLocation();
   const releaseYear = new Date(movie.release_date).getUTCFullYear();
-
+  console.log(images);
   const { movieId } = useParams();
   const [trailerUrl, setTrailerUrl] = useState('');
   const [cast, setCast] = useState([]);

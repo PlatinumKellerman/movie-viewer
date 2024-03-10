@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../assets/HeaderLogo/logo.svg';
 import { ReactComponent as SearchLogo } from '../../../assets/HeaderLogo/searchLogo.svg';
 import { ReactComponent as Weather } from '../../../assets/HeaderLogo/weather_icon.svg';
+import { ReactComponent as LeafsLeft } from '../../../assets/Header/leafs-left.svg';
+import { ReactComponent as Grass } from '../../../assets/Header/grass.svg';
 
 export const HeaderBar = styled.header`
   padding: 10px 20px;
@@ -100,3 +102,17 @@ export const MainLogoLink = styled(Link)`
 `;
 
 export const HeaderLinksWrapper = styled.div``;
+
+export const LeafsLeftPic = styled(LeafsLeft)`
+  width: 140px;
+  height: 95px;
+  color: ${p => p.theme.colors.secondary};
+`;
+
+export const GrassIco = styled(Grass)`
+  /* position: absolute; */
+  width: 140px;
+  height: 95px;
+  color: ${p => p.theme.colors.secondary};
+  fill: ${p => p.theme.colors.secondary};
+`;
