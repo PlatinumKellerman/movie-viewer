@@ -88,5 +88,5 @@ export async function getImages(movie_id) {
       movie_id,
     },
   });
-  return response;
+  return response.data;
 }

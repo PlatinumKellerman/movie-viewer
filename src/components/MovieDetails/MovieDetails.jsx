@@ -10,6 +10,10 @@ import HomeLink from 'components/ui/HomeLink';
 import AddInfoLinks from 'components/AddInfoLinks';
 import poster_plug from '../../assets/poster_plug-min.jpg';
 // import { getActorId } from '../../services/fetchMovies';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+
 import {
   MainWrapper,
   Poster,
@@ -33,10 +37,11 @@ import {
   CastNameButton,
 } from './MovieDetails.styled';
 
-export const MovieDetails = ({ movie, images }) => {
+export const MovieDetails = ({ movie, movieImages }) => {
   const location = useLocation();
   const releaseYear = new Date(movie.release_date).getUTCFullYear();
-  console.log(images);
+  console.log(movieImages);
+  console.log(movie);
   const { movieId } = useParams();
   const [trailerUrl, setTrailerUrl] = useState('');
   const [cast, setCast] = useState([]);
@@ -105,6 +110,23 @@ export const MovieDetails = ({ movie, images }) => {
     },
   };
 
+  // Modal
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+    width: 400,
+  };
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <MainWrapper>
       <HomeLink />
@@ -140,6 +162,31 @@ export const MovieDetails = ({ movie, images }) => {
                 ></ProdLogo>
               ))}
           </ProdLogoWrapper>
+          {/* // ----------------------------------------------- MODAL ---------------------------------------- */}
+          <div>
+            <Button onClick={handleOpen}>Open modal</Button>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <ul>
+                  <li key={movieImages.id}>
+                    {movieImages.backdrops.map(({ file_path, name }) => (
+                      <img
+                        key={file_path}
+                        src={`https://www.themoviedb.org/t/p/original${file_path}`}
+                        alt={'movieImage'}
+                      />
+                    ))}
+                  </li>
+                </ul>
+              </Box>
+            </Modal>
+          </div>
+          {/* // ----------------------------------------------- MODAL ---------------------------------------- */}
         </PosterWrapper>
         <InfoWrapper>
           <a

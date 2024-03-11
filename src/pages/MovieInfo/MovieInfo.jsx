@@ -33,19 +33,20 @@ export const MovieInfo = () => {
   useEffect(() => {
     const movieImages = async () => {
       try {
-        setIsLoading(true); // Встановлюємо isLoading на початку запиту
         const response = await getImages(movieId);
-        if (response && response.data) {
-          setImages(response.data);
-        }
-        setIsLoading(false); // Встановлюємо isLoading в кінці успішного запиту
+        setImages(response);
+        setIsLoading(false);
       } catch (error) {
-        console.log('ERROR:', error);
-        setIsLoading(false); // Встановлюємо isLoading в кінці обробки помилки
+        if (error) {
+          if (error) {
+            navigate('/*', { replace: true });
+          }
+        }
       }
     };
     movieImages();
-  }, [movieId]); // Залежність тільки від movieId
+    setIsLoading(true);
+  }, [movieId, navigate]);
 
   return (
     <>
@@ -54,7 +55,7 @@ export const MovieInfo = () => {
           <Loader />
         </div>
       ) : (
-        <>{movie && <MovieDetails movie={movie} images={images} />}</>
+        <>{movie && <MovieDetails movie={movie} movieImages={images} />}</>
       )}
       <Outlet />
     </>
