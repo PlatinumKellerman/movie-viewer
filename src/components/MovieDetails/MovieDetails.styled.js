@@ -1,4 +1,6 @@
 import styled, { keyframes } from 'styled-components';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import { ReactComponent as ImdbLogoMin } from '../../assets/imdb-logo-min.svg';
 import { ReactComponent as YouTubeLogoMin } from '../../assets/youtube-logo.svg';
 
@@ -229,5 +231,69 @@ export const PosterPlug = styled.img`
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     min-width: 300px;
     max-width: 500px;
+  }
+`;
+
+export const ModalWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const ModalButton = styled(Button)`
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${p => p.theme.colors.accent};
+    transition-duration: 200ms;
+    transition-property: all;
+  }
+`;
+
+export const ModalBox = styled(Box)`
+  scale: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: ${p => p.theme.colors.darkGrey};
+  border: 2px solid #000;
+  box-shadow: 24px;
+  width: 400px;
+  height: auto;
+  padding: 10px;
+  @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
+    width: 600px;
+  }
+  @media (min-width: ${p => p.theme.breakpoints.values.xl}px) {
+    width: 1000px;
+  }
+  @media (min-width: ${p => p.theme.breakpoints.values.xxl}px) {
+    width: 1400px;
+    height: 100%;
+  }
+`;
+
+export const ModalList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const ModalItem = styled.li`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+export const BackdropImg = styled.img`
+  width: 100%;
+  padding: 5px;
+  @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
+    width: 100%;
+  }
+  @media (min-width: ${p => p.theme.breakpoints.values.xl}px) {
+    width: 100%;
+  }
+  @media (min-width: ${p => p.theme.breakpoints.values.xxl}px) {
+    width: 100%;
   }
 `;

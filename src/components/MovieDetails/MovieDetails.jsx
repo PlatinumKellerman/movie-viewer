@@ -9,9 +9,10 @@ import { useParams } from 'react-router-dom';
 import HomeLink from 'components/ui/HomeLink';
 import AddInfoLinks from 'components/AddInfoLinks';
 import poster_plug from '../../assets/poster_plug-min.jpg';
-// import { getActorId } from '../../services/fetchMovies';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import { getImages } from '../../services/fetchMovies';
+import { useNavigate } from 'react-router-dom';
+import { getActorId } from '../../services/fetchMovies';
+
 import Modal from '@mui/material/Modal';
 
 import {
@@ -35,18 +36,24 @@ import {
   CastList,
   CastItem,
   CastNameButton,
+  ModalWrapper,
+  ModalButton,
+  ModalBox,
+  ModalList,
+  ModalItem,
+  BackdropImg,
 } from './MovieDetails.styled';
 
-export const MovieDetails = ({ movie, movieImages }) => {
+export const MovieDetails = ({ movie }) => {
   const location = useLocation();
   const releaseYear = new Date(movie.release_date).getUTCFullYear();
-  console.log(movieImages);
-  console.log(movie);
   const { movieId } = useParams();
   const [trailerUrl, setTrailerUrl] = useState('');
   const [cast, setCast] = useState([]);
   const [showAllCast, setShowAllCast] = useState(false);
   const [actorName, setActorName] = useState('');
+  const [images, setImages] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getTrailerUrl = async () => {
@@ -77,14 +84,35 @@ export const MovieDetails = ({ movie, movieImages }) => {
     movieCastResp();
   }, [movieId]);
 
-  // const GetActorName = async () => {
-  //   try {
-  //     const response = await getActorId('Cillian Murphy');
-  //     console.log(response);
-  //   } catch (error) {
-  //     toast.error('Oops! Something went wrong!');
-  //   }
-  // };
+  useEffect(() => {
+    const movieImages = async () => {
+      try {
+        const response = await getImages(movieId);
+        setImages(response);
+        console.log(response);
+      } catch (error) {
+        if (error) {
+          if (error) {
+            navigate('/*', { replace: true });
+          }
+        }
+      }
+    };
+    movieImages();
+  }, [movieId, navigate]);
+
+  const GetActorId = async name => {
+    try {
+      const response = await getActorId(name);
+      console.log(response);
+    } catch (error) {
+      toast.error('Oops! Something went wrong!');
+    }
+  };
+
+  const handleActorId = name => {
+    GetActorId(name);
+  };
 
   const handleActorName = name => {
     setActorName(name);
@@ -110,22 +138,13 @@ export const MovieDetails = ({ movie, movieImages }) => {
     },
   };
 
-  // Modal
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-    width: 400,
-  };
+  const [openBackdrops, setOpenBackdrops] = useState(false);
+  const handleBackdropsOpen = () => setOpenBackdrops(true);
+  const handleBackdropsClose = () => setOpenBackdrops(false);
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [openPosters, setOpenBPosters] = useState(false);
+  const handlePostersOpen = () => setOpenBPosters(true);
+  const handlePostersClose = () => setOpenBPosters(false);
 
   return (
     <MainWrapper>
@@ -134,7 +153,7 @@ export const MovieDetails = ({ movie, movieImages }) => {
         <PosterWrapper>
           {movie.poster_path ? (
             <Poster
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
               alt={movie.title}
             ></Poster>
           ) : (
@@ -162,30 +181,78 @@ export const MovieDetails = ({ movie, movieImages }) => {
                 ></ProdLogo>
               ))}
           </ProdLogoWrapper>
-          {/* // ----------------------------------------------- MODAL ---------------------------------------- */}
-          <div>
-            <Button onClick={handleOpen}>Open modal</Button>
+          {/* // ----------------------------------------------- MODAL BACKDROPS ------------------------------------- */}
+          <ModalWrapper>
+            <ModalButton
+              sx={{
+                color: '#ffffff',
+                border: '1px solid #86C232',
+                borderRadius: '8px',
+                marginBottom: '15px',
+              }}
+              onClick={handleBackdropsOpen}
+            >
+              MOVIE BACKDROPS
+            </ModalButton>
             <Modal
-              open={open}
-              onClose={handleClose}
+              open={openBackdrops}
+              onClose={handleBackdropsClose}
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <Box sx={style}>
-                <ul>
-                  <li key={movieImages.id}>
-                    {movieImages.backdrops.map(({ file_path, name }) => (
-                      <img
-                        key={file_path}
-                        src={`https://www.themoviedb.org/t/p/original${file_path}`}
-                        alt={'movieImage'}
-                      />
-                    ))}
-                  </li>
-                </ul>
-              </Box>
+              <ModalBox style={{ maxHeight: '95vh', overflowY: 'auto' }}>
+                <ModalList>
+                  <ModalItem>
+                    {images.backdrops &&
+                      images.backdrops.map(({ file_path }) => (
+                        <BackdropImg
+                          key={file_path}
+                          src={`https://www.themoviedb.org/t/p/original${file_path}`}
+                          alt={file_path}
+                        />
+                      ))}
+                  </ModalItem>
+                </ModalList>
+              </ModalBox>
             </Modal>
-          </div>
+          </ModalWrapper>
+          {/* // ----------------------------------------------- MODAL BACKDROPS ---------------------------------------- */}
+
+          {/* // ----------------------------------------------- MODAL POSTERS ------------------------------------- */}
+          <ModalWrapper>
+            <ModalButton
+              sx={{
+                color: '#ffffff',
+                border: '1px solid #86C232',
+                borderRadius: '8px',
+                marginBottom: '15px',
+              }}
+              onClick={handlePostersOpen}
+            >
+              MOVIE POSTERS
+            </ModalButton>
+            <Modal
+              open={openPosters}
+              onClose={handlePostersClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <ModalBox style={{ maxHeight: '95vh', overflowY: 'auto' }}>
+                <ModalList>
+                  <ModalItem>
+                    {images.posters &&
+                      images.posters.map(({ file_path }) => (
+                        <BackdropImg
+                          key={file_path}
+                          src={`https://www.themoviedb.org/t/p/original${file_path}`}
+                          alt={file_path}
+                        />
+                      ))}
+                  </ModalItem>
+                </ModalList>
+              </ModalBox>
+            </Modal>
+          </ModalWrapper>
           {/* // ----------------------------------------------- MODAL ---------------------------------------- */}
         </PosterWrapper>
         <InfoWrapper>
@@ -207,7 +274,10 @@ export const MovieDetails = ({ movie, movieImages }) => {
                 ? cast.map(actor => (
                     <CastItem key={actor.id}>
                       <CastNameButton
-                        onClick={() => handleActorName(actor.name)}
+                        onClick={() => {
+                          handleActorName(actor.name);
+                          handleActorId(actor.name);
+                        }}
                         key={actor.id}
                       >
                         {actor.name}
@@ -217,7 +287,10 @@ export const MovieDetails = ({ movie, movieImages }) => {
                 : cast.slice(0, 5).map(actor => (
                     <CastItem key={actor.id}>
                       <CastNameButton
-                        onClick={() => handleActorName(actor.name)}
+                        onClick={() => {
+                          handleActorName(actor.name);
+                          handleActorId(actor.name);
+                        }}
                         key={actor.id}
                       >
                         {actor.name}
