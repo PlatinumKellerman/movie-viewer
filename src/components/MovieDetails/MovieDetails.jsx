@@ -55,7 +55,6 @@ export const MovieDetails = ({ movie }) => {
   const [actorName, setActorName] = useState('');
   const [actorId, setActorID] = useState(null);
   const [actorPoster, setActorPoster] = useState(null);
-  const [actorPopularity, setActorPopularity] = useState(null);
   const [actorKnownFor, setActorKnownFor] = useState([]);
   const navigate = useNavigate();
 
@@ -109,9 +108,9 @@ export const MovieDetails = ({ movie }) => {
       const response = await getActorId(name);
       setActorID(response[0].id);
       setActorPoster(response[0].profile_path);
-      setActorPopularity(response[0].popularity);
       setActorKnownFor(response[0].known_for);
       console.log(response);
+      console.log(actorKnownFor);
     } catch (error) {
       toast.error('Oops! Something went wrong!');
     }
@@ -291,10 +290,11 @@ export const MovieDetails = ({ movie }) => {
               >
                 <ModalBox style={{ maxHeight: '95vh', overflowY: 'auto' }}>
                   <img
+                    style={{ width: '400px' }}
                     src={`https://image.tmdb.org/t/p/original${actorPoster}`}
                     alt={actorName}
                   ></img>
-                  <p>Actor Name:</p> <p>{actorName}</p>
+                  <p>{actorName}</p>
                 </ModalBox>
               </Modal>
             </ModalWrapper>
