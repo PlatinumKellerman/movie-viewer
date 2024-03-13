@@ -268,8 +268,7 @@ export const ModalBox = styled(Box)`
     width: 1000px;
   }
   @media (min-width: ${p => p.theme.breakpoints.values.xxl}px) {
-    width: 1400px;
-    height: 100%;
+    width: auto;
   }
 `;
 

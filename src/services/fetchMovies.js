@@ -3,7 +3,7 @@ import constants from '../constants/apiConstants';
 
 const instance = axios.create({
   baseURL: constants.movieBaseUrl,
-  language: 'en-US',
+  language: 'uk',
   params: {
     api_key: constants.movieApiKey,
     language: constants.lang,

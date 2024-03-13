@@ -51,8 +51,12 @@ export const MovieDetails = ({ movie }) => {
   const [trailerUrl, setTrailerUrl] = useState('');
   const [cast, setCast] = useState([]);
   const [showAllCast, setShowAllCast] = useState(false);
-  const [actorName, setActorName] = useState('');
   const [images, setImages] = useState([]);
+  const [actorName, setActorName] = useState('');
+  const [actorId, setActorID] = useState(null);
+  const [actorPoster, setActorPoster] = useState(null);
+  const [actorPopularity, setActorPopularity] = useState(null);
+  const [actorKnownFor, setActorKnownFor] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -89,7 +93,6 @@ export const MovieDetails = ({ movie }) => {
       try {
         const response = await getImages(movieId);
         setImages(response);
-        console.log(response);
       } catch (error) {
         if (error) {
           if (error) {
@@ -104,6 +107,10 @@ export const MovieDetails = ({ movie }) => {
   const GetActorId = async name => {
     try {
       const response = await getActorId(name);
+      setActorID(response[0].id);
+      setActorPoster(response[0].profile_path);
+      setActorPopularity(response[0].popularity);
+      setActorKnownFor(response[0].known_for);
       console.log(response);
     } catch (error) {
       toast.error('Oops! Something went wrong!');
@@ -112,6 +119,7 @@ export const MovieDetails = ({ movie }) => {
 
   const handleActorId = name => {
     GetActorId(name);
+    console.log(actorId);
   };
 
   const handleActorName = name => {
@@ -145,6 +153,10 @@ export const MovieDetails = ({ movie }) => {
   const [openPosters, setOpenBPosters] = useState(false);
   const handlePostersOpen = () => setOpenBPosters(true);
   const handlePostersClose = () => setOpenBPosters(false);
+
+  const [openCast, setOpenCast] = useState(false);
+  const handleCastOpen = () => setOpenCast(true);
+  const handleCastClose = () => setOpenCast(false);
 
   return (
     <MainWrapper>
@@ -269,6 +281,24 @@ export const MovieDetails = ({ movie }) => {
           <Tagline>{movie.tagline}</Tagline>
           <DetailsWrapper>
             <InfoParams>Cast:</InfoParams>
+            {/* ---------------------------------------------------------------- */}
+            <ModalWrapper>
+              <Modal
+                open={openCast}
+                onClose={handleCastClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <ModalBox style={{ maxHeight: '95vh', overflowY: 'auto' }}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/original${actorPoster}`}
+                    alt={actorName}
+                  ></img>
+                  <p>Actor Name:</p> <p>{actorName}</p>
+                </ModalBox>
+              </Modal>
+            </ModalWrapper>
+            {/* ------------------------------------------------------------------ */}
             <CastList>
               {showAllCast
                 ? cast.map(actor => (
@@ -277,6 +307,7 @@ export const MovieDetails = ({ movie }) => {
                         onClick={() => {
                           handleActorName(actor.name);
                           handleActorId(actor.name);
+                          handleCastOpen();
                         }}
                         key={actor.id}
                       >
@@ -290,6 +321,7 @@ export const MovieDetails = ({ movie }) => {
                         onClick={() => {
                           handleActorName(actor.name);
                           handleActorId(actor.name);
+                          handleCastOpen();
                         }}
                         key={actor.id}
                       >
