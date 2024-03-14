@@ -211,7 +211,7 @@ export const MovieDetails = ({ movie }) => {
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <ModalBox style={{ maxHeight: '95vh', overflowY: 'auto' }}>
+              <ModalBox>
                 <ModalList>
                   <ModalItem>
                     {images.backdrops &&
@@ -248,7 +248,7 @@ export const MovieDetails = ({ movie }) => {
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <ModalBox style={{ maxHeight: '95vh', overflowY: 'auto' }}>
+              <ModalBox>
                 <ModalList>
                   <ModalItem>
                     {images.posters &&
@@ -288,13 +288,43 @@ export const MovieDetails = ({ movie }) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <ModalBox style={{ maxHeight: '95vh', overflowY: 'auto' }}>
-                  <img
-                    style={{ width: '400px' }}
-                    src={`https://image.tmdb.org/t/p/original${actorPoster}`}
-                    alt={actorName}
-                  ></img>
-                  <p>{actorName}</p>
+                <ModalBox>
+                  <div>
+                    <img
+                      style={{ width: '400px' }}
+                      src={`https://image.tmdb.org/t/p/original${actorPoster}`}
+                      alt={actorName}
+                    ></img>
+                    <p>{actorName}</p>
+                  </div>
+                  <div>
+                    <p>Known For:</p>
+                    <ul style={{ display: 'flex' }}>
+                      <li>
+                        {actorKnownFor &&
+                          actorKnownFor.map(
+                            ({
+                              poster_path,
+                              id,
+                              first_air_date,
+                              genre_id,
+                              name,
+                              original_name,
+                              origin_country,
+                              overview,
+                              vote_average,
+                            }) => (
+                              <img
+                                style={{ width: '185px' }}
+                                key={id}
+                                src={`https://www.themoviedb.org/t/p/w400${poster_path}`}
+                                alt={original_name}
+                              />
+                            )
+                          )}
+                      </li>
+                    </ul>
+                  </div>
                 </ModalBox>
               </Modal>
             </ModalWrapper>

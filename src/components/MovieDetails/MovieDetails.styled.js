@@ -261,6 +261,8 @@ export const ModalBox = styled(Box)`
   width: 400px;
   height: auto;
   padding: 10px;
+  max-height: 95hv;
+  overflow-y: auto;
   @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
     width: 600px;
   }

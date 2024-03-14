@@ -86,6 +86,7 @@ export async function getImages(movie_id) {
   const response = await instance.get(`/movie/${movie_id}/images`, {
     params: {
       movie_id,
+      language: 'en',
     },
   });
   return response.data;
