@@ -1,3 +1,4 @@
+import React from 'react';
 import movieTrailer from 'movie-trailer';
 import { toast } from 'react-toastify';
 import { CircularProgressbar } from 'react-circular-progressbar';
@@ -12,6 +13,7 @@ import poster_plug from '../../assets/poster_plug-min.jpg';
 import { getImages } from '../../services/fetchMovies';
 import { useNavigate } from 'react-router-dom';
 import { getActorId } from '../../services/fetchMovies';
+import actor_plug from '../../assets/actor-plug-min.jpg';
 
 import Modal from '@mui/material/Modal';
 
@@ -299,8 +301,13 @@ export const MovieDetails = ({ movie }) => {
                   </div>
                   <div>
                     <p>Known For:</p>
-                    <ul style={{ display: 'flex' }}>
-                      <li>
+                    <ul>
+                      <li
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                        }}
+                      >
                         {actorKnownFor &&
                           actorKnownFor.map(
                             ({
@@ -314,12 +321,22 @@ export const MovieDetails = ({ movie }) => {
                               overview,
                               vote_average,
                             }) => (
-                              <img
-                                style={{ width: '185px' }}
-                                key={id}
-                                src={`https://www.themoviedb.org/t/p/w400${poster_path}`}
-                                alt={original_name}
-                              />
+                              <React.Fragment key={id}>
+                                {poster_path ? (
+                                  <img
+                                    style={{
+                                      width: '120px',
+                                    }}
+                                    src={`https://www.themoviedb.org/t/p/w400${poster_path}`}
+                                    alt={original_name}
+                                  />
+                                ) : (
+                                  <actor_plug
+                                    src={actor_plug}
+                                    alt={'Actor Plug'}
+                                  />
+                                )}
+                              </React.Fragment>
                             )
                           )}
                       </li>
