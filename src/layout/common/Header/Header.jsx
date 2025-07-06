@@ -9,8 +9,8 @@ import {
   SearchMovieLink,
   MainLogoLink,
   WeatherLogo,
-  LeafsLeftPic,
-  GrassIco,
+  // LeafsLeftPic,
+  // GrassIco,
   // HeaderLinksWrapper,
 } from './Header.styled';
 
@@ -28,9 +28,9 @@ const Header = () => {
         render={() => (
           <TitleWrapper>
             {' '}
-            <GrassIco />
+            {/* <GrassIco /> */}
             <HeaderTitle>Movie Finder</HeaderTitle>
-            <LeafsLeftPic />
+            {/* <LeafsLeftPic /> */}
           </TitleWrapper>
         )}
       ></Media>
