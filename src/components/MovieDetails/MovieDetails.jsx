@@ -44,6 +44,11 @@ import {
   ModalList,
   ModalItem,
   BackdropImg,
+  ModalCastItem,
+  KnownForText,
+  ActorName,
+  ModalCastItemWrapper,
+  KnownForMovieName
 } from './MovieDetails.styled';
 
 export const MovieDetails = ({ movie }) => {
@@ -293,20 +298,15 @@ export const MovieDetails = ({ movie }) => {
                 <ModalBox>
                   <div>
                     <img
-                      style={{ width: '400px' }}
                       src={`https://image.tmdb.org/t/p/original${actorPoster}`}
                       alt={actorName}
                     ></img>
-                    <p>{actorName}</p>
+                    <ActorName>{actorName}</ActorName>
                   </div>
                   <div>
-                    <p>Known For:</p>
-                    <ul>
-                      <li
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                        }}
+                    <KnownForText>Знімався  (Знімалась)  у:</KnownForText>
+                    <ModalList>
+                      <ModalItem
                       >
                         {actorKnownFor &&
                           actorKnownFor.map(
@@ -322,25 +322,27 @@ export const MovieDetails = ({ movie }) => {
                               vote_average,
                             }) => (
                               <React.Fragment key={id}>
-                                {poster_path ? (
-                                  <img
-                                    style={{
-                                      width: '120px',
-                                    }}
-                                    src={`https://www.themoviedb.org/t/p/w400${poster_path}`}
-                                    alt={original_name}
-                                  />
-                                ) : (
-                                  <actor_plug
-                                    src={actor_plug}
-                                    alt={'Actor Plug'}
-                                  />
-                                )}
-                              </React.Fragment>
+  {poster_path ? (
+    <ModalCastItemWrapper>
+      <ModalCastItem
+        src={`https://www.themoviedb.org/t/p/w400${poster_path}`}
+        alt={original_name}
+      />
+      <KnownForMovieName>{name}</KnownForMovieName>
+    </ModalCastItemWrapper>
+  ) : (
+    <>
+      <actor_plug
+        src={actor_plug}
+        alt="Actor Plug"
+      />
+    </>
+  )}
+</React.Fragment>
                             )
                           )}
-                      </li>
-                    </ul>
+                      </ModalItem>
+                    </ModalList>
                   </div>
                 </ModalBox>
               </Modal>

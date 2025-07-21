@@ -249,27 +249,21 @@ export const ModalButton = styled(Button)`
 `;
 
 export const ModalBox = styled(Box)`
-  scale: 100%;
-  position: fixed;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: ${p => p.theme.colors.darkGrey};
   border: 2px solid #000;
   box-shadow: 24px;
-  width: 400px;
-  height: auto;
+  width: 85vw;
   padding: 10px;
-  max-height: 95hv;
+  max-height: 90vh;
   overflow-y: auto;
-  @media (min-width: ${p => p.theme.breakpoints.values.lg}px) {
-    width: 600px;
-  }
-  @media (min-width: ${p => p.theme.breakpoints.values.xl}px) {
-    width: 1000px;
-  }
-  @media (min-width: ${p => p.theme.breakpoints.values.xxl}px) {
-    width: auto;
+  scroll: auto;
+   @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
+    min-width: 300px;
+    max-width: 500px;
   }
 `;
 
@@ -279,9 +273,9 @@ export const ModalList = styled.ul`
 `;
 
 export const ModalItem = styled.li`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+   display: flex;
+  flex-wrap: nowrap;
+  padding: 5px;
 `;
 
 export const BackdropImg = styled.img`
@@ -296,4 +290,39 @@ export const BackdropImg = styled.img`
   @media (min-width: ${p => p.theme.breakpoints.values.xxl}px) {
     width: 100%;
   }
+`;
+
+export const ModalCastItem = styled.img`
+width: 100%;
+  padding: 5px;
+`;
+
+export const KnownForText = styled.p`
+width: auto;
+margin: 10px;
+font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSizes.xm};
+  color: ${p => p.theme.colors.light};
+`;
+
+export const ActorName = styled.p`
+width: auto;
+margin: 10px;
+color: ${p => p.theme.colors.light};
+font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSizes.m};
+  letter-spacing: 3px;
+`;
+
+export const ModalCastItemWrapper = styled.div`
+display: block;
+margin-right: auto;
+margin-left: auto;
+`;
+
+export const KnownForMovieName = styled.p`
+width: auto;
+font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSizes.xm};
+  color: ${p => p.theme.colors.light};
 `;
