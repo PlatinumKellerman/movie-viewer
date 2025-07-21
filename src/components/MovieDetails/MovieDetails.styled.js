@@ -28,7 +28,7 @@ export const PosterWrapper = styled.div`
 `;
 
 export const Poster = styled.img`
-  max-width: 500px;
+  max-width: 350px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
@@ -93,8 +93,8 @@ const pulse = keyframes`
 
 export const YouTubeLogo = styled(YouTubeLogoMin)`
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0%;
+  left: 0%;
   width: 150px;
   height: auto;
   color: ${p => p.theme.colors.dark};
@@ -108,9 +108,8 @@ export const YouTubeLogo = styled(YouTubeLogoMin)`
     transition-property: all;
   }
   @media (max-width: ${p => p.theme.breakpoints.values.lg}px) {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0%;
+    left: 30%;
   }
 `;
 

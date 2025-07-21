@@ -19,17 +19,24 @@ export const Poster = styled.img`
   margin-right: auto;
   margin-bottom: 5px;
   border-radius: 10px;
-  max-width: 150px;
+  max-width: 100px;
   height: auto;
+  @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
+    max-width: 150px;
+  }
 `;
 
 export const ShowTitle = styled.p`
   text-align: center;
   margin-bottom: 5px;
   font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSizes.s};
+  font-size: ${p => p.theme.fontSizes.xs};
   text-shadow: ${p => p.theme.colors.dark} 1px 0px 0px,
     ${p => p.theme.colors.dark} 0px 1px 0px,
     ${p => p.theme.colors.dark} 0px -1px 0px,
     ${p => p.theme.colors.dark} -1px 0px 0px;
+    @media (min-width: ${p => p.theme.breakpoints.values.md}px) {
+  font-size: ${p => p.theme.fontSizes.s};
+}
+
 `;

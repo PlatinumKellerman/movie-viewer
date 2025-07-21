@@ -48,6 +48,7 @@ const HomePage = () => {
       const [showResponse] = await Promise.all([getMostPopularTvShows()]);
       setShows(showResponse);
       setIsLoading(false);
+      
     } catch (error) {
       toast.error('Oops! Something went wrong!');
       setIsLoading(false);
